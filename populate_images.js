@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const baseDir = path.join(__dirname, 'images', 'products');
+const baseDir = path.join(__dirname, 'client', 'public', 'images', 'products');
 
 const sourceMap = {
     'Espresso.png': [

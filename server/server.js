@@ -16,7 +16,7 @@ app.use(express.json());
 // Assuming images are stored in a folder named 'images' in the root or server directory
 // The user said: "Images will be provided in the project /images/products/ folder"
 // matching the structure: project/images/products
-app.use('/images', express.static(path.join(__dirname, '../images')));
+app.use('/images', express.static(path.join(__dirname, '../client/public/images')));
 
 // API Routes
 

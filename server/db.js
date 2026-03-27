@@ -3,10 +3,17 @@ const path = require('path');
 
 const dbPath = path.join(process.cwd(), 'server', 'database.sqlite');
 
+console.log('--- DB INIT ---');
+console.log('process.cwd():', process.cwd());
+console.log('__dirname:', __dirname);
+console.log('dbPath resolved to:', dbPath);
+
 // Initialize database connection
 const db = new sqlite3.Database(dbPath, (err) => {
     if (err) {
         console.error('Error connecting to SQLite database:', err.message);
+    } else {
+        console.log('Successfully connected to SQLite database at:', dbPath);
     }
 });
 

@@ -90,9 +90,13 @@ app.get('/api/menu', async (req, res) => {
         res.json(menu);
 
     } catch (err) {
-        console.error("Error fetching menu data:", err);
-        // User requested to return empty array instead of crashing if table missing or error
-        res.json([]);
+        console.error("Exact error fetching menu data:", err);
+        console.error(err.stack);
+        res.status(500).json({ 
+            error: err.message, 
+            stack: err.stack,
+            dbPath: require('path').join(process.cwd(), 'server', 'database.sqlite')
+        });
     }
 });
 

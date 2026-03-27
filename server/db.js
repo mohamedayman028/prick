@@ -2,7 +2,7 @@ const sqlite3 = require('sqlite3').verbose();
 const { open } = require('sqlite');
 const path = require('path');
 
-const dbPath = path.join(process.cwd(), 'server', 'database.sqlite');
+const dbPath = path.join(__dirname, 'database.sqlite');
 
 console.log('--- DB INIT ---');
 console.log('process.cwd():', process.cwd());

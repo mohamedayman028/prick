@@ -2,6 +2,5 @@
 // If loaded from ngrok (public), point to the ngrok backend
 const isDev = import.meta.env.DEV;
 
-export const API_BASE_URL = isDev
-    ? `http://${window.location.hostname}:5002`
-    : import.meta.env.VITE_API_URL || window.location.origin; // Dynamically resolve ngrok origin
+// Use relative paths to rely on Vite proxy locally and Vercel rewrites in production.
+export const API_BASE_URL = '';

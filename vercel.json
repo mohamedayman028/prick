@@ -12,7 +12,7 @@
       "src": "server/server.js",
       "use": "@vercel/node",
       "config": {
-        "includeFiles": ["database.sqlite"]
+        "includeFiles": ["server/database.sqlite"]
       }
     }
   ],

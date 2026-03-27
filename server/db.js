@@ -1,8 +1,9 @@
 const sqlite3 = require('sqlite3').verbose();
 const { open } = require('sqlite');
 const path = require('path');
+const fs = require('fs');
 
-const dbPath = path.join(__dirname, 'database.sqlite');
+const dbPath = path.resolve(__dirname, 'database.sqlite');
 
 console.log('--- DB INIT ---');
 console.log('process.cwd():', process.cwd());
@@ -19,6 +20,11 @@ const dbPromise = open({
     return db;
 }).catch(err => {
     console.error('Error connecting to SQLite database:', err.message);
+    try {
+        console.log(`Contents of ${__dirname}:`, fs.readdirSync(__dirname));
+    } catch (fsErr) {
+        console.error('Failed to read directory:', fsErr.message);
+    }
     throw err;
 });
 

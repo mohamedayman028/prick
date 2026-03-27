@@ -9,7 +9,7 @@ console.log('__dirname:', __dirname);
 console.log('dbPath resolved to:', dbPath);
 
 // Initialize database connection
-const db = new sqlite3.Database(dbPath, (err) => {
+const db = new sqlite3.Database(dbPath, sqlite3.OPEN_READONLY, (err) => {
     if (err) {
         console.error('Error connecting to SQLite database:', err.message);
     } else {

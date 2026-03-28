@@ -50,6 +50,7 @@ app.get('/api/menu', async (req, res) => {
                 p.product_name, 
                 p.category_id,
                 p.description_ar,
+                p.image_url,
                 sz.size_name, 
                 pp.price
             FROM products p
@@ -72,6 +73,7 @@ app.get('/api/menu', async (req, res) => {
                         id: row.product_id,
                         name: row.product_name,
                         description_ar: row.description_ar, // Mapped from DB
+                        imageUrl: row.image_url, // Mapped from DB
                         items: []
                     });
                 }

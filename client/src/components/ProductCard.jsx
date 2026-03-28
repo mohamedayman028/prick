@@ -7,8 +7,9 @@ const ProductCard = ({ product }) => {
     const [loaded, setLoaded] = useState(false);
     const [showDetails, setShowDetails] = useState(false);
 
-    // Construct image URL - now relative to public folder
-    const imageUrl = `/images/products/${product.name.split('|')[0].trim()}.png`;
+    // Use the imageUrl provided by the API, fallback to a path constructed from the name if missing
+    // or use a default image if both are unavailable.
+    const imageUrl = product.imageUrl || `/images/products/${product.name.split('|')[0].trim()}.png`;
 
     const handleImageError = (e) => {
         const currentSrc = e.target.src;

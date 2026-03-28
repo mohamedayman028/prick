@@ -26,7 +26,7 @@ const ProductCard = ({ item }) => {
         } 
         // If everything failed, use local placeholder
         else if (!currentSrc.includes('default-coffee')) {
-            e.target.src = '/images/items/default-coffee.png';
+            e.target.src = '/images/products/default-coffee.png';
             e.target.style.opacity = '0.8';
         }
     };
@@ -135,7 +135,7 @@ const ProductCard = ({ item }) => {
                         flexDirection: 'column',
                         gap: '0.5rem'
                     }}>
-                        {item.items.map((item, idx) => (
+                        {item.items.map((priceOption, idx) => (
                             <div key={idx} style={{
                                 display: 'flex',
                                 justifyContent: 'space-between',
@@ -145,11 +145,11 @@ const ProductCard = ({ item }) => {
                                 borderBottom: idx !== item.items.length - 1 ? '1px solid #f0f0f0' : 'none',
                                 paddingBottom: idx !== item.items.length - 1 ? '0.4rem' : '0'
                             }}>
-                                <span>{item.size === 'S' ? 'Small' : item.size === 'M' ? 'Medium' : 'Large'}</span>
+                                <span>{priceOption.size === 'S' ? 'Small' : priceOption.size === 'M' ? 'Medium' : 'Large'}</span>
                                 <span style={{
                                     color: 'var(--accent)',
                                     fontWeight: '700',
-                                }}>{item.price} <small style={{ fontSize: '0.75em' }}>EGP</small></span>
+                                }}>{priceOption.price} <small style={{ fontSize: '0.75em' }}>EGP</small></span>
                             </div>
                         ))}
                     </div>
@@ -327,7 +327,7 @@ const ProductCard = ({ item }) => {
                                         justifyContent: 'center',
                                         flexWrap: 'wrap'
                                     }}>
-                                        {item.items.map((item, idx) => (
+                                        {item.items.map((priceOption, idx) => (
                                             <motion.div 
                                                 key={idx}
                                                 whileHover={{ y: -5 }}
@@ -349,14 +349,14 @@ const ProductCard = ({ item }) => {
                                                     fontWeight: '600',
                                                     marginBottom: '4px'
                                                 }}>
-                                                    {item.size === 'S' ? 'Small' : item.size === 'M' ? 'Medium' : 'Large'}
+                                                    {priceOption.size === 'S' ? 'Small' : priceOption.size === 'M' ? 'Medium' : 'Large'}
                                                 </span>
                                                 <span style={{ 
                                                     color: 'var(--accent)', 
                                                     fontWeight: '900', 
                                                     fontSize: '1.3rem' 
                                                 }}>
-                                                    {item.price} <small style={{ fontSize: '0.7em' }}>EGP</small>
+                                                    {priceOption.price} <small style={{ fontSize: '0.7em' }}>EGP</small>
                                                 </span>
                                             </motion.div>
                                         ))}

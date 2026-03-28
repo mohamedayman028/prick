@@ -3,12 +3,20 @@ import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { API_BASE_URL } from '../config';
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ item }) => {
     const [loaded, setLoaded] = useState(false);
     const [showDetails, setShowDetails] = useState(false);
 
     // Dynamic template literal as requested (imageUrl from DB is now just the filename)
-    const imageUrl = `/images/products/${product.imageUrl}`;
+    const imageUrl = `/images/products/${item.imageUrl}`;
+
+    const handleProductClick = (e) => {
+        if (e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+        handleCardClick();
+    };
 
     const handleImageError = (e) => {
         const currentSrc = e.target.src;
@@ -18,7 +26,7 @@ const ProductCard = ({ product }) => {
         } 
         // If everything failed, use local placeholder
         else if (!currentSrc.includes('default-coffee')) {
-            e.target.src = '/images/products/default-coffee.png';
+            e.target.src = '/images/items/default-coffee.png';
             e.target.style.opacity = '0.8';
         }
     };
@@ -33,7 +41,7 @@ const ProductCard = ({ product }) => {
     };
 
     // Split bilingual name for better styling
-    const nameParts = product.name.split('|');
+    const nameParts = item.name.split('|');
     const englishName = nameParts[0]?.trim();
     const arabicName = nameParts[1]?.trim();
 
@@ -43,7 +51,7 @@ const ProductCard = ({ product }) => {
                 layout
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="product-card"
+                className="item-card"
                 onClick={handleCardClick}
                 style={{
                     position: 'relative',
@@ -74,18 +82,20 @@ const ProductCard = ({ product }) => {
                 }}>
                     <motion.img
                         src={imageUrl}
-                        alt={product.name}
+                        alt={item.name}
                         onLoad={() => setLoaded(true)}
                         onError={handleImageError}
+                        onClick={handleProductClick}
                         style={{
                             width: '100%',
                             height: '100%',
                             objectFit: 'cover',
                             opacity: loaded ? 1 : 0,
                             transition: 'opacity 0.5s ease',
+                            cursor: 'pointer'
                         }}
                         whileHover={{ scale: 1.1 }}
-                        className="product-image"
+                        className="item-image"
                     />
                 </div>
 
@@ -125,15 +135,15 @@ const ProductCard = ({ product }) => {
                         flexDirection: 'column',
                         gap: '0.5rem'
                     }}>
-                        {product.items.map((item, idx) => (
+                        {item.items.map((item, idx) => (
                             <div key={idx} style={{
                                 display: 'flex',
                                 justifyContent: 'space-between',
                                 alignItems: 'center',
                                 fontSize: '0.9rem',
                                 color: 'var(--text-secondary)',
-                                borderBottom: idx !== product.items.length - 1 ? '1px solid #f0f0f0' : 'none',
-                                paddingBottom: idx !== product.items.length - 1 ? '0.4rem' : '0'
+                                borderBottom: idx !== item.items.length - 1 ? '1px solid #f0f0f0' : 'none',
+                                paddingBottom: idx !== item.items.length - 1 ? '0.4rem' : '0'
                             }}>
                                 <span>{item.size === 'S' ? 'Small' : item.size === 'M' ? 'Medium' : 'Large'}</span>
                                 <span style={{
@@ -251,7 +261,7 @@ const ProductCard = ({ product }) => {
                                     >
                                         <img
                                             src={imageUrl}
-                                            alt={product.name}
+                                            alt={item.name}
                                             onError={handleImageError}
                                             style={{
                                                 width: '100%',
@@ -294,7 +304,7 @@ const ProductCard = ({ product }) => {
                                             fontWeight: '800',
                                             display: 'block',
                                             marginBottom: '1rem'
-                                        }}>Product Info</span>
+                                        }}>item Info</span>
                                         <p style={{
                                             color: 'var(--text-secondary)',
                                             lineHeight: '1.8',
@@ -306,7 +316,7 @@ const ProductCard = ({ product }) => {
                                             borderRadius: '20px',
                                             border: '1px dashed rgba(var(--accent-rgb), 0.2)'
                                         }}>
-                                            {product.description_ar || ""}
+                                            {item.description_ar || ""}
                                         </p>
                                     </div>
 
@@ -317,7 +327,7 @@ const ProductCard = ({ product }) => {
                                         justifyContent: 'center',
                                         flexWrap: 'wrap'
                                     }}>
-                                        {product.items.map((item, idx) => (
+                                        {item.items.map((item, idx) => (
                                             <motion.div 
                                                 key={idx}
                                                 whileHover={{ y: -5 }}

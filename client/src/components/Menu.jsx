@@ -142,7 +142,7 @@ const Menu = () => {
                     gap: '2rem'
                 }}>
                     {activeCategoryData?.products.map(product => (
-                        <ProductCard key={product.id} product={product} />
+                        <ProductCard key={product.id} item={product} />
                     ))}
                 </div>
 

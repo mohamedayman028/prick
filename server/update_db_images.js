@@ -40,9 +40,10 @@ async function updateImages() {
     let updatedCount = 0;
     products.forEach(product => {
         const englishName = product.product_name.split('|')[0].trim();
-        // The user mentioned /images/ but files are in /images/products/
-        // We'll use /images/products/ as it matches the public folder structure.
-        const imageUrl = `/images/products/${englishName}.png`;
+        // The user specifically requested only the filename (e.g., coffee.png)
+        // We assume most are .png, but we handle the existing extension if possible.
+        // For now, following the user's lead of using the name to find the file.
+        const imageUrl = `${englishName}.png`;
         
         db.run("UPDATE products SET image_url = ? WHERE product_id = ?", [imageUrl, product.product_id]);
         updatedCount++;

@@ -32,8 +32,8 @@ async function verify() {
     products.forEach(p => {
         console.log(`- ${p.name}: ${p.imageUrl}`);
         
-        // Verify image existence in public folder
-        const fullImagePath = path.join(__dirname, 'client', 'public', p.imageUrl);
+        // Verify image existence in public folder (matching the new frontend logic)
+        const fullImagePath = path.join(__dirname, 'client', 'public', 'images', 'products', p.imageUrl);
         if (fs.existsSync(fullImagePath)) {
             console.log(`  ✅ Image found at: ${fullImagePath}`);
         } else {

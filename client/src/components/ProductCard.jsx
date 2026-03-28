@@ -7,9 +7,8 @@ const ProductCard = ({ product }) => {
     const [loaded, setLoaded] = useState(false);
     const [showDetails, setShowDetails] = useState(false);
 
-    // Use the imageUrl provided by the API, fallback to a path constructed from the name if missing
-    // or use a default image if both are unavailable.
-    const imageUrl = product.imageUrl || `/images/products/${product.name.split('|')[0].trim()}.png`;
+    // Dynamic template literal as requested (imageUrl from DB is now just the filename)
+    const imageUrl = `/images/products/${product.imageUrl}`;
 
     const handleImageError = (e) => {
         const currentSrc = e.target.src;
@@ -269,9 +268,9 @@ const ProductCard = ({ product }) => {
                                         lineHeight: '1.2',
                                         marginBottom: '0.5rem'
                                     }}>
-                                        {englishName}
+                                        {item.name.split('|')[0]?.trim()}
                                     </h2>
-                                    {arabicName && (
+                                    {item.name.split('|')[1] && (
                                         <h2 style={{
                                             fontSize: '2.2rem',
                                             color: 'var(--text-primary)',
@@ -279,7 +278,7 @@ const ProductCard = ({ product }) => {
                                             direction: 'rtl',
                                             marginBottom: '1rem'
                                         }}>
-                                            {arabicName}
+                                            {item.name.split('|')[1]?.trim()}
                                         </h2>
                                     )}
                                 </div>

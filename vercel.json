@@ -16,11 +16,7 @@
       }
     }
   ],
-  "functions": {
-    "server/server.js": {
-      "includeFiles": "server/database.sqlite"
-    }
-  },
+
   "rewrites": [
     {
       "source": "/api/(.*)",

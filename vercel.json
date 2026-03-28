@@ -12,7 +12,10 @@
       "src": "server/server.js",
       "use": "@vercel/node",
       "config": {
-        "includeFiles": ["server/database.sqlite"]
+        "includeFiles": [
+          "server/database.sqlite",
+          "server/node_modules/sql.js/dist/sql-wasm.wasm"
+        ]
       }
     }
   ],

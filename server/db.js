@@ -11,10 +11,13 @@ async function getDb() {
         console.log('--- DB LAZY INIT (sql.js) ---');
         console.log('process.cwd():', process.cwd());
         console.log('__dirname:', __dirname);
-        console.log('dbPath resolved to:', dbPath);
-
+        const wasmPath = path.join(process.cwd(), 'server', 'node_modules', 'sql.js', 'dist', 'sql-wasm.wasm');
+        
         if (!SQL) {
-            SQL = await initSqlJs();
+            console.log('--- Loading WASM from:', wasmPath, '---');
+            SQL = await initSqlJs({
+                locateFile: file => wasmPath
+            });
         }
 
         if (!fs.existsSync(dbPath)) {

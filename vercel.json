@@ -14,7 +14,7 @@
       "config": {
         "includeFiles": [
           "server/database.sqlite",
-          "server/node_modules/sql.js/dist/sql-wasm.wasm"
+          "server/sql-wasm.wasm"
         ]
       }
     }

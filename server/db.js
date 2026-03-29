@@ -11,10 +11,10 @@ async function getDb() {
         console.log('--- DB LAZY INIT (sql.js) ---');
         console.log('process.cwd():', process.cwd());
         console.log('__dirname:', __dirname);
-        const wasmPath = path.join(process.cwd(), 'server', 'node_modules', 'sql.js', 'dist', 'sql-wasm.wasm');
+        const wasmPath = path.join(__dirname, 'sql-wasm.wasm');
         
         if (!SQL) {
-            console.log('--- Loading WASM from:', wasmPath, '---');
+            console.log('--- Loading WASM from server bundle:', wasmPath, '---');
             SQL = await initSqlJs({
                 locateFile: file => wasmPath
             });

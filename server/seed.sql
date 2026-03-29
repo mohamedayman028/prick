@@ -33,7 +33,7 @@ INSERT INTO products (product_name, category_id, description_ar, image_url) VALU
 ('Cappuccino | كابتشينو', 1, 'إسبريسو مع حليب مبخر ورغوة كثيفة متوازنة.', '/images/products/Cappuccino.png'),
 ('Hot Latte | لاتيه ساخن', 1, 'إسبريسو ناعم مع كمية وافرة من الحليب المبخر.', '/images/products/Hot Latte.png'),
 ('Turkish Coffee | قهوة تركية', 1, 'قهوة تركية كلاسيكية محضرة بعناية ومذاق أصيل.', '/images/products/Turkish Coffee.png'),
-('Turkish Coffee with Milk | قهوة تركية بالحليب', 1, 'قهوة تركية تقليدية مع الحليب لمذاق أكثر نعومة.', '/images/products/Turkish Coffee with Milk.png'),
+('Turkish Coffee with Milk | قهوة فرنساوي', 1, 'قهوة تركية تقليدية مع الحليب لمذاق أكثر نعومة.', '/images/products/Turkish Coffee with Milk.png'),
 ('Nutella Coffee | قهوة نوتيلا', 1, 'إسبريسو غني ممزوج بلمسة من شوكولاتة نوتيلا.', '/images/products/Nutella Coffee.png'),
 ('Hot Lotus Latte | لوتس لاتيه ساخن', 1, 'لاتيه كريمي مع زبدة بسكويت لوتس الشهيرة.', '/images/products/Hot Lotus Latte.png'),
 ('Spanish Latte | سبانيش لاتيه', 1, 'لاتيه حلو مع الحليب المكثف المحلى لقوام كريمي.', '/images/products/Spanish Latte.png'),
@@ -260,17 +260,17 @@ INSERT INTO product_prices (product_id, size_id, price) VALUES
 SMOOTHIES
 ========================= */
 INSERT INTO products (product_name, category_id, description_ar, image_url) VALUES
-('Peach Smoothie | سموزي خوخ', 11, 'سموثي خوخ طبيعي منعش ومبرد.', '/images/products/default.jpg'),
-('Strawberry Smoothie | سموزي فراولة', 11, 'سموثي فراولة طازجة وحلوة.', '/images/products/default.jpg'),
-('Mango Smoothie | سموزي مانجو', 11, 'سموثي مانجو استوائي غني المذاق.', '/images/products/default.jpg'),
-('Watermelon Smoothie | سموزي بطيخ', 11, 'سموثي بطيخ منعش ومرطب.', '/images/products/default.jpg'),
+('Peach Smoothie | سموزي خوخ', 11, 'سموزي خوخ طبيعي منعش ومبرد.', '/images/products/default.jpg'),
+('Strawberry Smoothie | سموزي فراولة', 11, 'سموزي فراولة طازجة وحلوة.', '/images/products/default.jpg'),
+('Mango Smoothie | سموزي مانجو', 11, 'سموزي مانجو استوائي غني المذاق.', '/images/products/default.jpg'),
+('Watermelon Smoothie | سموزي بطيخ', 11, 'سموزي بطيخ منعش ومرطب.', '/images/products/default.jpg'),
 ('Kiwi Smoothie | سموزي كيوي', 11, 'سموزي كيوي أخضر وصحي.', '/images/products/default.jpg'),
-('Apple Smoothie | سموزي تفاح', 11, 'سموثي تفاح حلو مع لمسة قرفة.', '/images/products/default.jpg'),
-('Pineapple Smoothie | سموزي أناناس', 11, 'سموثي أناناس منعش بنكهة استوائية.', '/images/products/default.jpg'),
-('Passion Fruit Smoothie | سموزي باشن فروت', 11, 'سموثي باشن فروت بنكهة فريدة.', '/images/products/default.jpg'),
-('Lemon Smoothie | سموزي ليمون', 11, 'سموثي ليمون حامض ومنعش.', '/images/products/default.jpg'),
-('Lemon Mint Smoothie | سموزي ليمون نعناع', 11, 'سموثي ليمون ونعناع بارد ومنعش.', '/images/products/default.jpg'),
-('Mixed Berry Smoothie |سموزي توت مشكل', 11, 'سموثي توت مشكل غني بمضادات الأكسدة.', '/images/products/default.jpg');
+('Apple Smoothie | سموزي تفاح', 11, 'سموزي تفاح حلو مع لمسة قرفة.', '/images/products/default.jpg'),
+('Pineapple Smoothie | سموزي أناناس', 11, 'سموزي أناناس منعش بنكهة استوائية.', '/images/products/default.jpg'),
+('Passion Fruit Smoothie | سموزي باشن فروت', 11, 'سموزي باشن فروت بنكهة فريدة.', '/images/products/default.jpg'),
+('Lemon Smoothie | سموزي ليمون', 11, 'سموزي ليمون حامض ومنعش.', '/images/products/default.jpg'),
+('Lemon Mint Smoothie | سموزي ليمون نعناع', 11, 'سموزي ليمون ونعناع بارد ومنعش.', '/images/products/default.jpg'),
+('Mixed Berry Smoothie |سموزي توت مشكل', 11, 'سموزي توت مشكل غني بمضادات الأكسدة.', '/images/products/default.jpg');
 
 INSERT INTO product_prices (product_id, size_id, price) VALUES
 (82, 1, 79), (82, 2, 84), (82, 3, 89),

@@ -62,11 +62,11 @@ WARM DRINKS
 ========================= */
 INSERT INTO products (product_name, category_id, description_ar, image_url) VALUES
 ('Tea | شاي', 2, 'شاي أسود فاخر محضر طازجاً.', 'Tea.png'),
-('Tea with Milk | شاي بالحليب', 2, 'شاي كلاسيكي ممزوج بالحليب الناعم.', 'Tea.png'),
-('Flavored Tea | شاي منكه', 2, 'شاي عطري بنكهات الفواكه الطبيعية.', 'Tea.png'),
-('Hot Cider | هوت سيدر', 2, 'سيدر تفاح دافئ مع لمسة قرفة.', 'default.jpg'),
-('Hot Chocolate | هوت شوكلت', 2, 'شوكولاتة غنية وحليب مبخر دافئ.', 'default.jpg'),
-('Sahlab | سحلب', 2, 'مشروب السحلب التقليدي بالمكسرات.', 'default.jpg');
+('Tea with Milk | شاي بالحليب', 2, 'شاي كلاسيكي ممزوج بالحليب الناعم.', 'Tea with Milk.png'),
+('Flavored Tea | شاي منكه', 2, 'شاي عطري بنكهات الفواكه الطبيعية.', 'Flavored Tea.png'),
+('Hot Cider | هوت سيدر', 2, 'سيدر تفاح دافئ مع لمسة قرفة.', 'Hot Cider.png'),
+('Hot Chocolate | هوت شوكلت', 2, 'شوكولاتة غنية وحليب مبخر دافئ.', 'Hot Chocolate.png'),
+('Sahlab | سحلب', 2, 'مشروب السحلب التقليدي بالمكسرات.', 'Sahlab.png');
 
 
 INSERT INTO product_prices (product_id, size_id, price) VALUES
@@ -152,8 +152,8 @@ BOBA
 ========================= */
 INSERT INTO products (product_name, category_id, description_ar, image_url) VALUES
 ('Boba Soft | بوبا سوفت', 6, 'شاي ناعم مع حبيبات البوبا الطرية.', 'default.jpg'),
-('Boba Milkshake | بوبا ميلك شيك', 6, 'ميلك شيك كريمي مع حبيبات البوبا.', 'default.jpg'),
-('Boba Smoothie | بوبا سموزي', 6, 'سموثي فواكه طازج مع حبيبات البوبا.', 'default.jpg'),
+('Boba Milkshake | بوبا ميلك شيك', 6, 'ميلك شيك كريمي مع حبيبات البوبا.', 'Boba Milkshake.png'),
+('Boba Smoothie | بوبا سموزي', 6, 'سموثي فواكه طازج مع حبيبات البوبا.', 'Boba Smoothie.png'),
 ('Boba Tabioka | بوبا تابيوكا', 6, 'مشروب تقليدي مع حبات البوبا الكبيرة.', 'default.jpg');
 
 INSERT INTO product_prices (product_id, size_id, price) VALUES
@@ -170,7 +170,7 @@ INSERT INTO products (product_name, category_id, description_ar, image_url) VALU
 ('V60 Hot | في 60 ساخن', 7,'قهوة مختصة ساخنة محضرة بالتقطير.', NULL),
 ('Chemex | كيمكس', 7, 'قهوة نقية ومصفاة بمذاق متوازن.', 'default.jpg'),
 ('Aeropress | إيروبرس', 7, 'قهوة غنية وسلسة محضرة بضغط الهواء.', 'default.jpg'),
-('Syphon | سايفون', 7, 'قهوة عطرية محضرة بتقنية السايفون.', 'default.jpg'),
+('Syphon | سايفون', 7, 'قهوة عطرية محضرة بتقنية السايفون.', 'Syphon.png'),
 ('Cold Brew | كولد برو', 7, 'قهوة مقطرة باردة لمدة 24 ساعة.', 'default.jpg');
 
 INSERT INTO product_prices (product_id, size_id, price) VALUES
@@ -235,7 +235,7 @@ INSERT INTO product_prices (product_id, size_id, price) VALUES
 ICE COFFEE
 ========================= */
 INSERT INTO products (product_name, category_id, description_ar, image_url) VALUES
-('Ice Coffee | آيس كوفي', 10, 'قهوة مثلجة مخفوقة لمذاق منعش.', 'default.jpg'),
+('Ice Coffee | آيس كوفي', 10, 'قهوة مثلجة مخفوقة لمذاق منعش.', 'Ice Coffee.png'),
 ('Ice Latte | آيس لاتيه', 10, 'إسبريسو مثلج مع الحليب البارد.', 'default.jpg'),
 ('Ice Mocha | آيس موكا', 10, 'موكا مثلجة بالشوكولاتة والحليب البارد.', 'Ice Mocha.png'),
 ('Ice White Mocha | آيس وايت موكا', 10, 'وايت موكا مثلجة بنكهة الفانيليا الحلوة.', 'default.jpg'),
@@ -260,17 +260,17 @@ INSERT INTO product_prices (product_id, size_id, price) VALUES
 SMOOTHIES
 ========================= */
 INSERT INTO products (product_name, category_id, description_ar, image_url) VALUES
-('Peach Smoothie | سموزي خوخ', 11, 'سموزي خوخ طبيعي منعش ومبرد.', 'default.jpg'),
-('Strawberry Smoothie | سموزي فراولة', 11, 'سموزي فراولة طازجة وحلوة.', 'default.jpg'),
-('Mango Smoothie | سموزي مانجو', 11, 'سموزي مانجو استوائي غني المذاق.', 'default.jpg'),
-('Watermelon Smoothie | سموزي بطيخ', 11, 'سموزي بطيخ منعش ومرطب.', 'default.jpg'),
-('Kiwi Smoothie | سموزي كيوي', 11, 'سموزي كيوي أخضر وصحي.', 'default.jpg'),
-('Apple Smoothie | سموزي تفاح', 11, 'سموزي تفاح حلو مع لمسة قرفة.', 'default.jpg'),
-('Pineapple Smoothie | سموزي أناناس', 11, 'سموزي أناناس منعش بنكهة استوائية.', 'default.jpg'),
-('Passion Fruit Smoothie | سموزي باشن فروت', 11, 'سموزي باشن فروت بنكهة فريدة.', 'default.jpg'),
-('Lemon Smoothie | سموزي ليمون', 11, 'سموزي ليمون حامض ومنعش.', 'default.jpg'),
-('Lemon Mint Smoothie | سموزي ليمون نعناع', 11, 'سموزي ليمون ونعناع بارد ومنعش.', 'default.jpg'),
-('Mixed Berry Smoothie |سموزي توت مشكل', 11, 'سموزي توت مشكل غني بمضادات الأكسدة.', 'default.jpg');
+('Peach Smoothie | سموزي خوخ', 11, 'سموزي خوخ طبيعي منعش ومبرد.', 'Peach Smoothie.png'),
+('Strawberry Smoothie | سموزي فراولة', 11, 'سموزي فراولة طازجة وحلوة.', 'Strawberry Smoothie.png'),
+('Mango Smoothie | سموزي مانجو', 11, 'سموزي مانجو استوائي غني المذاق.', 'Mango Smoothie.png'),
+('Watermelon Smoothie | سموزي بطيخ', 11, 'سموزي بطيخ منعش ومرطب.', 'Watermelon Smoothie.png'),
+('Kiwi Smoothie | سموزي كيوي', 11, 'سموزي كيوي أخضر وصحي.', 'Kiwi Smoothie.png'),
+('Apple Smoothie | سموزي تفاح', 11, 'سموزي تفاح حلو مع لمسة قرفة.', 'Apple Smoothie.png'),
+('Pineapple Smoothie | سموزي أناناس', 11, 'سموزي أناناس منعش بنكهة استوائية.', 'Pineapple Smoothie.png'),
+('Passion Fruit Smoothie | سموزي باشن فروت', 11, 'سموزي باشن فروت بنكهة فريدة.', 'Passion Fruit Smoothie.png'),
+('Lemon Smoothie | سموزي ليمون', 11, 'سموزي ليمون حامض ومنعش.', 'Lemon Smoothie.png'),
+('Lemon Mint Smoothie | سموزي ليمون نعناع', 11, 'سموزي ليمون ونعناع بارد ومنعش.', 'Lemon Mint Smoothie.png'),
+('Mixed Berry Smoothie |سموزي توت مشكل', 11, 'سموزي توت مشكل غني بمضادات الأكسدة.', 'Mixed Berry Smoothie.png');
 
 INSERT INTO product_prices (product_id, size_id, price) VALUES
 (82, 1, 79), (82, 2, 84), (82, 3, 89),
@@ -289,13 +289,13 @@ INSERT INTO product_prices (product_id, size_id, price) VALUES
 COLD DRINKS
 ========================= */
 INSERT INTO products (product_name, category_id, description_ar, image_url) VALUES
-('V Cola | في كولا', 12, 'مشروب كولا غازي بارد ومنعش.', 'default.jpg'),
-('V7 | في 7', 12, 'مشروب غازي بنكهات الليمون المنعشة.', 'default.jpg'),
-('Double Dare | دبل دير', 12, 'مشروب طاقة منعش بنكهة الفواكه.', 'default.jpg'),
-('Water | مياه', 12, 'مياه معدنية طبيعية نقية مبردة.', 'default.jpg'),
-('C4 | سي 4', 12, 'مشروب طاقة قوي لمحبي النشاط.', 'default.jpg'),
-('Red Bull | ريد بول', 12, 'مشروب الطاقة ريد بول الأصلي.', 'default.jpg'),
-('Red Bull Flavor | ريد بول نكهات', 12, 'ريد بول بنكهات فواكه متنوعة ومنعشة.', 'default.jpg');
+('V Cola | في كولا', 12, 'مشروب كولا غازي بارد ومنعش.', 'V Cola.png'),
+('V7 | في 7', 12, 'مشروب غازي بنكهات الليمون المنعشة.', 'V7.png'),
+('Double Dare | دبل دير', 12, 'مشروب طاقة منعش بنكهة الفواكه.', 'Double Dare.png'),
+('Water | مياه', 12, 'مياه معدنية طبيعية نقية مبردة.', 'Water.png'),
+('C4 | سي 4', 12, 'مشروب طاقة قوي لمحبي النشاط.', 'C4.png'),
+('Red Bull | ريد بول', 12, 'مشروب الطاقة ريد بول الأصلي.', 'Red Bull.png'),
+('Red Bull Flavor | ريد بول نكهات', 12, 'ريد بول بنكهات فواكه متنوعة ومنعشة.', 'Red Bull Flavor.png');
 
 INSERT INTO product_prices (product_id, size_id, price) VALUES
 (93, 2, 40),
@@ -312,10 +312,10 @@ DESSERT
 INSERT INTO products (product_name, category_id, description_ar, image_url) VALUES
 ('Cheese cake | تشيز كيك', 13, 'تشيز كيك كلاسيكي ناعم وكريمي.', 'default.jpg'),
 ('Cheese cake Caramel | تشيز كيك كراميل', 13, 'تشيز كيك غني مع صوص الكراميل السائل.', 'default.jpg'),
-('Cheese cake Blueberry | تشيز كيك توت', 13, 'تشيز كيك مع طبقة التوت الأزرق الطازج.', 'default.jpg'),
+('Cheese cake Blueberry | تشيز كيك توت', 13, 'تشيز كيك مع طبقة التوت الأزرق الطازج.', 'Cheese cake Blueberry.png'),
 ('Cheese cake Lotus | تشيز كيك لوتس', 13, 'تشيز كيك مع كريمة وبسكويت اللوتس.', 'default.jpg'),
 ('Cheese cake Pistachio | تشيز كيك بستاشيو', 13, 'تشيز كيك مع كريمة الفستق الفاخرة.', 'default.jpg'),
-('Cheese cake Nutella | تشيز كيك نوتيلا', 13, 'تشيز كيك مع طبقة غنية من نوتيلا.', 'default.jpg'),
+('Cheese cake Nutella | تشيز كيك نوتيلا', 13, 'تشيز كيك مع طبقة غنية من نوتيلا.', 'Cheese cake Nutella.png'),
 ('Molten Cake | مولتن كيك', 13, 'كيك شوكولاتة دافئ بقلب سائل ذائب.', 'Molten Cake.png'),
 ('Molten Cake Nutella | مولتن كيك نوتيلا', 13, 'مولتن كيك مع حشوة نوتيلا الذائبة.', 'Molten Cake Nutella.png'),
 ('San Sebastian | سان سباستيان', 13, 'تشيز كيك سان سباستيان الكريمي الشهير.', 'San Sebastian.png'),
@@ -353,7 +353,7 @@ INSERT INTO products (product_name, category_id, description_ar, image_url) VALU
 ('Pistachio Croissant | كرواسون بستاشيو', 14, 'كرواسون محشو بكريمة الفستق الفاخرة.', 'Pistachio Croissant.png'),
 ('Cheese Croissant | كرواسون جبنة', 14, 'كرواسون محشو بجبنة الشيدر الذائبة.', 'Cheese Croissant.png'),
 ('Smoked Turkey Croissant | كرواسون تركي مدخن', 14, 'كرواسون مع صدر رومي مدخن وجبنة.', 'Turkey Croissant.png'),
-('Mixed Cheese Croissant | كرواسون جبن مشكل', 14, 'كرواسون محشو بتشكيلة من الأجبان الثلاثة.', 'Cheese Croissant.png'),
+('Mixed Cheese Croissant | كرواسون جبن مشكل', 14, 'كرواسون محشو بتشكيلة من الأجبان الثلاثة.', 'Mixed Cheese Croissant.png'),
 ('Plain Patisserie | باتيه سادة', 14, 'باتيه فرنسي طازج وخفيف.', 'default.jpg'),
 ('Cheese Patisserie | باتيه جبنة', 14, 'باتيه محشو بجبنة ذائبة.', 'default.jpg'),
 ('White Cheese Patisserie | باتيه جبنة بيضاء', 14, 'باتيه محشو بجبنة بيضاء كريمية.', 'default.jpg'),

@@ -51,12 +51,17 @@ for (const [src, targets] of Object.entries(sourceMap)) {
     const srcPath = path.join(baseDir, src);
     if (fs.existsSync(srcPath)) {
         targets.forEach(target => {
-            try {
-                fs.copyFileSync(srcPath, path.join(baseDir, target));
-                console.log(`Copied ${src} to ${target}`);
-                count++;
-            } catch (err) {
-                console.error(`Failed to copy to ${target}: ${err.message}`);
+            const targetPath = path.join(baseDir, target);
+            if (!fs.existsSync(targetPath)) {
+                try {
+                    fs.copyFileSync(srcPath, targetPath);
+                    console.log(`Copied placeholder ${src} to ${target}`);
+                    count++;
+                } catch (err) {
+                    console.error(`Failed to copy to ${target}: ${err.message}`);
+                }
+            } else {
+                console.log(`Skipped ${target}: File already exists (preserving your manual version).`);
             }
         });
     } else {

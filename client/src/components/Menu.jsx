@@ -98,7 +98,10 @@ const Menu = () => {
                     return (
                         <button
                             key={cat.category_id}
-                            onClick={() => setActiveCategory(cat.category_id)}
+                            onClick={() => {
+                                setActiveCategory(cat.category_id);
+                                window.scrollTo({ top: 0, behavior: 'smooth' });
+                            }}
                             style={{
                                 display: 'flex',
                                 alignItems: 'center',

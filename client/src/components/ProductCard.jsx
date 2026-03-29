@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { API_BASE_URL } from '../config';
@@ -32,13 +32,26 @@ const ProductCard = ({ item }) => {
     };
 
     const handleCardClick = () => {
+        window.history.pushState({ modalOpen: true }, '');
         setShowDetails(true);
     };
 
     const handleCloseModal = (e) => {
         if (e) e.stopPropagation();
-        setShowDetails(false);
+        if (window.history.state && window.history.state.modalOpen) {
+            window.history.back();
+        } else {
+            setShowDetails(false);
+        }
     };
+
+    useEffect(() => {
+        const handlePopState = () => {
+            setShowDetails(false);
+        };
+        window.addEventListener('popstate', handlePopState);
+        return () => window.removeEventListener('popstate', handlePopState);
+    }, []);
 
     // Split bilingual name for better styling
     const nameParts = item.name.split('|');

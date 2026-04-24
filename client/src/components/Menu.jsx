@@ -30,6 +30,27 @@ const Menu = () => {
                 setCategories(data);
                 if (data.length > 0) setActiveCategory(data[0].category_id);
                 setLoading(false);
+                
+                // Background Preload (Next Categories)
+                // Once the initial menu is rendered, download remaining images in the background
+                setTimeout(() => {
+                    const imageUrls = [];
+                    data.forEach(category => {
+                        if (category.products) {
+                            category.products.forEach(product => {
+                                if (product.imageUrl) {
+                                    imageUrls.push(`/images/products/${product.imageUrl}`);
+                                }
+                            });
+                        }
+                    });
+                    
+                    // Deduplicate and preload
+                    [...new Set(imageUrls)].forEach(url => {
+                        const img = new Image();
+                        img.src = url;
+                    });
+                }, 1000); // Small delay to prioritize main thread for initial render
             })
             .catch(err => console.error("Failed to fetch menu:", err));
     }, []);
@@ -144,8 +165,8 @@ const Menu = () => {
                     gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
                     gap: '2rem'
                 }}>
-                    {activeCategoryData?.products.map(product => (
-                        <ProductCard key={product.id} item={product} />
+                    {activeCategoryData?.products.map((product, index) => (
+                        <ProductCard key={product.id} item={product} priority={index < 8} />
                     ))}
                 </div>
 

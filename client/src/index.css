@@ -222,3 +222,19 @@ h1 {
 ::-webkit-scrollbar-thumb:hover {
   background: #444;
 }
+
+@keyframes skeleton-pulse {
+  0% {
+    background-color: var(--bg-secondary);
+  }
+  50% {
+    background-color: #e2e8f0;
+  }
+  100% {
+    background-color: var(--bg-secondary);
+  }
+}
+
+.skeleton-loading {
+  animation: skeleton-pulse 1.5s ease-in-out infinite;
+}

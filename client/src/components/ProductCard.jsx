@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { API_BASE_URL } from '../config';
 
-const ProductCard = ({ item }) => {
+const ProductCard = ({ item, priority }) => {
     const [loaded, setLoaded] = useState(false);
     const [showDetails, setShowDetails] = useState(false);
 
@@ -86,7 +86,9 @@ const ProductCard = ({ item }) => {
                 }}
             >
                 {/* Image Section */}
-                <div style={{
+                <div 
+                    className={!loaded ? 'skeleton-loading' : ''}
+                    style={{
                     width: '100%',
                     height: '240px',
                     overflow: 'hidden',
@@ -96,6 +98,8 @@ const ProductCard = ({ item }) => {
                     <motion.img
                         src={imageUrl}
                         alt={item.name}
+                        loading={priority ? 'eager' : 'lazy'}
+                        fetchPriority={priority ? 'high' : 'auto'}
                         onLoad={() => setLoaded(true)}
                         onError={handleImageError}
                         onClick={handleProductClick}
@@ -385,4 +389,4 @@ const ProductCard = ({ item }) => {
     );
 };
 
-export default ProductCard;
+export default React.memo(ProductCard);

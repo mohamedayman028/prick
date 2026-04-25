@@ -26,10 +26,11 @@ function App() {
         {/* White Container for Logo */}
         <div style={{
           background: '#ffffff',
-          padding: '0.5rem 1rem',
+          padding: '0.4rem 0.8rem',
           borderRadius: '50px',
           boxShadow: '0 4px 15px rgba(0,0,0,0.1)',
           display: 'flex',
+          justifyContent: 'center',
           alignItems: 'center',
           flexShrink: 0 // Prevent logo from squashing
         }}>
@@ -37,7 +38,7 @@ function App() {
             src="/logo-new.png" 
             alt="Brisk Logo" 
             style={{ 
-              height: window.innerWidth < 480 ? '28px' : '35px', 
+              height: window.innerWidth < 480 ? '38px' : '48px', 
               width: 'auto', 
               objectFit: 'contain' 
             }} 

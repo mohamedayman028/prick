@@ -162,7 +162,7 @@ const ProductCard = ({ item, priority }) => {
                                 borderBottom: idx !== item.items.length - 1 ? '1px solid #f0f0f0' : 'none',
                                 paddingBottom: idx !== item.items.length - 1 ? '0.4rem' : '0'
                             }}>
-                                <span>{priceOption.size === 'S' ? 'Small' : priceOption.size === 'M' ? 'Medium' : 'Large'}</span>
+                                <span>{priceOption.size === 'S' ? 'Small' : priceOption.size === 'M' ? 'Medium' : priceOption.size === 'L' ? 'Large' : priceOption.size === 'Single' ? 'Single' : priceOption.size === 'Double' ? 'Double' : null}</span>
                                 <span style={{
                                     color: 'var(--accent)',
                                     fontWeight: '700',
@@ -366,7 +366,7 @@ const ProductCard = ({ item, priority }) => {
                                                     fontWeight: '600',
                                                     marginBottom: '4px'
                                                 }}>
-                                                    {priceOption.size === 'S' ? 'Small' : priceOption.size === 'M' ? 'Medium' : 'Large'}
+                                                    {priceOption.size === 'S' ? 'Small' : priceOption.size === 'M' ? 'Medium' : priceOption.size === 'L' ? 'Large' : priceOption.size}
                                                 </span>
                                                 <span style={{ 
                                                     color: 'var(--accent)', 

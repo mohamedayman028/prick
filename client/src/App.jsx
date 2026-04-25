@@ -26,7 +26,7 @@ function App() {
         {/* White Container for Logo */}
         <div style={{
           background: '#ffffff',
-          padding: '0.4rem 0.8rem',
+          padding: '0.2rem 0.6rem',
           borderRadius: '50px',
           boxShadow: '0 4px 15px rgba(0,0,0,0.1)',
           display: 'flex',
@@ -38,7 +38,7 @@ function App() {
             src="/logo-new.png" 
             alt="Brisk Logo" 
             style={{ 
-              height: window.innerWidth < 480 ? '38px' : '48px', 
+              height: window.innerWidth < 480 ? '42px' : '56px', 
               width: 'auto', 
               objectFit: 'contain' 
             }} 
@@ -96,8 +96,8 @@ function App() {
         borderTop: '1px solid var(--gray-divider)',
         background: 'var(--bg-secondary)'
       }}>
-        <div style={{ marginBottom: '1.5rem', display: 'flex', justifyContent: 'center' }}>
-          <img src="/logo-new.png" alt="Brisk Logo" style={{ height: '30px', width: 'auto', objectFit: 'contain' }} />
+        <div style={{ marginBottom: '2rem', display: 'flex', justifyContent: 'center' }}>
+          <img src="/logo-new.png" alt="Brisk Logo" style={{ height: '90px', width: 'auto', objectFit: 'contain' }} />
         </div>
         <p>© {new Date().getFullYear()} Brisk Cafe. All rights reserved.</p>
         <p style={{ fontSize: '0.95rem', marginTop: '0.5rem', fontWeight: '500' }}>Premium Coffee & Sustainable Quality</p>

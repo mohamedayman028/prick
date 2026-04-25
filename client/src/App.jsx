@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import Menu from './components/Menu';
 import QRCodePage from './pages/QRCodePage';
 import Hero from './components/Hero';
-import Logo from './components/Logo';
 
 function App() {
   const [view, setView] = useState('menu'); // 'menu' or 'qr'
@@ -34,7 +33,15 @@ function App() {
           alignItems: 'center',
           flexShrink: 0 // Prevent logo from squashing
         }}>
-          <Logo size={window.innerWidth < 480 ? 28 : 35} />
+          <img 
+            src="/logo-new.png" 
+            alt="Brisk Logo" 
+            style={{ 
+              height: window.innerWidth < 480 ? '28px' : '35px', 
+              width: 'auto', 
+              objectFit: 'contain' 
+            }} 
+          />
         </div>
 
         <div style={{ display: 'flex', gap: '0.6rem' }}>
@@ -88,8 +95,8 @@ function App() {
         borderTop: '1px solid var(--gray-divider)',
         background: 'var(--bg-secondary)'
       }}>
-        <div style={{ marginBottom: '1.5rem' }}>
-          <Logo size={30} />
+        <div style={{ marginBottom: '1.5rem', display: 'flex', justifyContent: 'center' }}>
+          <img src="/logo-new.png" alt="Brisk Logo" style={{ height: '30px', width: 'auto', objectFit: 'contain' }} />
         </div>
         <p>© {new Date().getFullYear()} Brisk Cafe. All rights reserved.</p>
         <p style={{ fontSize: '0.95rem', marginTop: '0.5rem', fontWeight: '500' }}>Premium Coffee & Sustainable Quality</p>

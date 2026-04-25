@@ -68,7 +68,7 @@ const ProductCard = ({ item, priority }) => {
                 onClick={handleCardClick}
                 style={{
                     position: 'relative',
-                    height: '420px',
+                    height: '450px',
                     borderRadius: '24px',
                     overflow: 'hidden',
                     boxShadow: '0 10px 30px rgba(0,0,0,0.05)',
@@ -90,9 +90,9 @@ const ProductCard = ({ item, priority }) => {
                     className={!loaded ? 'skeleton-loading' : ''}
                     style={{
                     width: '100%',
-                    height: '240px',
+                    height: '280px',
                     overflow: 'hidden',
-                    background: 'var(--bg-secondary)',
+                    background: 'transparent',
                     position: 'relative'
                 }}>
                     <motion.img
@@ -106,7 +106,8 @@ const ProductCard = ({ item, priority }) => {
                         style={{
                             width: '100%',
                             height: '100%',
-                            objectFit: 'cover',
+                            objectFit: 'contain',
+                            padding: '1rem',
                             opacity: loaded ? 1 : 0,
                             transition: 'opacity 0.5s ease',
                             cursor: 'pointer'
@@ -267,13 +268,13 @@ const ProductCard = ({ item, priority }) => {
                                         animate={{ scale: 1, opacity: 1 }}
                                         transition={{ delay: 0.2 }}
                                         style={{
-                                            width: '200px',
-                                            height: '200px',
+                                            width: '220px',
+                                            height: '220px',
                                             margin: '0 auto 1.5rem',
                                             borderRadius: '24px',
                                             overflow: 'hidden',
                                             boxShadow: '0 20px 40px rgba(0,0,0,0.15)',
-                                            background: '#fff'
+                                            background: 'transparent'
                                         }}
                                     >
                                         <img
@@ -283,7 +284,7 @@ const ProductCard = ({ item, priority }) => {
                                             style={{
                                                 width: '100%',
                                                 height: '100%',
-                                                objectFit: 'cover'
+                                                objectFit: 'contain'
                                             }}
                                         />
                                     </motion.div>

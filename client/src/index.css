@@ -146,10 +146,12 @@ h1 {
     border-radius: 20px !important;
   }
 
-  .product-card .product-image {
+  .product-card .product-image,
+  .item-card .item-image {
     height: 280px !important;
     width: 100% !important;
-    object-fit: cover !important;
+    object-fit: contain !important;
+    padding: 1rem !important;
   }
 
   .product-card .content {

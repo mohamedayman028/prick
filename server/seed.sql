@@ -397,7 +397,7 @@ INSERT INTO product_prices (product_id, size_id, price) VALUES
 NEW FRAPPE ADDITIONS
 ========================= */
 INSERT INTO products (product_name, category_id, description_ar, image_url) VALUES
-('Frappe Mixed Berry | فرابيه ميكس بيري', 4, 'مزيج منعش من التوت المشكل والثلج.', 'default-coffee.png');
+('Frappe Mixed Berry | فرابيه ميكس بيري', 4, 'مزيج منعش من التوت المشكل والثلج.', 'Frappe Mixed Berry.png');
 
 INSERT INTO product_prices (product_id, size_id, price) VALUES
 (133, 1, 89),

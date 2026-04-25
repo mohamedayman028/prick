@@ -23,7 +23,7 @@ app.use('/images', express.static(path.join(__dirname, '../client/public/images'
 // Get all categories
 app.get('/api/categories', async (req, res) => {
     try {
-        const [rows] = await db.query('SELECT * FROM categories');
+        const [rows] = await db.query('SELECT * FROM categories ORDER BY sort_order');
         res.json(rows);
     } catch (err) {
         console.error(err);
@@ -35,7 +35,7 @@ app.get('/api/categories', async (req, res) => {
 app.get('/api/menu', async (req, res) => {
     try {
         // Fetch categories
-        const [categories] = await db.query('SELECT * FROM categories');
+        const [categories] = await db.query('SELECT * FROM categories ORDER BY sort_order');
 
         // Fetch products with their sizes and prices
         // Since there is no image_url column in the schema provided, 

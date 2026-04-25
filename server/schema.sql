@@ -12,7 +12,8 @@ CREATE TABLE IF NOT EXISTS categories (
     category_id INTEGER PRIMARY KEY AUTOINCREMENT,
     category_name VARCHAR(100) NOT NULL,
     icon_name VARCHAR(50),
-    color_code VARCHAR(7)
+    color_code VARCHAR(7),
+    sort_order INTEGER DEFAULT 0
 );
 
 CREATE TABLE IF NOT EXISTS products (

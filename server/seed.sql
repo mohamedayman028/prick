@@ -1,23 +1,24 @@
 /* =========================
 BASIC DATA
 ========================= */
-INSERT INTO sizes (size_name) VALUES ('S'),('M'),('L');
+INSERT INTO sizes (size_name) VALUES ('S'),('M'),('L'),('Single'),('Double');
 
-INSERT INTO categories (category_name) VALUES
-('Hot Coffee'),
-('Warm Drinks'),
-('Shakes'),
-('Frappe'),
-('Matcha'),
-('Boba'),
-('Specialty Coffee'),
-('Extras'),
-('Fresh Juices'),
-('Ice Coffee'),
-('Smoothies'),
-('Cold Drinks'),
-('Dessert'),
-('Bakery');
+INSERT INTO categories (category_name, sort_order) VALUES
+('Hot Coffee', 10),
+('Warm Drinks', 20),
+('Shakes', 30),
+('Frappe', 40),
+('Matcha', 50),
+('Boba', 60),
+('Specialty Coffee', 70),
+('Extras', 80),
+('Fresh Juices', 90),
+('Ice Coffee', 100),
+('Smoothies', 110),
+('Cold Drinks', 120),
+('Dessert', 130),
+('Bakery', 140),
+('Coffee Packages', 150);
 
 
 /* =========================
@@ -41,8 +42,8 @@ INSERT INTO products (product_name, category_id, description_ar, image_url) VALU
 ('Cortado | كورتادو', 1, 'مزيج مثالي من الإسبريسو وكمية متساوية من الحليب.', 'Cortado.png');
 
 INSERT INTO product_prices (product_id, size_id, price) VALUES
-(1, 1, 55), (1, 3, 65),
-(2, 1, 65), (2, 3, 70),
+(1, 4, 55), (1, 5, 65),
+(2, 4, 65), (2, 5, 70),
 (3, 1, 89), (3, 3, 94),
 (4, 1, 89), (4, 3, 94),
 (5, 1, 64), (5, 3, 69),
@@ -378,3 +379,16 @@ INSERT INTO product_prices (product_id, size_id, price) VALUES
 (127, 2, 60),
 (128, 2, 40),(128,3,45),
 (129, 2, 50);
+
+/* =========================
+COFFEE PACKAGES
+========================= */
+INSERT INTO products (product_name, category_id, description_ar, image_url) VALUES
+('Brisk House Blend (250g) | خلطة بريسك هاوس (250 جرام)', 15, 'خلطة قهوة بريسك هاوس المميزة والمحمصة بعناية.', 'default.jpg'),
+('Ethiopian Single Origin (250g) | قهوة إثيوبية (250 جرام)', 15, 'قهوة مختصة بنكهات فاكهية غنية.', 'default.jpg'),
+('Colombian Roast (250g) | قهوة كولومبية (250 جرام)', 15, 'قهوة كولومبية كلاسيكية بمذاق متوازن.', 'default.jpg');
+
+INSERT INTO product_prices (product_id, size_id, price) VALUES
+(130, 2, 250),
+(131, 2, 300),
+(132, 2, 280);

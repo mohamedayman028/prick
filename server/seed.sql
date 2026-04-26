@@ -408,10 +408,10 @@ INSERT INTO product_prices (product_id, size_id, price) VALUES
    NEW SHAKE ADDITIONS
    ========================= */
 INSERT INTO products (product_name, category_id, description_ar, image_url) VALUES
-('Vanilla Shake | فانيليا شيك', 3, 'ميلك شيك فانيليا ناعم وكريمي بنكهة كلاسيكية.', '/images/products/Vanilla Shake.png'),
-('Strawberry Shake | فراولة شيك', 3, 'ميلك شيك فراولة طازجة بنكهة حلوة ومنعشة.', '/images/products/Strawberry Shake.png'),
-('Mango Shake | مانجو شيك', 3, 'ميلك شيك مانجو استوائي غني وكريمي.', '/images/products/Mango Shake .png'),
-('Chocolate Shake | شوكولاتة شيك', 3, 'ميلك شيك شوكولاتة غني وقوام كثيف لا يقاوم.', '/images/products/Chocolate Shake.png');
+('Vanilla Shake | فانيليا شيك', 3, 'ميلك شيك فانيليا ناعم وكريمي بنكهة كلاسيكية.', 'Vanilla Shake.png'),
+('Strawberry Shake | فراولة شيك', 3, 'ميلك شيك فراولة طازجة بنكهة حلوة ومنعشة.', 'Strawberry Shake.png'),
+('Mango Shake | مانجو شيك', 3, 'ميلك شيك مانجو استوائي غني وكريمي.', 'Mango Shake .png'),
+('Chocolate Shake | شوكولاتة شيك', 3, 'ميلك شيك شوكولاتة غني وقوام كثيف لا يقاوم.', 'Chocolate Shake.png');
 
 INSERT INTO product_prices (product_id, size_id, price) VALUES
 (134, 1, 84), (134, 2, 89), (134, 3, 94),

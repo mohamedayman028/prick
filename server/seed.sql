@@ -36,7 +36,6 @@ INSERT INTO products (product_name, category_id, description_ar, image_url) VALU
 ('Turkish Coffee | قهوة تركية', 1, 'قهوة تركية كلاسيكية محضرة بعناية ومذاق أصيل.', 'Turkish Coffee.png'),
 ('Turkish Coffee with Milk | قهوة فرنساوي', 1, 'قهوة تركية تقليدية مع الحليب لمذاق أكثر نعومة.', 'Turkish Coffee with Milk.png'),
 ('Nutella Coffee | قهوة نوتيلا', 1, 'إسبريسو غني ممزوج بلمسة من شوكولاتة نوتيلا.', 'Nutella Coffee.png'),
-('Hot Lotus Latte | لوتس لاتيه ساخن', 1, 'لاتيه كريمي مع زبدة بسكويت لوتس الشهيرة.', 'Hot Lotus Latte.png'),
 ('Spanish Latte | سبانيش لاتيه', 1, 'لاتيه حلو مع الحليب المكثف المحلى لقوام كريمي.', 'Spanish Latte.png'),
 ('Flat White | فلات وايت', 1, 'إسبريسو مزدوج مع طبقة ناعمة من رغوة الحليب.', 'Flat White.png'),
 ('Cortado | كورتادو', 1, 'مزيج مثالي من الإسبريسو وكمية متساوية من الحليب.', 'Cortado.png');
@@ -53,7 +52,6 @@ INSERT INTO product_prices (product_id, size_id, price) VALUES
 (9, 1, 50), (9, 3, 60),
 (10, 1, 55), (10, 3, 65),
 (11, 1, 69), (11, 3, 74),
-(12, 1, 89), (12, 3, 94),
 (13, 1, 94), (13, 3, 99),
 (14, 1, 69), (14, 3, 74),
 (15, 1, 69), (15, 3, 74);
@@ -64,7 +62,6 @@ WARM DRINKS
 INSERT INTO products (product_name, category_id, description_ar, image_url) VALUES
 ('Tea | شاي', 2, 'شاي أسود فاخر محضر طازجاً.', 'Tea.png'),
 ('Tea with Milk | شاي بالحليب', 2, 'شاي كلاسيكي ممزوج بالحليب الناعم.', 'Tea with Milk.png'),
-('Flavored Tea | شاي منكه', 2, 'شاي عطري بنكهات الفواكه الطبيعية.', 'Flavored Tea.png'),
 ('Hot Cider | هوت سيدر', 2, 'سيدر تفاح دافئ مع لمسة قرفة.', 'Hot Cider.png'),
 ('Hot Chocolate | هوت شوكلت', 2, 'شوكولاتة غنية وحليب مبخر دافئ.', 'Hot Chocolate.png'),
 ('Sahlab | سحلب', 2, 'مشروب السحلب التقليدي بالمكسرات.', 'Sahlab.png');
@@ -73,7 +70,6 @@ INSERT INTO products (product_name, category_id, description_ar, image_url) VALU
 INSERT INTO product_prices (product_id, size_id, price) VALUES
 (16, 2, 50), 
 (17, 2, 60), 
-(18, 2, 60), 
 (19, 2, 65), (19, 3, 70),
 (20, 2, 85), (20, 3, 94),
 (21, 2, 60), (21, 3, 65);

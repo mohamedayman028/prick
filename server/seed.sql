@@ -18,7 +18,10 @@ INSERT INTO categories (category_name, sort_order) VALUES
 ('Cold Drinks', 120),
 ('Dessert', 130),
 ('Bakery', 140),
-('Coffee Packages', 150);
+('Coffee Packages', 150),
+('Mojito and Soda', 160),
+('Sun Shine', 170);
+
 
 
 /* =========================
@@ -414,3 +417,21 @@ INSERT INTO product_prices (product_id, size_id, price) VALUES
 (135, 1, 84), (135, 2, 89), (135, 3, 94),
 (136, 1, 84), (136, 2, 89), (136, 3, 94),
 (137, 1, 84), (137, 2, 89), (137, 3, 94);
+
+/* =========================
+   MOJITO AND SODA ADDITIONS
+   ========================= */
+INSERT INTO products (product_name, category_id, description_ar, image_url) VALUES
+('Classic Mojito | موهيتو كلاسيك', 16, 'مشروب موهيتو منعش مع الليمون والنعناع والثلج.', 'default.jpg');
+
+INSERT INTO product_prices (product_id, size_id, price) VALUES
+(138, 1, 65), (138, 2, 75), (138, 3, 85);
+
+/* =========================
+   SUN SHINE ADDITIONS
+   ========================= */
+INSERT INTO products (product_name, category_id, description_ar, image_url) VALUES
+('Sun Shine | صن شاين', 17, 'مشروب صن شاين المنعش بنكهة الفواكه الطبيعية.', 'default.jpg');
+
+INSERT INTO product_prices (product_id, size_id, price) VALUES
+(139, 1, 70), (139, 2, 80), (139, 3, 90);

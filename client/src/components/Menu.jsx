@@ -69,6 +69,8 @@ const Menu = () => {
 
         if (lowerName.includes('bakery')) return { Icon: Croissant, color: brandGreen };
         if (lowerName.includes('food')) return { Icon: Croissant, color: brandGreen };
+        if (lowerName.includes('mojito')) return { Icon: CupSoda, color: '#00BCD4' };
+        if (lowerName.includes('sun shine')) return { Icon: Sparkles, color: '#FFD54F' };
         if (lowerName.includes('smoothie')) return { Icon: CupSoda, color: '#FF4081' };
         if (lowerName.includes('matcha')) return { Icon: Leaf, color: '#4CAF50' };
         if (lowerName.includes('dessert') || lowerName.includes('sweet') || lowerName.includes('cake')) {

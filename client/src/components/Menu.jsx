@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ProductCard from './ProductCard';
 import { API_BASE_URL } from '../config';
+import { FALLBACK_CATEGORIES } from '../constants/menuData';
 import {
     Coffee,
     Sparkles,
@@ -27,15 +28,27 @@ const Menu = () => {
         fetch(`${API_BASE_URL}/api/menu`)
             .then(res => res.json())
             .then(data => {
-                setCategories(data);
-                if (data.length > 0) setActiveCategory(data[0].category_id);
+                // Merge fallback categories to ensure new additions are visible 
+                // even if the live database hasn't been updated yet.
+                let mergedData = Array.isArray(data) ? [...data] : [];
+                
+                FALLBACK_CATEGORIES.forEach(fbCat => {
+                    if (!mergedData.find(c => c.category_id === fbCat.category_id)) {
+                        mergedData.push(fbCat);
+                    }
+                });
+
+                // Sort by sort_order
+                mergedData.sort((a, b) => (a.sort_order || 0) - (b.sort_order || 0));
+
+                setCategories(mergedData);
+                if (mergedData.length > 0) setActiveCategory(mergedData[0].category_id);
                 setLoading(false);
                 
                 // Background Preload (Next Categories)
-                // Once the initial menu is rendered, download remaining images in the background
                 setTimeout(() => {
                     const imageUrls = [];
-                    data.forEach(category => {
+                    mergedData.forEach(category => {
                         if (category.products) {
                             category.products.forEach(product => {
                                 if (product.imageUrl) {
@@ -45,14 +58,18 @@ const Menu = () => {
                         }
                     });
                     
-                    // Deduplicate and preload
                     [...new Set(imageUrls)].forEach(url => {
                         const img = new Image();
                         img.src = url;
                     });
-                }, 1000); // Small delay to prioritize main thread for initial render
+                }, 1000);
             })
-            .catch(err => console.error("Failed to fetch menu:", err));
+            .catch(err => {
+                console.error("Failed to fetch menu, using fallback:", err);
+                setCategories(FALLBACK_CATEGORIES);
+                if (FALLBACK_CATEGORIES.length > 0) setActiveCategory(FALLBACK_CATEGORIES[0].category_id);
+                setLoading(false);
+            });
     }, []);
 
     if (loading) return <div style={{ textAlign: 'center', padding: '5rem' }}>Loading Menu...</div>;

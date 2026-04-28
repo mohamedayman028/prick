@@ -133,7 +133,7 @@ MATCHA
 ========================= */
 INSERT INTO products (product_name, category_id, description_ar, image_url) VALUES
 ('Ice Matcha | آيس ماتشا', 5, 'ماتشا ياباني أصيل مع الثلج المنعش.', 'Ice Matcha.png'),
-('Ice Matcha (Strawberry/Mango) | آيس ماتشا (فراولة/مانجو)', 5, 'ماتشا مثلج بنكهات الفواكه الطبيعية.', 'Ice Matcha.png'),
+('Ice Matcha Strawberry | آيس ماتشا فراولة', 5, 'ماتشا مثلج بنكهة الفراولة المنعشة.', 'Ice Matcha.png'),
 ('Ice Matcha Coconut | آيس ماتشا جوز هند', 5, 'ماتشا مثلج مع حليب جوز الهند الكريمي.', 'Ice Matcha Coconut.png'),
 ('Ice Matcha Caramel | آيس ماتشا كراميل', 5, 'ماتشا مثلج مع لمسة من الكراميل الحلو.', 'Ice Matcha Caramel.png'),
 ('Hot Matcha | هوت ماتشا', 5, 'ماتشا ياباني دافئ وصحي.', 'Hot Matcha.png'),
@@ -434,4 +434,14 @@ INSERT INTO products (product_name, category_id, description_ar, image_url) VALU
 ('Sun Shine | صن شاين', 17, 'مشروب صن شاين المنعش بنكهة الفواكه الطبيعية.', 'default.jpg');
 
 INSERT INTO product_prices (product_id, size_id, price) VALUES
-(139, 1, 70), (139, 2, 80), (139, 3, 90);
+(139, 1, 70), (139, 2, 80), (139, 3, 90);
+
+/* =========================
+   MATCHA ADDITIONS (SPLIT)
+   ========================= */
+INSERT INTO products (product_name, category_id, description_ar, image_url) VALUES
+('Ice Matcha Mango | آيس ماتشا مانجو', 5, 'ماتشا مثلج بنكهة المانجو المنعشة.', 'Ice Matcha.png');
+
+INSERT INTO product_prices (product_id, size_id, price) VALUES
+(140, 1, 104), (140, 2, 109), (140, 3, 114);
+

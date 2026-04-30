@@ -19,8 +19,7 @@ INSERT INTO categories (category_name, sort_order) VALUES
 ('Dessert', 130),
 ('Bakery', 140),
 ('Coffee Packages', 150),
-('Mojito and Soda', 160),
-('Sun Shine', 170);
+('Mojito and Soda', 160);
 
 
 
@@ -133,7 +132,7 @@ MATCHA
 ========================= */
 INSERT INTO products (product_name, category_id, description_ar, image_url) VALUES
 ('Ice Matcha | آيس ماتشا', 5, 'ماتشا ياباني أصيل مع الثلج المنعش.', 'Ice Matcha.png'),
-('Ice Matcha Strawberry | آيس ماتشا فراولة', 5, 'ماتشا مثلج بنكهة الفراولة المنعشة.', 'Ice Matcha.png'),
+('Ice Matcha Strawberry | آيس ماتشا فراولة', 5, 'ماتشا مثلج بنكهة الفراولة المنعشة.', 'Ice Matcha Strawberry.png'),
 ('Ice Matcha Coconut | آيس ماتشا جوز هند', 5, 'ماتشا مثلج مع حليب جوز الهند الكريمي.', 'Ice Matcha Coconut.png'),
 ('Ice Matcha Caramel | آيس ماتشا كراميل', 5, 'ماتشا مثلج مع لمسة من الكراميل الحلو.', 'Ice Matcha Caramel.png'),
 ('Hot Matcha | هوت ماتشا', 5, 'ماتشا ياباني دافئ وصحي.', 'Hot Matcha.png'),
@@ -195,9 +194,9 @@ INSERT INTO products (product_name, category_id, description_ar, image_url) VALU
 ('Extra Shot | شوت إضافي', 8, 'إضافة جرعة إضافية من الإسبريسو.', 'default.jpg');
 
 INSERT INTO product_prices (product_id, size_id, price) VALUES
-(55,1,35),   (55, 2, 40),
+(55, 1, 35),   (55, 2, 40),
 (56, 1, 35), (56, 2, 40),                        
-(57,1,35),   (57, 2, 40),
+(57, 1, 35),   (57, 2, 40),
 (58, 2, 45),
 (59, 2, 45),
 (60, 2, 35),
@@ -208,16 +207,16 @@ INSERT INTO product_prices (product_id, size_id, price) VALUES
 FRESH JUICES
 ========================= */
 INSERT INTO products (product_name, category_id, description_ar, image_url) VALUES
-('Cantaloupe Juice |عصير كنتالوب', 9, 'عصير كنتالوب طازج ومنعش.', 'Cantaloupe Juice.jpg'),
+('Cantaloupe Juice |عصير كنتالوب', 9, 'عصير كنتالوب طازج ومنعش.', 'Cantaloupe Juice.png'),
 ('Strawberry Juice | عصير فراولة', 9, 'عصير فراولة طبيعي مبرد.', 'Strawberry Juice.png'),
-('Mango Juice | عصير مانجو', 9, 'عصير مانجو استوائي غني الكثافة.', 'default.jpg'),
-('Kiwi Juice | عصير كيوي', 9, 'عصير كيوي طازج ومليء بالفيتامينات.', 'default.jpg'),
-('Banana Juice | عصير موز', 9, 'عصير موز طبيعي بقوام كريمي.', 'default.jpg'),
-('Watermelon Juice | عصير بطيخ', 9, 'عصير بطيخ منعش ومبرد.', 'default.jpg'),
-('Peach Juice | عصير خوخ', 9, 'عصير خوخ طبيعي بمذاق حلو.', 'default.jpg'),
-('Berry Juice | عصير توت', 9, 'عصير توت مشكل طازج ومنعش.', 'default.jpg'),
-('Lemon Juice | عصير ليمون', 9, 'عصير ليمون حامض ومنعش.', 'default.jpg'),
-('Lemon Mint Juice | عصير ليمون نعناع', 9, 'مزيج الليمون المنعش مع النعناع الطازج.', 'default.jpg');
+('Mango Juice | عصير مانجو', 9, 'عصير مانجو استوائي غني الكثافة.', 'Mango Juice.png'),
+('Kiwi Juice | عصير كيوي', 9, 'عصير كيوي طازج ومليء بالفيتامينات.', 'Kiwi Juice.png'),
+('Banana Juice | عصير موز', 9, 'عصير موز طبيعي بقوام كريمي.', 'Banana Juice.png'),
+('Watermelon Juice | عصير بطيخ', 9, 'عصير بطيخ منعش ومبرد.', 'Watermelon Juice.png'),
+('Peach Juice | عصير خوخ', 9, 'عصير خوخ طبيعي بمذاق حلو.', 'Peach Juice.png'),
+('Berry Juice | عصير توت', 9, 'عصير توت مشكل طازج ومنعش.', 'Berry Juice.png'),
+('Lemon Juice | عصير ليمون', 9, 'عصير ليمون حامض ومنعش.', 'Lemon Juice.png'),
+('Lemon Mint Juice | عصير ليمون نعناع', 9, 'مزيج الليمون المنعش مع النعناع الطازج.', 'Lemon Mint Juice.png');
 
 INSERT INTO product_prices (product_id, size_id, price) VALUES
 (63, 1, 69), (63, 2, 74), (63, 3, 79),
@@ -247,14 +246,14 @@ INSERT INTO products (product_name, category_id, description_ar, image_url) VALU
 
 INSERT INTO product_prices (product_id, size_id, price) VALUES
 (73, 1, 84), (73, 2, 89), (73, 3, 94),
-(74, 1, 84), (74, 2, 89), (74, 3, 94),
+(73, 1, 84), (73, 2, 89), (73, 3, 94),
+(74, 1, 89), (74, 2, 94), (74, 3, 99),
 (75, 1, 89), (75, 2, 94), (75, 3, 99),
 (76, 1, 89), (76, 2, 94), (76, 3, 99),
-(77, 1, 89), (77, 2, 94), (77, 3, 99),
-(78, 1, 74), (78, 2, 79), (78, 3, 84),
-(79, 1, 94), (79, 2, 99), (79, 3, 104),
-(80, 1, 89), (80, 2, 94), (80, 3, 99),
-(81, 1, 94), (81, 2, 99), (81, 3, 104);
+(77, 1, 74), (77, 2, 79), (77, 3, 84),
+(78, 1, 94), (78, 2, 99), (78, 3, 104),
+(79, 1, 89), (79, 2, 94), (79, 3, 99),
+(80, 1, 94), (80, 2, 99), (80, 3, 104);
 
 /* =========================
 SMOOTHIES
@@ -273,17 +272,17 @@ INSERT INTO products (product_name, category_id, description_ar, image_url) VALU
 ('Mixed Berry Smoothie |سموزي توت مشكل', 11, 'سموزي توت مشكل غني بمضادات الأكسدة.', 'Mixed Berry Smoothie.png');
 
 INSERT INTO product_prices (product_id, size_id, price) VALUES
+(81, 1, 79), (81, 2, 84), (81, 3, 89),
 (82, 1, 79), (82, 2, 84), (82, 3, 89),
 (83, 1, 79), (83, 2, 84), (83, 3, 89),
 (84, 1, 79), (84, 2, 84), (84, 3, 89),
-(85, 1, 79), (85, 2, 84), (85, 3, 89),
-(86, 1, 89), (86, 2, 99), (86, 3, 109),
-(87, 1, 79), (87, 2, 84), (87, 3, 89),
+(85, 1, 89), (85, 2, 99), (85, 3, 109),
+(86, 1, 79), (86, 2, 84), (86, 3, 89),
+(87, 1, 84), (87, 2, 89), (87, 3, 94),
 (88, 1, 84), (88, 2, 89), (88, 3, 94),
-(89, 1, 84), (89, 2, 89), (89, 3, 94),
-(90, 1, 79), (90, 2, 84), (90, 3, 89),
-(91, 1, 84), (91, 2, 89), (91, 3, 94),
-(92, 1, 89), (92, 2, 99), (92, 3, 109);
+(89, 1, 79), (89, 2, 84), (89, 3, 89),
+(90, 1, 84), (90, 2, 89), (90, 3, 94),
+(91, 1, 89), (91, 2, 99), (91, 3, 109);
 
 /* =========================
 COLD DRINKS
@@ -298,13 +297,13 @@ INSERT INTO products (product_name, category_id, description_ar, image_url) VALU
 ('Red Bull Flavor | ريد بول نكهات', 12, 'ريد بول بنكهات فواكه متنوعة ومنعشة.', 'Red Bull Flavor.png');
 
 INSERT INTO product_prices (product_id, size_id, price) VALUES
-(93, 2, 40),
-(94, 2, 50),
-(95, 2, 40),
-(96, 2, 15),
-(97, 2, 180),
-(98, 2, 90),
-(99, 2, 110);
+(92, 2, 40),
+(93, 2, 50),
+(94, 2, 40),
+(95, 2, 15),
+(96, 2, 180),
+(97, 2, 90),
+(98, 2, 110);
 
 /* =========================
 DESSERT
@@ -327,21 +326,21 @@ INSERT INTO products (product_name, category_id, description_ar, image_url) VALU
 ('Tiramisu | تيراميسو', 13, 'تيراميسو إيطالي تقليدي بنكهة القهوة.', 'Tiramisu.png');
 
 INSERT INTO product_prices (product_id, size_id, price) VALUES
-(100, 2, 75),
+(99, 2, 75),
+(100, 2, 85),
 (101, 2, 85),
-(102, 2, 85),
-(103, 2, 90),
-(104, 2, 95),
-(105, 2, 85),
-(106, 2, 80),
-(107, 2, 90),
-(108, 2, 75),
-(109, 2, 90),
+(102, 2, 90),
+(103, 2, 95),
+(104, 2, 85),
+(105, 2, 80),
+(106, 2, 90),
+(107, 2, 75),
+(108, 2, 90),
+(109, 2, 85),
 (110, 2, 85),
 (111, 2, 85),
-(112, 2, 85),
-(113, 2, 95),
-(114, 2, 75),(114, 3 ,90 );
+(112, 2, 95),
+(113, 2, 75),(114, 3 ,90 );
 
 /* =========================
 BAKERY
@@ -363,21 +362,21 @@ INSERT INTO products (product_name, category_id, description_ar, image_url) VALU
 ('Cookies | كوكيز', 14, 'كوكيز متنوع ومحلى طازجاً.', 'default.jpg'),
 ('Cookies Nuts | كوكيز مكسرات', 14, 'كوكيز مقرمش مع حبات المكسرات.', 'default.jpg');
 INSERT INTO product_prices (product_id, size_id, price) VALUES
-(115, 2, 35),
-(116, 2, 50),
-(117, 2, 60),
-(118, 2, 70),
-(119, 2, 55),
-(120, 2, 65),
-(121, 2, 60),
-(122, 2, 35),
-(123, 2, 55),
-(124, 2, 45),
+(114, 2, 35),
+(115, 2, 50),
+(116, 2, 60),
+(117, 2, 70),
+(118, 2, 55),
+(119, 2, 65),
+(120, 2, 60),
+(121, 2, 35),
+(122, 2, 55),
+(123, 2, 45),
+(124, 2, 65),
 (125, 2, 65),
-(126, 2, 65),
-(127, 2, 60),
-(128, 2, 40),(128,3,45),
-(129, 2, 50);
+(126, 2, 60),
+(127, 2, 40),(127, 3, 45),
+(128, 2, 50);
 
 /* =========================
 COFFEE PACKAGES
@@ -388,9 +387,9 @@ INSERT INTO products (product_name, category_id, description_ar, image_url) VALU
 ('Colombian Roast (250g) | قهوة كولومبية (250 جرام)', 15, 'قهوة كولومبية كلاسيكية بمذاق متوازن.', 'default.jpg');
 
 INSERT INTO product_prices (product_id, size_id, price) VALUES
-(130, 2, 250),
-(131, 2, 300),
-(132, 2, 280);
+(129, 2, 250),
+(130, 2, 300),
+(131, 2, 280);
 
 /* =========================
 NEW FRAPPE ADDITIONS
@@ -399,9 +398,9 @@ INSERT INTO products (product_name, category_id, description_ar, image_url) VALU
 ('Frappe Mixed Berry | فرابيه ميكس بيري', 4, 'مزيج منعش من التوت المشكل والثلج.', 'Frappe Mixed Berry.png');
 
 INSERT INTO product_prices (product_id, size_id, price) VALUES
-(133, 1, 89),
-(133, 2, 94),
-(133, 3, 99);
+(132, 1, 89),
+(132, 2, 94),
+(132, 3, 99);
 
 /* =========================
    NEW SHAKE ADDITIONS
@@ -413,35 +412,46 @@ INSERT INTO products (product_name, category_id, description_ar, image_url) VALU
 ('Chocolate Shake | شوكولاتة شيك', 3, 'ميلك شيك شوكولاتة غني وقوام كثيف لا يقاوم.', 'Chocolate Shake.png');
 
 INSERT INTO product_prices (product_id, size_id, price) VALUES
+(133, 1, 84), (133, 2, 89), (133, 3, 94),
 (134, 1, 84), (134, 2, 89), (134, 3, 94),
 (135, 1, 84), (135, 2, 89), (135, 3, 94),
-(136, 1, 84), (136, 2, 89), (136, 3, 94),
-(137, 1, 84), (137, 2, 89), (137, 3, 94);
+(136, 1, 84), (136, 2, 89), (136, 3, 94);
 
 /* =========================
    MOJITO AND SODA ADDITIONS
    ========================= */
 INSERT INTO products (product_name, category_id, description_ar, image_url) VALUES
-('Classic Mojito | موهيتو كلاسيك', 16, 'مشروب موهيتو منعش مع الليمون والنعناع والثلج.', 'default.jpg');
+('Classic Mojito | موهيتو كلاسيك', 16, 'مشروب موهيتو منعش مع الليمون والنعناع والثلج.', 'default.jpg'),
+('Strawberry Mojito | موهيتو فراولة', 16, 'موهيتو منعش بنكهة الفراولة.', 'mojito-placeholder.png'),
+('Blueberry Mojito | موهيتو توت', 16, 'موهيتو منعش بنكهة التوت.', 'mojito-placeholder.png'),
+('Pineapple Mojito | موهيتو أناناس', 16, 'موهيتو منعش بنكهة الأناناس.', 'mojito-placeholder.png'),
+('Mango Mojito | موهيتو مانجا', 16, 'موهيتو منعش بنكهة المانجو.', 'mojito-placeholder.png'),
+('Peach Mojito | موهيتو خوخ', 16, 'موهيتو منعش بنكهة الخوخ.', 'mojito-placeholder.png'),
+('Mix Berry Mojito | موهيتو ميكس بيري', 16, 'موهيتو منعش بنكهة ميكس بيري.', 'mojito-placeholder.png'),
+('Kiwi Mojito | موهيتو كيوي', 16, 'موهيتو منعش بنكهة الكيوي.', 'mojito-placeholder.png'),
+('Passion Fruit Mojito | موهيتو باشون', 16, 'موهيتو منعش بنكهة الباشون فروت.', 'mojito-placeholder.png'),
+('Apple Mojito | موهيتو تفاح', 16, 'موهيتو منعش بنكهة التفاح.', 'mojito-placeholder.png'),
+('Raspberry Mojito | موهيتو راس بيري', 16, 'موهيتو منعش بنكهة الراس بيري.', 'mojito-placeholder.png');
 
 INSERT INTO product_prices (product_id, size_id, price) VALUES
-(138, 1, 65), (138, 2, 75), (138, 3, 85);
-
-/* =========================
-   SUN SHINE ADDITIONS
-   ========================= */
-INSERT INTO products (product_name, category_id, description_ar, image_url) VALUES
-('Sun Shine | صن شاين', 17, 'مشروب صن شاين المنعش بنكهة الفواكه الطبيعية.', 'default.jpg');
-
-INSERT INTO product_prices (product_id, size_id, price) VALUES
-(139, 1, 70), (139, 2, 80), (139, 3, 90);
+(135, 1, 65), (135, 2, 75), (135, 3, 85),
+(136, 1, 79), (136, 2, 84), (136, 3, 89),
+(137, 1, 79), (137, 2, 84), (137, 3, 89),
+(138, 1, 79), (138, 2, 84), (138, 3, 89),
+(139, 1, 79), (139, 2, 84), (139, 3, 89),
+(140, 1, 79), (140, 2, 84), (140, 3, 89),
+(141, 1, 79), (141, 2, 84), (141, 3, 89),
+(142, 1, 79), (142, 2, 84), (142, 3, 89),
+(143, 1, 79), (143, 2, 84), (143, 3, 89),
+(144, 1, 79), (144, 2, 84), (144, 3, 89),
+(145, 1, 79), (145, 2, 84), (145, 3, 89);
 
 /* =========================
    MATCHA ADDITIONS (SPLIT)
    ========================= */
 INSERT INTO products (product_name, category_id, description_ar, image_url) VALUES
-('Ice Matcha Mango | آيس ماتشا مانجو', 5, 'ماتشا مثلج بنكهة المانجو المنعشة.', 'Ice Matcha.png');
+('Ice Matcha Mango | آيس ماتشا مانجو', 5, 'ماتشا مثلج بنكهة المانجو المنعشة.', 'Ice Matcha Mango.png');
 
 INSERT INTO product_prices (product_id, size_id, price) VALUES
-(140, 1, 104), (140, 2, 109), (140, 3, 114);
+(146, 1, 104), (146, 2, 109), (146, 3, 114);
 

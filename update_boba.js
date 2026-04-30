@@ -2,8 +2,8 @@ const fs = require('fs');
 let sql = fs.readFileSync('server/seed.sql', 'utf8');
 
 // 1. Update categories
-sql = sql.replace(/\\('Boba', 60\\),/, "('Boba Soft', 60),");
-sql = sql.replace(/\\('Mojito and Soda', 160\\);/, "('Mojito and Soda', 160),\n('Boba Milkshake', 61),\n('Boba Smoothie', 62);");
+sql = sql.replace("('Boba', 60),", "('Boba Soft', 60),");
+sql = sql.replace("('Mojito and Soda', 160);", "('Mojito and Soda', 160),\n('Boba Milkshake', 61),\n('Boba Smoothie', 62);");
 
 // 2. Remove BOBA products and prices
 // The block has CR LF line endings, so regex matching needs to be robust

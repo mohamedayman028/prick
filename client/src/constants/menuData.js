@@ -96,5 +96,23 @@ export const FALLBACK_CATEGORIES = [
                 items: [{ size: "S", price: 79 }, { size: "M", price: 84 }, { size: "L", price: 89 }]
             }
         ]
+    },
+    {
+        category_id: 6,
+        category_name: "Boba Soft",
+        sort_order: 60,
+        products: []
+    },
+    {
+        category_id: 17,
+        category_name: "Boba Milkshake",
+        sort_order: 61,
+        products: []
+    },
+    {
+        category_id: 18,
+        category_name: "Boba Smoothie",
+        sort_order: 62,
+        products: []
     }
 ];

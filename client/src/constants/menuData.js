@@ -73,6 +73,27 @@ export const FALLBACK_CATEGORIES = [
                 description_ar: "موهيتو منعش بنكهة الراس بيري.",
                 imageUrl: "mojito-placeholder.png",
                 items: [{ size: "S", price: 79 }, { size: "M", price: 84 }, { size: "L", price: 89 }]
+            },
+            {
+                id: 145,
+                name: "Pink Lemon | بينك ليمون",
+                description_ar: "مشروب بينك ليمون منعش.",
+                imageUrl: "Pink Lemon.png",
+                items: [{ size: "S", price: 79 }, { size: "M", price: 84 }, { size: "L", price: 89 }]
+            },
+            {
+                id: 146,
+                name: "Blue Passion | بلو باشون",
+                description_ar: "مشروب بلو باشون منعش.",
+                imageUrl: "Blue Passion.png",
+                items: [{ size: "S", price: 79 }, { size: "M", price: 84 }, { size: "L", price: 89 }]
+            },
+            {
+                id: 147,
+                name: "Pineapple Lemon Mint | بينابول ليمون مينت",
+                description_ar: "مشروب بينابول ليمون مينت منعش.",
+                imageUrl: "Pineapple Lemon Mint.png",
+                items: [{ size: "S", price: 79 }, { size: "M", price: 84 }, { size: "L", price: 89 }]
             }
         ]
     }

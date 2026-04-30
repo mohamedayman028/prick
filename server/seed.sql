@@ -428,7 +428,10 @@ INSERT INTO products (product_name, category_id, description_ar, image_url) VALU
 ('Kiwi Mojito | موهيتو كيوي', 16, 'موهيتو منعش بنكهة الكيوي.', 'mojito-placeholder.png'),
 ('Passion Fruit Mojito | موهيتو باشون', 16, 'موهيتو منعش بنكهة الباشون فروت.', 'mojito-placeholder.png'),
 ('Apple Mojito | موهيتو تفاح', 16, 'موهيتو منعش بنكهة التفاح.', 'mojito-placeholder.png'),
-('Raspberry Mojito | موهيتو راس بيري', 16, 'موهيتو منعش بنكهة الراس بيري.', 'mojito-placeholder.png');
+('Raspberry Mojito | موهيتو راس بيري', 16, 'موهيتو منعش بنكهة الراس بيري.', 'mojito-placeholder.png'),
+('Pink Lemon | بينك ليمون', 16, 'مشروب بينك ليمون منعش.', 'Pink Lemon.png'),
+('Blue Passion | بلو باشون', 16, 'مشروب بلو باشون منعش.', 'Blue Passion.png'),
+('Pineapple Lemon Mint | بينابول ليمون مينت', 16, 'مشروب بينابول ليمون مينت منعش.', 'Pineapple Lemon Mint.png');
 
 INSERT INTO product_prices (product_id, size_id, price) VALUES
 (133, 1, 79), (133, 2, 84), (133, 3, 89),
@@ -440,7 +443,10 @@ INSERT INTO product_prices (product_id, size_id, price) VALUES
 (139, 1, 79), (139, 2, 84), (139, 3, 89),
 (140, 1, 79), (140, 2, 84), (140, 3, 89),
 (141, 1, 79), (141, 2, 84), (141, 3, 89),
-(142, 1, 79), (142, 2, 84), (142, 3, 89);
+(142, 1, 79), (142, 2, 84), (142, 3, 89),
+(143, 1, 79), (143, 2, 84), (143, 3, 89),
+(144, 1, 79), (144, 2, 84), (144, 3, 89),
+(145, 1, 79), (145, 2, 84), (145, 3, 89);
 
 /* =========================
    MATCHA ADDITIONS (SPLIT)
@@ -449,5 +455,5 @@ INSERT INTO products (product_name, category_id, description_ar, image_url) VALU
 ('Ice Matcha Mango | آيس ماتشا مانجو', 5, 'ماتشا مثلج بنكهة المانجو المنعشة.', 'Ice Matcha Mango.png');
 
 INSERT INTO product_prices (product_id, size_id, price) VALUES
-(143, 1, 104), (143, 2, 109), (143, 3, 114);
+(146, 1, 104), (146, 2, 109), (146, 3, 114);
 

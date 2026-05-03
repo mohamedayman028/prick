@@ -408,29 +408,29 @@ INSERT INTO product_prices (product_id, size_id, price) VALUES
    MOJITO AND SODA ADDITIONS
    ========================= */
 INSERT INTO products (product_name, category_id, description_ar, image_url) VALUES
-('Strawberry Mojito | موهيتو فراولة', 16, 'موهيتو منعش بنكهة الفراولة.', 'mojito-placeholder.png'),
-('Blueberry Mojito | موهيتو توت', 16, 'موهيتو منعش بنكهة التوت.', 'mojito-placeholder.png'),
-('Pineapple Mojito | موهيتو أناناس', 16, 'موهيتو منعش بنكهة الأناناس.', 'mojito-placeholder.png'),
-('Mango Mojito | موهيتو مانجا', 16, 'موهيتو منعش بنكهة المانجو.', 'mojito-placeholder.png'),
-('Peach Mojito | موهيتو خوخ', 16, 'موهيتو منعش بنكهة الخوخ.', 'mojito-placeholder.png'),
-('Mix Berry Mojito | موهيتو ميكس بيري', 16, 'موهيتو منعش بنكهة ميكس بيري.', 'mojito-placeholder.png'),
-('Kiwi Mojito | موهيتو كيوي', 16, 'موهيتو منعش بنكهة الكيوي.', 'mojito-placeholder.png'),
-('Passion Fruit Mojito | موهيتو باشون', 16, 'موهيتو منعش بنكهة الباشون فروت.', 'mojito-placeholder.png'),
-('Apple Mojito | موهيتو تفاح', 16, 'موهيتو منعش بنكهة التفاح.', 'mojito-placeholder.png'),
-('Raspberry Mojito | موهيتو راس بيري', 16, 'موهيتو منعش بنكهة الراس بيري.', 'mojito-placeholder.png'),
+('Strawberry Mojito | موهيتو فراولة', 16, 'موهيتو منعش بنكهة الفراولة.', 'Strawberry Mojito.png'),
+('Blueberry Mojito | موهيتو توت', 16, 'موهيتو منعش بنكهة التوت.', 'Blueberry Mojito.png'),
+('Pineapple Mojito | موهيتو أناناس', 16, 'موهيتو منعش بنكهة الأناناس.', 'Pineapple Mojito.png'),
+('Mango Mojito | موهيتو مانجا', 16, 'موهيتو منعش بنكهة المانجو.', 'Mango Mojito.png'),
+('Peach Mojito | موهيتو خوخ', 16, 'موهيتو منعش بنكهة الخوخ.', 'Peach Mojito.png'),
+('Mix Berry Mojito | موهيتو ميكس بيري', 16, 'موهيتو منعش بنكهة ميكس بيري.', 'Mix Berry Mojito.png'),
+('Kiwi Mojito | موهيتو كيوي', 16, 'موهيتو منعش بنكهة الكيوي.', 'Kiwi Mojito.png'),
+('Passion Fruit Mojito | موهيتو باشون', 16, 'موهيتو منعش بنكهة الباشون فروت.', 'Passion Fruit Mojito.png'),
+('Apple Mojito | موهيتو تفاح', 16, 'موهيتو منعش بنكهة التفاح.', 'Apple Mojito.png'),
+('Raspberry Mojito | موهيتو راس بيري', 16, 'موهيتو منعش بنكهة الراس بيري.', 'Raspberry Mojito.png'),
 ('Pink Lemon | بينك ليمون', 16, 'مشروب بينك ليمون منعش.', 'Pink Lemon.png'),
 ('Blue Passion | بلو باشون', 16, 'مشروب بلو باشون منعش.', 'Blue Passion.png'),
 ('Pineapple Lemon Mint | بينابول ليمون مينت', 16, 'مشروب بينابول ليمون مينت منعش.', 'Pineapple Lemon Mint.png');
 
 INSERT INTO product_prices (product_id, size_id, price) VALUES
-(123, 1, 79), (123, 2, 84), (123, 3, 89),
-(124, 1, 79), (124, 2, 84), (124, 3, 89),
-(125, 1, 79), (125, 2, 84), (125, 3, 89),
-(126, 1, 79), (126, 2, 84), (126, 3, 89),
-(127, 1, 79), (127, 2, 84), (127, 3, 89),
-(128, 1, 79), (128, 2, 84), (128, 3, 89),
-(129, 1, 79), (129, 2, 84), (129, 3, 89),
-(130, 1, 79), (130, 2, 84), (130, 3, 89),
+(139, 1, 79), (139, 2, 84), (139, 3, 89),
+(140, 1, 79), (140, 2, 84), (140, 3, 89),
+(141, 1, 79), (141, 2, 84), (141, 3, 89),
+(142, 1, 79), (142, 2, 84), (142, 3, 89),
+(143, 1, 79), (143, 2, 84), (143, 3, 89),
+(136, 1, 79), (136, 2, 84), (136, 3, 89),
+(137, 1, 79), (137, 2, 84), (137, 3, 89),
+(138, 1, 79), (138, 2, 84), (138, 3, 89),
 (131, 1, 79), (131, 2, 84), (131, 3, 89),
 (132, 1, 79), (132, 2, 84), (132, 3, 89),
 (133, 1, 79), (133, 2, 84), (133, 3, 89),
@@ -444,5 +444,58 @@ INSERT INTO products (product_name, category_id, description_ar, image_url) VALU
 ('Ice Matcha Mango | آيس ماتشا مانجو', 5, 'ماتشا مثلج بنكهة المانجو المنعشة.', 'Ice Matcha Mango.png');
 
 INSERT INTO product_prices (product_id, size_id, price) VALUES
-(136, 1, 104), (136, 2, 109), (136, 3, 114);
-
+(144, 1, 104), (144, 2, 109), (144, 3, 114);
+
+/* =========================
+   BOBA SOFT
+   ========================= */
+INSERT INTO products (product_name, category_id, description_ar, image_url) VALUES
+('Boba Soft Passion | بوبا سوفت باشون', 6, 'بوبا سوفت بنكهة الباشون فروت المنعشة.', 'Boba Soft Passion.png'),
+('Boba Soft Strawberry | بوبا سوفت فراولة', 6, 'بوبا سوفت بنكهة الفراولة الحلوة.', 'Boba Soft Strawberry.png'),
+('Boba Soft Blueberry | بوبا سوفت بلوبيري', 6, 'بوبا سوفت بنكهة التوت الأزرق.', 'Boba Soft Blueberry.png'),
+('Boba Soft Mango | بوبا سوفت مانجا', 6, 'بوبا سوفت بنكهة المانجو الاستوائية.', 'Boba Soft Mango.png'),
+('Boba Soft Green Apple | بوبا سوفت تفاح أخضر', 6, 'بوبا سوفت بنكهة التفاح الأخضر المنعشة.', 'Boba Soft Green Apple.png');
+
+INSERT INTO product_prices (product_id, size_id, price) VALUES
+(145, 1, 86), (145, 2, 90), (145, 3, 95),
+(146, 1, 80), (146, 2, 90), (146, 3, 95),
+(147, 1, 85), (147, 2, 90), (147, 3, 95),
+(148, 1, 85), (148, 2, 90), (148, 3, 95),
+(149, 1, 85), (149, 2, 90), (149, 3, 95);
+
+/* =========================
+   BOBA MILKSHAKE
+   ========================= */
+INSERT INTO products (product_name, category_id, description_ar, image_url) VALUES
+('Milk Strawberry Boba Strawberry | ميلك فراولة بوبا فراولة', 17, 'ميلك شيك فراولة مع بوبا فراولة.', 'Milk Strawberry Boba Strawberry.png'),
+('Milk Mango Boba Mango | ميلك مانجا بوبا مانجا', 17, 'ميلك شيك مانجو مع بوبا مانجو.', 'Milk Mango Boba Mango.png'),
+('Milk Peach Boba Peach | ميلك خوخ بوبا خوخ', 17, 'ميلك شيك خوخ مع بوبا خوخ.', 'Milk Peach Boba Peach.png'),
+('Milk Passion Boba Passion | ميلك باشون بوبا باشون', 17, 'ميلك شيك باشون فروت مع بوبا باشون.', 'Milk Passion Boba Passion.png'),
+('Milk Blueberry Boba Blueberry | ميلك بلوبيري بوبا بلوبيري', 17, 'ميلك شيك بلوبيري مع بوبا بلوبيري.', 'Milk Blueberry Boba Blueberry.png');
+
+INSERT INTO product_prices (product_id, size_id, price) VALUES
+(150, 1, 95), (150, 2, 100), (150, 3, 105),
+(151, 1, 95), (151, 2, 100), (151, 3, 105),
+(152, 1, 95), (152, 2, 100), (152, 3, 105),
+(153, 1, 95), (153, 2, 100), (153, 3, 105),
+(154, 1, 95), (154, 2, 100), (154, 3, 105);
+
+/* =========================
+   BOBA SMOOTHIE
+   ========================= */
+INSERT INTO products (product_name, category_id, description_ar, image_url) VALUES
+('Blueberry Smoothie Boba Blueberry | سموزي توت بوبا توت', 18, 'سموزي التوت الأزرق مع بوبا توت.', 'Blueberry Smoothie Boba Blueberry.png'),
+('Strawberry Smoothie Boba Strawberry | سموزي فراولة بوبا فراولة', 18, 'سموزي الفراولة الطازجة مع بوبا فراولة.', 'Strawberry Smoothie Boba Strawberry.png'),
+('Apple Smoothie Boba Apple | سموزي تفاح بوبا تفاح', 18, 'سموزي التفاح المنعش مع بوبا تفاح.', 'Apple Smoothie Boba Apple.png'),
+('Passion Smoothie Boba Passion | سموزي باشون بوبا باشون', 18, 'سموزي الباشون فروت مع بوبا باشون.', 'Passion Smoothie Boba Passion.png'),
+('Peach Smoothie Boba Peach | سموزي خوخ بوبا خوخ', 18, 'سموزي الخوخ الناعم مع بوبا خوخ.', 'Peach Smoothie Boba Peach.png'),
+('Mango Smoothie Boba Mango | سموزي مانجا بوبا مانجا', 18, 'سموزي المانجو الاستوائي مع بوبا مانجو.', 'Mango Smoothie Boba Mango.png');
+
+INSERT INTO product_prices (product_id, size_id, price) VALUES
+(155, 1, 90), (155, 2, 95), (155, 3, 100),
+(156, 1, 90), (156, 2, 95), (156, 3, 100),
+(157, 1, 90), (157, 2, 95), (157, 3, 100),
+(158, 1, 90), (158, 2, 95), (158, 3, 100),
+(159, 1, 90), (159, 2, 95), (159, 3, 100),
+(160, 1, 90), (160, 2, 95), (160, 3, 100);
+

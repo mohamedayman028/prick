@@ -11,7 +11,7 @@ INSERT INTO categories (category_name, sort_order) VALUES
 ('Matcha', 50),
 ('Boba Soft', 60),
 ('Specialty Coffee', 70),
-('Extras', 80),
+('Extras', 160),
 ('Fresh Juices', 90),
 ('Ice Coffee', 100),
 ('Smoothies', 110),
@@ -19,7 +19,7 @@ INSERT INTO categories (category_name, sort_order) VALUES
 ('Dessert', 130),
 ('Bakery', 140),
 ('Coffee Packages', 150),
-('Mojito and Soda', 160),
+('Mojito and Soda', 80),
 ('Boba Milkshake', 61),
 ('Boba Smoothie', 62);
 

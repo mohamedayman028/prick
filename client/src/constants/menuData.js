@@ -2,7 +2,7 @@ export const FALLBACK_CATEGORIES = [
     {
         category_id: 16,
         category_name: "Mojito and Soda",
-        sort_order: 160,
+        sort_order: 80,
         products: [
             {
                 id: 135,

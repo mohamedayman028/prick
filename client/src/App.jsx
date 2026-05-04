@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import Menu from './components/Menu';
 import QRCodePage from './pages/QRCodePage';
 import Hero from './components/Hero';
+import FloatingSocialBar from './components/FloatingSocialBar';
 
 function App() {
   const [view, setView] = useState('menu'); // 'menu' or 'qr'
 
   return (
     <div style={{ backgroundColor: 'var(--bg-primary)', minHeight: '100vh' }}>
+      <FloatingSocialBar />
       {/* Absolute Nav to sit over Hero */}
       <nav style={{
         padding: '1.2rem clamp(1rem, 5vw, 2rem)', // Responsive padding

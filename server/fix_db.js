@@ -82,7 +82,7 @@ for (let i = 0; i < productBlocks.length; i++) {
     for (let j = 1; j < productLines.length; j++) {
         let line = productLines[j];
         if (line.trim() === '') continue;
-        let match = line.match(/^\((.*)\)(;|,)$/);
+        let match = line.trim().match(/^\((.*)\)(;|,)$/);
         if (match) {
             newPBlock += '(' + currentId + ', ' + match[1] + ')' + match[2] + '\n';
             

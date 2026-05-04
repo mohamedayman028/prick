@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Facebook, Instagram, MapPin } from 'lucide-react';
 import { motion } from 'framer-motion';
 
@@ -24,113 +24,76 @@ const SOCIAL_LINKS = [
     id: 'facebook',
     icon: Facebook,
     url: 'https://www.facebook.com/share/18R1JjWsQc/',
-    color: '#1877F2',
     label: 'Facebook'
   },
   {
     id: 'tiktok',
     icon: TikTokIcon,
     url: 'https://www.tiktok.com/@brisk_coffee?_t=ZS-8zHiBUwROn2&_r=1&fbclid=PAT01DUARlwL1leHRuA2FlbQIxMABzcnRjBmFwcF9pZA81NjcwNjczNDMzNTI0MjcAAadFKomea4ZeMZ_U_hoHOddEjHdr_q8lMNsQq7GONHsT5eD-QwWRePR2BPH_oA_aem_YdeZPBQpmITKTNLv5nQdwg',
-    color: '#000000',
     label: 'TikTok'
   },
   {
     id: 'instagram',
     icon: Instagram,
     url: 'https://www.instagram.com/brisk_coffee?igsh=ZXBzaTlheDJkODY=',
-    color: '#E1306C',
     label: 'Instagram'
   },
   {
     id: 'maps',
     icon: MapPin,
     url: 'https://maps.app.goo.gl/N6GRgtkSssmHs5kf7',
-    color: '#EA4335',
     label: 'Google Maps'
   }
 ];
 
 const FloatingSocialBar = () => {
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth <= 768);
-    handleResize(); // Initial check
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
   const containerVariants = {
-    hidden: { opacity: 0, x: isMobile ? 0 : 50, y: isMobile ? 50 : 0 },
+    hidden: { opacity: 0, x: 50 },
     visible: {
       opacity: 1,
       x: 0,
-      y: 0,
       transition: {
         type: 'spring',
         stiffness: 260,
         damping: 20,
-        staggerChildren: 0.1,
-        delayChildren: 0.3
+        staggerChildren: 0.15,
+        delayChildren: 0.4
       }
     }
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, scale: 0.5 },
-    visible: { opacity: 1, scale: 1, transition: { type: 'spring' } }
+    hidden: { opacity: 0, x: 20 },
+    visible: { opacity: 1, x: 0, transition: { type: 'spring' } }
   };
 
-  const barStyle = {
-    position: 'fixed',
-    zIndex: 9999,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    // Glassmorphism styling
-    background: 'rgba(255, 255, 255, 0.7)',
-    backdropFilter: 'blur(12px) saturate(180%)',
-    WebkitBackdropFilter: 'blur(12px) saturate(180%)',
-    border: '1px solid rgba(255, 255, 255, 0.5)',
-    boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.1)'
-  };
-
-  const mobileStyle = {
-    bottom: '20px',
-    left: '50%',
-    transform: 'translateX(-50%)',
-    flexDirection: 'row',
-    padding: '0.6rem 1.2rem',
-    borderRadius: '50px',
-    gap: '1.5rem',
-    width: 'auto'
-  };
-
-  const desktopStyle = {
-    right: '20px',
-    top: '50%',
-    transform: 'translateY(-50%)',
-    flexDirection: 'column',
-    padding: '1.2rem 0.8rem',
-    borderRadius: '30px',
-    gap: '1.5rem',
-    width: 'auto'
-  };
-
-  // On initial render during SSR or before effect, we use a default style
-  // but framer motion handles the transform internally.
-  // We'll apply the CSS inline to a motion.div
   return (
     <motion.div
       initial="hidden"
       animate="visible"
       variants={containerVariants}
       style={{
-        ...barStyle,
-        ...(isMobile ? mobileStyle : desktopStyle),
-        // Important: override Framer Motion's default transforms so our left/right/top/bottom positioning works
-        // Framer motion uses x/y for translation, so we just use those instead of CSS transform
-        transform: isMobile ? 'translateX(-50%)' : 'translateY(-50%)'
+        position: 'fixed',
+        zIndex: 9999,
+        right: '15px', // slightly off the exact edge
+        top: '50%',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: '1.2rem',
+        padding: '1rem 0.6rem',
+        borderRadius: '30px',
+        // Glassmorphism effect
+        background: 'rgba(255, 255, 255, 0.4)',
+        backdropFilter: 'blur(10px) saturate(150%)',
+        WebkitBackdropFilter: 'blur(10px) saturate(150%)',
+        border: '1px solid rgba(255, 255, 255, 0.4)',
+        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)',
+        // We handle centering manually with marginTop if transform conflicts with Framer Motion,
+        // but Framer Motion handles x/y transforms independently of CSS transform: translateY.
+        // So we can use y: "-50%" in Framer Motion instead of CSS transform.
+        y: '-50%'
       }}
     >
       {SOCIAL_LINKS.map((social) => {
@@ -143,26 +106,18 @@ const FloatingSocialBar = () => {
             rel="noopener noreferrer"
             aria-label={social.label}
             variants={itemVariants}
-            whileHover={{ scale: 1.15, filter: 'brightness(1.2)' }}
+            whileHover={{ scale: 1.15, x: -4, filter: 'brightness(0.8)' }}
             whileTap={{ scale: 0.95 }}
             style={{
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              color: 'var(--accent)',
-              transition: 'color 0.3s ease',
+              color: 'var(--accent)', // Uses Brisk brand color monochromatic
+              transition: 'all 0.3s ease',
               textDecoration: 'none'
             }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.color = social.color;
-              e.currentTarget.style.filter = `drop-shadow(0 0 8px ${social.color}60)`;
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.color = 'var(--accent)';
-              e.currentTarget.style.filter = 'none';
-            }}
           >
-            <Icon size={isMobile ? 24 : 28} strokeWidth={2} />
+            <Icon size={26} strokeWidth={2} />
           </motion.a>
         );
       })}

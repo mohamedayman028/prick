@@ -293,6 +293,18 @@ INSERT INTO product_prices (product_id, size_id, price) VALUES
 (92, 2, 110);
 
 /* =========================
+(92, 'Red Bull Flavor | ريد بول نكهات', 12, 'ريد بول بنكهات فواكه متنوعة ومنعشة.', 'Red Bull Flavor.png');
+
+INSERT INTO product_prices (product_id, size_id, price) VALUES
+(86, 2, 40),
+(87, 2, 50),
+(88, 2, 40),
+(89, 2, 15),
+(90, 2, 180),
+(91, 2, 90),
+(92, 2, 110);
+
+/* =========================
 DESSERT
 ========================= */
 INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES
@@ -310,9 +322,6 @@ INSERT INTO products (product_id, product_name, category_id, description_ar, ima
 (104, 'San Sebastian Blueberry | سان سباستيان توت', 13, 'كيك سان سباستيان مع صوص التوت الأزرق.', 'San Sebastian.png'),
 (105, 'San Sebastian Caramel | سان سباستيان كراميل', 13, 'كيك سان سباستيان مع صوص الكراميل.', 'San Sebastian.png'),
 (106, 'San Sebastian Pistachio | سان سباستيان بستاشيو', 13, 'كيك سان سباستيان مع كريمة الفستق.', 'San Sebastian.png'),
-(107, 'Tiramisu | تيراميسو', 13, 'تيراميسو إيطالي تقليدي بنكهة القهوة.', 'Tiramisu.png');
-
-INSERT INTO product_prices (product_id, size_id, price) VALUES
 (93, 2, 75),
 (94, 2, 85),
 (95, 2, 85),
@@ -350,20 +359,13 @@ INSERT INTO products (product_id, product_name, category_id, description_ar, ima
 (122, 'Cookies Nuts | كوكيز مكسرات', 14, 'كوكيز مقرمش مع حبات المكسرات.', 'default.jpg');
 INSERT INTO product_prices (product_id, size_id, price) VALUES
 (108, 2, 35),
-(109, 2, 50),
-(110, 2, 60),
-(111, 2, 70),
-(112, 2, 55),
-(113, 2, 65),
-(114, 2, 60),
-(115, 2, 35),
-(116, 2, 55),
-(117, 2, 45),
-(118, 2, 65),
-(119, 2, 65),
-(120, 2, 60),
-(121, 2, 40),(121, 3, 45),
-(122, 2, 50);
+(109, 2, 55),
+(110, 2, 45),
+(111, 2, 65),
+(112, 2, 65),
+(113, 2, 60),
+(114, 2, 40),(114, 3, 45),
+(115, 2, 50);
 
 /* =========================
 COFFEE PACKAGES
@@ -371,26 +373,6 @@ COFFEE PACKAGES
 INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES
 (123, 'Brisk House Blend (250g) | خلطة بريسك هاوس (250 جرام)', 15, 'خلطة قهوة بريسك هاوس المميزة والمحمصة بعناية.', 'default.jpg'),
 (124, 'Ethiopian Single Origin (250g) | قهوة إثيوبية (250 جرام)', 15, 'قهوة مختصة بنكهات فاكهية غنية.', 'default.jpg'),
-(125, 'Colombian Roast (250g) | قهوة كولومبية (250 جرام)', 15, 'قهوة كولومبية كلاسيكية بمذاق متوازن.', 'default.jpg');
-
-INSERT INTO product_prices (product_id, size_id, price) VALUES
-(123, 2, 250),
-(124, 2, 300),
-(125, 2, 280);
-
-/* =========================
-NEW FRAPPE ADDITIONS
-========================= */
-INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES
-(126, 'Frappe Mixed Berry | فرابيه ميكس بيري', 4, 'مزيج منعش من التوت المشكل والثلج.', 'Frappe Mixed Berry.png');
-
-INSERT INTO product_prices (product_id, size_id, price) VALUES
-(126, 1, 89),
-(126, 2, 94),
-(126, 3, 99);
-
-/* =========================
-   NEW SHAKE ADDITIONS
    ========================= */
 INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES
 (127, 'Vanilla Shake | فانيليا شيك', 3, 'ميلك شيك فانيليا ناعم وكريمي بنكهة كلاسيكية.', 'Vanilla Shake.png'),
@@ -457,11 +439,11 @@ INSERT INTO products (product_id, product_name, category_id, description_ar, ima
 (149, 'Boba Soft Green Apple | بوبا سوفت تفاح أخضر', 6, 'بوبا سوفت بنكهة التفاح الأخضر المنعشة.', 'Boba Soft Green Apple.png');
 
 INSERT INTO product_prices (product_id, size_id, price) VALUES
-(145, 1, 86), (145, 2, 90), (145, 3, 95),
-(146, 1, 80), (146, 2, 90), (146, 3, 95),
-(147, 1, 85), (147, 2, 90), (147, 3, 95),
-(148, 1, 85), (148, 2, 90), (148, 3, 95),
-(149, 1, 85), (149, 2, 90), (149, 3, 95);
+(145, 1, 84), (145, 2, 89), (145, 3, 94),
+(146, 1, 84), (146, 2, 89), (146, 3, 94),
+(147, 1, 84), (147, 2, 89), (147, 3, 94),
+(148, 1, 84), (148, 2, 89), (148, 3, 94),
+(149, 1, 84), (149, 2, 89), (149, 3, 94);
 
 /* =========================
    BOBA MILKSHAKE
@@ -474,11 +456,11 @@ INSERT INTO products (product_id, product_name, category_id, description_ar, ima
 (154, 'Milk Blueberry Boba Blueberry | ميلك بلوبيري بوبا بلوبيري', 17, 'ميلك شيك بلوبيري مع بوبا بلوبيري.', 'Milk Blueberry Boba Blueberry.png');
 
 INSERT INTO product_prices (product_id, size_id, price) VALUES
-(150, 1, 95), (150, 2, 100), (150, 3, 105),
-(151, 1, 95), (151, 2, 100), (151, 3, 105),
-(152, 1, 95), (152, 2, 100), (152, 3, 105),
-(153, 1, 95), (153, 2, 100), (153, 3, 105),
-(154, 1, 95), (154, 2, 100), (154, 3, 105);
+(150, 1, 99), (150, 2, 104), (150, 3, 114),
+(151, 1, 99), (151, 2, 104), (151, 3, 114),
+(152, 1, 99), (152, 2, 104), (152, 3, 114),
+(153, 1, 99), (153, 2, 104), (153, 3, 114),
+(154, 1, 99), (154, 2, 104), (154, 3, 114);
 
 /* =========================
    BOBA SMOOTHIE
@@ -489,15 +471,15 @@ INSERT INTO products (product_id, product_name, category_id, description_ar, ima
 (157, 'Apple Smoothie Boba Apple | سموزي تفاح بوبا تفاح', 18, 'سموزي التفاح المنعش مع بوبا تفاح.', 'Apple Smoothie Boba Apple.png'),
 (158, 'Passion Smoothie Boba Passion | سموزي باشون بوبا باشون', 18, 'سموزي الباشون فروت مع بوبا باشون.', 'Passion Smoothie Boba Passion.png'),
 (159, 'Peach Smoothie Boba Peach | سموزي خوخ بوبا خوخ', 18, 'سموزي الخوخ الناعم مع بوبا خوخ.', 'Peach Smoothie Boba Peach.png'),
-(160, 'Mango Smoothie Boba Mango | سموزي مانجا بوبا مانجا', 18, 'سموزي المانجو الاستوائي مع بوبا مانجو.', 'Mango Smoothie Boba Mango.png');
+(160, 'Mango Smoothie Boba Mango | سموزي مانجا بوبا مانجا', 18, 'سموزي المانجو الاستوائي مع بوبا مانجا.', 'Mango Smoothie Boba Mango.png');
 
 INSERT INTO product_prices (product_id, size_id, price) VALUES
-(155, 1, 90), (155, 2, 95), (155, 3, 100),
-(156, 1, 90), (156, 2, 95), (156, 3, 100),
-(157, 1, 90), (157, 2, 95), (157, 3, 100),
-(158, 1, 90), (158, 2, 95), (158, 3, 100),
-(159, 1, 90), (159, 2, 95), (159, 3, 100),
-(160, 1, 90), (160, 2, 95), (160, 3, 100);
+(155, 1, 89), (155, 2, 94), (155, 3, 99),
+(156, 1, 89), (156, 2, 94), (156, 3, 99),
+(157, 1, 89), (157, 2, 94), (157, 3, 99),
+(158, 1, 89), (158, 2, 94), (158, 3, 99),
+(159, 1, 89), (159, 2, 94), (159, 3, 99),
+(160, 1, 89), (160, 2, 94), (160, 3, 99);
 
 /* =========================
    HOT AMERICANO ADDITION

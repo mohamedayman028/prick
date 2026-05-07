@@ -103,7 +103,10 @@ function App() {
         </div>
         <p>© {new Date().getFullYear()} Brisk Cafe. All rights reserved.</p>
         <p style={{ fontSize: '0.95rem', marginTop: '0.5rem', fontWeight: '500' }}>Premium Coffee & Sustainable Quality</p>
-        <p style={{ fontSize: '11px', marginTop: '1.2rem', color: 'var(--text-secondary)', opacity: 0.6 }}>Engineering: Mohamed Ayman | Phone: 01017397552</p>
+        <p style={{ fontSize: '0.9rem', marginTop: '1.2rem', color: 'var(--text-secondary)', fontWeight: 500, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.4rem' }}>
+          <span style={{ fontFamily: 'monospace', fontWeight: 700, fontSize: '1rem', color: 'var(--accent)', letterSpacing: '-0.5px' }}>&lt;/&gt;</span>
+          Engineering: Mohamed Ayman | Phone: 01017397552
+        </p>
       </footer>
     </div>
   );

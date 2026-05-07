@@ -301,11 +301,11 @@ INSERT INTO products (product_id, product_id, product_name, category_id, descrip
 (95, 95, 'Cheese cake Blueberry | تشيز كيك توت', 13, 'تشيز كيك مع طبقة التوت الأزرق الطازج.', 'Cheese cake Blueberry.png'),
 (96, 96, 'Cheese cake Lotus | تشيز كيك لوتس', 13, 'تشيز كيك مع كريمة وبسكويت اللوتس.', 'Cheese cake Lotus.png'),
 (97, 97, 'Cheese cake Pistachio | تشيز كيك بستاشيو', 13, 'تشيز كيك مع كريمة الفستق الفاخرة.', 'Cheese cake Pistachio.png'),
-(98, 98, 'Cheese cake Nutella | تشيز كيك نوتيلا', 13, 'تشيز كيك مع طبقة غنية من نوتيلا.', 'default-coffee.png'),
-(99, 99, 'Molten Cake | مولتن كيك', 13, 'كيك شوكولاتة دافئ بقلب سائل ذائب.', 'default-coffee.png'),
-(100, 100, 'Molten Cake Nutella | مولتن كيك نوتيلا', 13, 'مولتن كيك مع حشوة نوتيلا الذائبة.', 'default-coffee.png'),
+(98, 98, 'Cheese cake Nutella | تشيز كيك نوتيلا', 13, 'تشيز كيك مع طبقة غنية من نوتيلا.', 'Cheese cake Nutella.png'),
+(99, 99, 'Molten Cake | مولتن كيك', 13, 'كيك شوكولاتة دافئ بقلب سائل ذائب.', 'Molten Cake.png'),
+(100, 100, 'Molten Cake Nutella | مولتن كيك نوتيلا', 13, 'مولتن كيك مع حشوة نوتيلا الذائبة.', 'Molten Cake Nutella.png'),
 (101, 101, 'San Sebastian | سان سباستيان', 13, 'تشيز كيك سان سباستيان الكريمي الشهير.', 'default-coffee.png'),
-(102, 102, 'San Sebastian Lotus | سان سباستيان لوتس', 13, 'كيك سان سباستيان مع كريمة اللوتس.', 'default-coffee.png'),
+(102, 102, 'San Sebastian Lotus | سان سباستيان لوتس', 13, 'كيك سان سباستيان مع كريمة اللوتس.', 'San Sebastian Lotus.png'),
 (103, 103, 'San Sebastian Nutella | سان سباستيان نوتيلا', 13, 'كيك سان سباستيان مع نوتيلا غنية.', 'San Sebastian Nutella.png'),
 (104, 104, 'San Sebastian Blueberry | سان سباستيان توت', 13, 'كيك سان سباستيان مع صوص التوت الأزرق.', 'San Sebastian Blueberry.png'),
 (105, 105, 'San Sebastian Caramel | سان سباستيان كراميل', 13, 'كيك سان سباستيان مع صوص الكراميل.', 'San Sebastian Caramel.png'),
@@ -369,9 +369,9 @@ INSERT INTO product_prices (product_id, size_id, price) VALUES
 COFFEE PACKAGES
 ========================= */
 INSERT INTO products (product_id, product_id, product_name, category_id, description_ar, image_url) VALUES
-(123, 123, 'قهوة تركي اسبيشيال بلند (250 جرام)', 15, 'Special Blend Turkish Coffee', 'default-coffee.png'),
-(124, 124, 'اسبريسو كلومبي كالي (250 جرام)', 15, '(سعر الربع كيلو)', 'default-coffee.png'),
-(125, 125, 'اثيوبي هامبيلا (250 جرام)', 15, '(سعر الربع كيلو)', 'default-coffee.png');
+(123, 123, 'Turkish Special Blend (250g) | قهوة تركي اسبيشيال بلند', 15, 'قهوة تركي اسبيشيال بلند - ربع كيلو.', 'default-coffee.png'),
+(124, 124, 'Espresso Colombia Cali (250g) | اسبريسو كلومبي كالي', 15, 'اسبريسو كلومبي كالي - ربع كيلو.', 'default-coffee.png'),
+(125, 125, 'Ethiopian Hambela (250g) | اثيوبي هامبيلا', 15, 'اثيوبي هامبيلا - ربع كيلو.', 'default-coffee.png');
 
 INSERT INTO product_prices (product_id, size_id, price) VALUES
 (123, 2, 300),

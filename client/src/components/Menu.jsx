@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import ProductCard from './ProductCard';
 import { API_BASE_URL } from '../config';
 import { FALLBACK_CATEGORIES } from '../constants/menuData';
@@ -16,13 +16,52 @@ import {
     Croissant,
     Bean,
     Zap,
-    CakeSlice
+    CakeSlice,
+    ChevronLeft,
+    ChevronRight
 } from 'lucide-react';
+
+const SCROLL_AMOUNT = 220;
 
 const Menu = () => {
     const [categories, setCategories] = useState([]);
     const [loading, setLoading] = useState(true);
     const [activeCategory, setActiveCategory] = useState(null);
+    const [canScrollLeft, setCanScrollLeft] = useState(false);
+    const [canScrollRight, setCanScrollRight] = useState(false);
+    const scrollContainerRef = useRef(null);
+
+    // Check scroll position and update arrow visibility
+    const updateScrollIndicators = useCallback(() => {
+        const el = scrollContainerRef.current;
+        if (!el) return;
+        const tolerance = 2;
+        setCanScrollLeft(el.scrollLeft > tolerance);
+        setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - tolerance);
+    }, []);
+
+    // Scroll handler for arrow clicks
+    const handleScroll = useCallback((direction) => {
+        const el = scrollContainerRef.current;
+        if (!el) return;
+        el.scrollBy({
+            left: direction === 'left' ? -SCROLL_AMOUNT : SCROLL_AMOUNT,
+            behavior: 'smooth'
+        });
+    }, []);
+
+    // Attach scroll listener
+    useEffect(() => {
+        const el = scrollContainerRef.current;
+        if (!el) return;
+        updateScrollIndicators();
+        el.addEventListener('scroll', updateScrollIndicators, { passive: true });
+        window.addEventListener('resize', updateScrollIndicators);
+        return () => {
+            el.removeEventListener('scroll', updateScrollIndicators);
+            window.removeEventListener('resize', updateScrollIndicators);
+        };
+    }, [categories, updateScrollIndicators]);
 
     useEffect(() => {
         fetch(`${API_BASE_URL}/api/menu`)
@@ -113,64 +152,185 @@ const Menu = () => {
         return { Icon: Coffee, color: brandGreen };
     };
 
+    /* ── shared arrow button style ── */
+    const arrowBtnBase = {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: 36,
+        height: 36,
+        minWidth: 36,
+        borderRadius: '50%',
+        border: '1px solid var(--gray-divider)',
+        background: 'rgba(255,255,255,0.95)',
+        backdropFilter: 'blur(6px)',
+        cursor: 'pointer',
+        boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
+        transition: 'all 0.25s ease',
+        flexShrink: 0,
+        zIndex: 3
+    };
+
     return (
         <div className="menu-container fade-in">
-            {/* Category Navigation */}
-            <div className="category-nav" style={{
-                display: 'flex',
-                overflowX: 'auto',
-                gap: '0.8rem',
-                padding: '1.2rem 0.5rem 2.5rem',
+            {/* Category Navigation Wrapper */}
+            <div style={{
                 position: 'sticky',
                 top: 0,
-                background: 'rgba(255, 255, 255, 0.9)',
                 zIndex: 10,
-                backdropFilter: 'blur(10px)',
+                background: 'rgba(255, 255, 255, 0.92)',
+                backdropFilter: 'blur(12px)',
                 borderBottom: '1px solid var(--gray-divider)',
-                scrollbarWidth: 'none',
-                msOverflowStyle: 'none',
-                WebkitOverflowScrolling: 'touch'
+                padding: '1.2rem 0 2.5rem'
             }}>
-                {safeCategories.map(cat => {
-                    const { Icon, color } = getCategoryConfig(cat.category_name);
-                    const isActive = activeCategory === cat.category_id;
+                <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.5rem',
+                    position: 'relative'
+                }}>
+                    {/* Left Arrow */}
+                    <button
+                        id="category-scroll-left"
+                        aria-label="Scroll categories left"
+                        onClick={() => handleScroll('left')}
+                        style={{
+                            ...arrowBtnBase,
+                            opacity: canScrollLeft ? 1 : 0,
+                            pointerEvents: canScrollLeft ? 'auto' : 'none',
+                            transform: canScrollLeft ? 'scale(1)' : 'scale(0.7)'
+                        }}
+                        onMouseEnter={(e) => {
+                            e.currentTarget.style.background = 'var(--accent)';
+                            e.currentTarget.style.borderColor = 'var(--accent)';
+                            e.currentTarget.style.boxShadow = '0 4px 14px var(--accent-glow)';
+                            e.currentTarget.querySelector('svg').style.color = '#fff';
+                        }}
+                        onMouseLeave={(e) => {
+                            e.currentTarget.style.background = 'rgba(255,255,255,0.95)';
+                            e.currentTarget.style.borderColor = 'var(--gray-divider)';
+                            e.currentTarget.style.boxShadow = '0 2px 8px rgba(0,0,0,0.08)';
+                            e.currentTarget.querySelector('svg').style.color = 'var(--text-primary)';
+                        }}
+                    >
+                        <ChevronLeft size={18} color="var(--text-primary)" style={{ transition: 'color 0.25s' }} />
+                    </button>
 
-                    return (
-                        <button
-                            key={cat.category_id}
-                            onClick={() => {
-                                setActiveCategory(cat.category_id);
-                                window.scrollTo({ top: 0, behavior: 'smooth' });
-                            }}
+                    {/* Scrollable Container with Gradient Fades */}
+                    <div style={{ position: 'relative', flex: 1, overflow: 'hidden' }}>
+                        {/* Left gradient fade */}
+                        <div style={{
+                            position: 'absolute',
+                            top: 0,
+                            left: 0,
+                            bottom: 0,
+                            width: 40,
+                            background: 'linear-gradient(to right, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0) 100%)',
+                            zIndex: 2,
+                            pointerEvents: 'none',
+                            opacity: canScrollLeft ? 1 : 0,
+                            transition: 'opacity 0.3s ease'
+                        }} />
+
+                        {/* Right gradient fade */}
+                        <div style={{
+                            position: 'absolute',
+                            top: 0,
+                            right: 0,
+                            bottom: 0,
+                            width: 40,
+                            background: 'linear-gradient(to left, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0) 100%)',
+                            zIndex: 2,
+                            pointerEvents: 'none',
+                            opacity: canScrollRight ? 1 : 0,
+                            transition: 'opacity 0.3s ease'
+                        }} />
+
+                        {/* Category Pills */}
+                        <div
+                            ref={scrollContainerRef}
+                            className="category-nav"
                             style={{
                                 display: 'flex',
-                                alignItems: 'center',
-                                gap: '0.6rem',
-                                background: isActive ? 'var(--accent)' : 'var(--bg-secondary)',
-                                color: isActive ? '#ffffff' : 'var(--text-primary)',
-                                border: isActive ? 'none' : '1px solid var(--gray-divider)',
-                                padding: '12px 24px',
-                                borderRadius: '50px',
-                                whiteSpace: 'nowrap',
-                                cursor: 'pointer',
-                                transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-                                fontWeight: isActive ? '700' : '500',
-                                fontSize: '0.95rem',
-                                boxShadow: isActive ? `0 8px 20px var(--accent-glow)` : 'none',
-                                flexShrink: 0
+                                overflowX: 'auto',
+                                gap: '0.8rem',
+                                padding: '0.3rem 0.5rem',
+                                scrollBehavior: 'smooth',
+                                scrollbarWidth: 'none',
+                                msOverflowStyle: 'none',
+                                WebkitOverflowScrolling: 'touch'
                             }}
                         >
-                            <Icon
-                                size={20}
-                                color={isActive ? '#ffffff' : color}
-                                style={{
-                                    opacity: isActive ? 1 : 0.9
-                                }}
-                            />
-                            {cat.category_name}
-                        </button>
-                    );
-                })}
+                            {safeCategories.map(cat => {
+                                const { Icon, color } = getCategoryConfig(cat.category_name);
+                                const isActive = activeCategory === cat.category_id;
+
+                                return (
+                                    <button
+                                        key={cat.category_id}
+                                        onClick={() => {
+                                            setActiveCategory(cat.category_id);
+                                            window.scrollTo({ top: 0, behavior: 'smooth' });
+                                        }}
+                                        style={{
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            gap: '0.6rem',
+                                            background: isActive ? 'var(--accent)' : 'var(--bg-secondary)',
+                                            color: isActive ? '#ffffff' : 'var(--text-primary)',
+                                            border: isActive ? 'none' : '1px solid var(--gray-divider)',
+                                            padding: '12px 24px',
+                                            borderRadius: '50px',
+                                            whiteSpace: 'nowrap',
+                                            cursor: 'pointer',
+                                            transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                                            fontWeight: isActive ? '700' : '500',
+                                            fontSize: '0.95rem',
+                                            boxShadow: isActive ? `0 8px 20px var(--accent-glow)` : 'none',
+                                            flexShrink: 0
+                                        }}
+                                    >
+                                        <Icon
+                                            size={20}
+                                            color={isActive ? '#ffffff' : color}
+                                            style={{
+                                                opacity: isActive ? 1 : 0.9
+                                            }}
+                                        />
+                                        {cat.category_name}
+                                    </button>
+                                );
+                            })}
+                        </div>
+                    </div>
+
+                    {/* Right Arrow */}
+                    <button
+                        id="category-scroll-right"
+                        aria-label="Scroll categories right"
+                        onClick={() => handleScroll('right')}
+                        style={{
+                            ...arrowBtnBase,
+                            opacity: canScrollRight ? 1 : 0,
+                            pointerEvents: canScrollRight ? 'auto' : 'none',
+                            transform: canScrollRight ? 'scale(1)' : 'scale(0.7)'
+                        }}
+                        onMouseEnter={(e) => {
+                            e.currentTarget.style.background = 'var(--accent)';
+                            e.currentTarget.style.borderColor = 'var(--accent)';
+                            e.currentTarget.style.boxShadow = '0 4px 14px var(--accent-glow)';
+                            e.currentTarget.querySelector('svg').style.color = '#fff';
+                        }}
+                        onMouseLeave={(e) => {
+                            e.currentTarget.style.background = 'rgba(255,255,255,0.95)';
+                            e.currentTarget.style.borderColor = 'var(--gray-divider)';
+                            e.currentTarget.style.boxShadow = '0 2px 8px rgba(0,0,0,0.08)';
+                            e.currentTarget.querySelector('svg').style.color = 'var(--text-primary)';
+                        }}
+                    >
+                        <ChevronRight size={18} color="var(--text-primary)" style={{ transition: 'color 0.25s' }} />
+                    </button>
+                </div>
             </div>
 
             {/* Products Grid */}
@@ -193,8 +353,16 @@ const Menu = () => {
                     <p style={{ color: 'var(--text-secondary)' }}>No items in this category yet.</p>
                 )}
             </div>
+
+            {/* Hide scrollbar for category-nav via injected style */}
+            <style>{`
+                .category-nav::-webkit-scrollbar {
+                    display: none;
+                }
+            `}</style>
         </div>
     );
 };
 
 export default Menu;
+

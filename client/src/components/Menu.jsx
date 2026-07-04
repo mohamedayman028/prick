@@ -298,14 +298,6 @@ const Menu = () => {
                                             }}
                                         />
                                         {cat.category_name}
-                                        {isActive && (
-                                            <span 
-                                                className={cat.category_id % 2 === 0 ? "wc-soccer-bounce" : "wc-trophy-wiggle"} 
-                                                style={{ fontSize: '1.1rem', pointerEvents: 'none' }}
-                                            >
-                                                {cat.category_id % 2 === 0 ? '⚽' : '🏆'}
-                                            </span>
-                                        )}
                                     </button>
                                 );
                             })}

@@ -240,39 +240,3 @@ h1 {
 .skeleton-loading {
   animation: skeleton-pulse 1.5s ease-in-out infinite;
 }
-
-/* ── World Cup category icon animations ── */
-@keyframes wc-soccer-bounce {
-  0%, 100% {
-    transform: translateY(0) scale(1);
-  }
-  50% {
-    transform: translateY(-5px) scale(0.95);
-  }
-}
-
-@keyframes wc-trophy-wiggle {
-  0%, 100% {
-    transform: rotate(0deg) scale(1);
-  }
-  25% {
-    transform: rotate(-10deg) scale(1.05);
-  }
-  75% {
-    transform: rotate(10deg) scale(1.05);
-  }
-}
-
-.wc-soccer-bounce {
-  display: inline-block;
-  animation: wc-soccer-bounce 0.8s ease-in-out infinite;
-  margin-left: 6px;
-  will-change: transform;
-}
-
-.wc-trophy-wiggle {
-  display: inline-block;
-  animation: wc-trophy-wiggle 1.2s ease-in-out infinite;
-  margin-left: 6px;
-  will-change: transform;
-}

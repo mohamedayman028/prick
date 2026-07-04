@@ -3,14 +3,12 @@ import Menu from './components/Menu';
 import QRCodePage from './pages/QRCodePage';
 import Hero from './components/Hero';
 import FloatingSocialBar from './components/FloatingSocialBar';
-import WorldCupTheme from './components/WorldCupTheme';
 
 function App() {
   const [view, setView] = useState('menu'); // 'menu' or 'qr'
 
   return (
     <div style={{ backgroundColor: 'var(--bg-primary)', minHeight: '100vh' }}>
-      <WorldCupTheme />
       <FloatingSocialBar />
       {/* Absolute Nav to sit over Hero */}
       <nav style={{

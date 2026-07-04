@@ -10,8 +10,6 @@ function App() {
 
   return (
     <div style={{ backgroundColor: 'var(--bg-primary)', minHeight: '100vh' }}>
-      {/* Persistent World Cup Top Ribbon */}
-      <div className="wc-top-ribbon" />
       <WorldCupTheme />
       <FloatingSocialBar />
       
@@ -22,7 +20,7 @@ function App() {
         justifyContent: 'space-between',
         alignItems: 'center',
         position: 'fixed',
-        top: '4px', // Position below the ribbon
+        top: 0,
         left: 0,
         right: 0,
         zIndex: 1000,
@@ -35,7 +33,7 @@ function App() {
         margin: '0 auto',
         gap: '0.8rem'
       }}>
-        {/* Brand Area with Logo and Permanent World Cup Badge */}
+        {/* Brand Area with Logo */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
           {/* Logo container */}
           <div style={{
@@ -58,18 +56,16 @@ function App() {
               }} 
             />
           </div>
+        </div>
 
-          {/* Persistent Egyptian flag brand badge */}
-          <div className="wc-header-badge" title="Egypt in World Cup 2026">
-            <div className="wc-flag-pulse-small">
-              <div style={{ flex: 1, backgroundColor: '#CE1126' }} />
-              <div style={{ flex: 1, backgroundColor: '#FFFFFF' }} />
-              <div style={{ flex: 1, backgroundColor: '#000000' }} />
-            </div>
-            <span className="wc-header-text">
-              Egypt in World Cup 2026 🇪🇬⚽
-            </span>
+        {/* 🏆 Persistent Centered Red World Cup Banner ⚽ */}
+        <div className="wc-persistent-banner" title="شجع الفراعنة">
+          <span style={{ fontSize: '1.15rem', animation: 'wc-spin-slow 4s linear infinite', display: 'inline-block' }}>⚽</span>
+          <div className="wc-banner-text-container">
+            <span className="wc-banner-title">شجع الفراعنة في المونديال! 🇪🇬🏆</span>
+            <span className="wc-banner-subtitle">FIFA World Cup 2026</span>
           </div>
+          <span style={{ fontSize: '1.15rem', animation: 'wc-badge-float 2s ease-in-out infinite', display: 'inline-block' }}>🏆</span>
         </div>
 
         <div style={{ display: 'flex', gap: '0.6rem' }}>

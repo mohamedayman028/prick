@@ -1,23 +1,23 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 
 /* ── Egyptian flag palette ── */
 const EG_COLORS = ['#CE1126', '#FFFFFF', '#000000', '#C09300', '#CE1126', '#C09300'];
 
-/* ── Confetti particle shapes ── */
-const SHAPES = ['rect', 'circle', 'ribbon'];
+/* ── Confetti particle shapes (including soccer balls!) ── */
+const SHAPES = ['rect', 'circle', 'ribbon', 'soccer'];
 
 /* Generate a single confetti particle config */
-function makeParticle(id) {
+function makeParticle(id, spawnedAt) {
     const color = EG_COLORS[Math.floor(Math.random() * EG_COLORS.length)];
     const shape = SHAPES[Math.floor(Math.random() * SHAPES.length)];
     const left = Math.random() * 100;          // vw
-    const delay = Math.random() * 1.4;         // seconds
-    const duration = 1.8 + Math.random() * 1.4; // seconds
-    const size = 6 + Math.random() * 10;       // px
+    const delay = 0;                           // Instant spawn since generated on interval
+    const duration = 2.2 + Math.random() * 1.6; // falling speed seconds
+    const size = shape === 'soccer' ? 14 + Math.random() * 8 : 6 + Math.random() * 10; // size in px
     const drift = (Math.random() - 0.5) * 120; // horizontal drift px
     const rotation = Math.random() * 720 - 360; // deg
 
-    return { id, color, shape, left, delay, duration, size, drift, rotation };
+    return { id, color, shape, left, delay, duration, size, drift, rotation, spawnedAt };
 }
 
 /* ── CSS injected once via a <style> tag ── */
@@ -26,14 +26,6 @@ const INJECTED_STYLE = `
     0%   { transform: translateY(-20px) translateX(0) rotate(0deg); opacity: 1; }
     85%  { opacity: 1; }
     100% { transform: translateY(105vh) translateX(var(--drift)) rotate(var(--rot)); opacity: 0; }
-}
-@keyframes wc-toast-in {
-    0%   { opacity: 0; transform: translateX(-50%) translateY(-30px) scale(0.9); }
-    100% { opacity: 1; transform: translateX(-50%) translateY(0)     scale(1); }
-}
-@keyframes wc-toast-out {
-    0%   { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
-    100% { opacity: 0; transform: translateX(-50%) translateY(-20px) scale(0.92); }
 }
 @keyframes wc-badge-float {
     0%, 100% { transform: translateY(0px) rotate(-2deg); }
@@ -55,10 +47,33 @@ const INJECTED_STYLE = `
 }
 `;
 
-/* ── Confetti Particle Component ── */
+/* ── Confetti / Soccer Particle Component ── */
 function ConfettiParticle({ p }) {
     const isRect = p.shape === 'rect';
     const isRibbon = p.shape === 'ribbon';
+    const isSoccer = p.shape === 'soccer';
+
+    if (isSoccer) {
+        return (
+            <div
+                style={{
+                    position: 'fixed',
+                    top: 0,
+                    left: `${p.left}vw`,
+                    fontSize: `${p.size}px`,
+                    pointerEvents: 'none',
+                    zIndex: 99999,
+                    willChange: 'transform, opacity',
+                    '--drift': `${p.drift}px`,
+                    '--rot': `${p.rotation}deg`,
+                    animation: `wc-fall ${p.duration}s ease-in forwards`,
+                    lineHeight: 1
+                }}
+            >
+                ⚽
+            </div>
+        );
+    }
 
     const style = {
         position: 'fixed',
@@ -68,13 +83,12 @@ function ConfettiParticle({ p }) {
         height: isRibbon ? `${p.size * 2.5}px` : `${p.size}px`,
         backgroundColor: p.color,
         borderRadius: p.shape === 'circle' ? '50%' : isRibbon ? '2px' : '2px',
-        opacity: 0,
         pointerEvents: 'none',
         zIndex: 99999,
         willChange: 'transform, opacity',
         '--drift': `${p.drift}px`,
         '--rot': `${p.rotation}deg`,
-        animation: `wc-fall ${p.duration}s ${p.delay}s ease-in forwards`,
+        animation: `wc-fall ${p.duration}s ease-in forwards`,
     };
 
     return <div style={style} />;
@@ -83,122 +97,54 @@ function ConfettiParticle({ p }) {
 /* ── Main Component ── */
 export default function WorldCupTheme() {
     const [particles, setParticles] = useState([]);
-    const [showToast, setShowToast] = useState(false);
-    const [toastExiting, setToastExiting] = useState(false);
     const [showBadge, setBadge] = useState(false);
-    const fired = useRef(false);
+    const [active, setActive] = useState(true);
 
     useEffect(() => {
-        /* Only run once per session */
-        const seen = sessionStorage.getItem('wc2026_seen');
-        if (seen) {
-            setBadge(true);
-            return;
-        }
-
-        if (fired.current) return;
-        fired.current = true;
-
-        /* Fire confetti + toast */
-        const ps = Array.from({ length: 90 }, (_, i) => makeParticle(i));
-        setParticles(ps);
-        setShowToast(true);
-
-        /* Toast exit animation */
-        const exitTimer = setTimeout(() => setToastExiting(true), 3200);
-        /* Remove toast from DOM */
-        const removeToast = setTimeout(() => setShowToast(false), 3900);
-        /* Remove particles from DOM after they've all fallen */
-        const removeParticles = setTimeout(() => setParticles([]), 4200);
-        /* Show floating badge (with a slight delay so it doesn't compete) */
+        // Show floating badge (with a slight delay so it doesn't compete)
         const badgeTimer = setTimeout(() => setBadge(true), 800);
 
-        sessionStorage.setItem('wc2026_seen', '1');
+        if (!active) return;
+
+        // Start generation interval (spawns 4 particles every 350ms)
+        const spawnInterval = setInterval(() => {
+            setParticles(prev => {
+                const now = Date.now();
+                // Filter out particles older than 4.5 seconds to keep DOM light
+                const fresh = prev.filter(p => now - p.spawnedAt < 4500);
+                
+                const newCount = 4;
+                const newParticles = Array.from({ length: newCount }, (_, idx) => {
+                    return makeParticle(now + '-' + idx, now);
+                });
+                return [...fresh, ...newParticles];
+            });
+        }, 350);
+
+        // Stop generation after 75 seconds (1.25 minutes)
+        const stopTimer = setTimeout(() => {
+            clearInterval(spawnInterval);
+            setActive(false);
+            // Clear remaining particles after they finish falling (5 seconds later)
+            setTimeout(() => {
+                setParticles([]);
+            }, 5000);
+        }, 75000);
 
         return () => {
-            clearTimeout(exitTimer);
-            clearTimeout(removeToast);
-            clearTimeout(removeParticles);
+            clearInterval(spawnInterval);
             clearTimeout(badgeTimer);
+            clearTimeout(stopTimer);
         };
-    }, []);
+    }, [active]);
 
     return (
         <>
             {/* Inject keyframes once */}
             <style>{INJECTED_STYLE}</style>
 
-            {/* ── Confetti ── */}
+            {/* ── Confetti & Soccer Balls ── */}
             {particles.map(p => <ConfettiParticle key={p.id} p={p} />)}
-
-            {/* ── Welcome Toast ── */}
-            {showToast && (
-                <div
-                    role="alert"
-                    aria-live="polite"
-                    style={{
-                        position: 'fixed',
-                        top: '5.5rem',
-                        left: '50%',
-                        zIndex: 100000,
-                        transform: 'translateX(-50%)',
-                        background: 'linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 40%, #CE1126 100%)',
-                        border: '1.5px solid rgba(192,147,0,0.6)',
-                        borderRadius: '20px',
-                        padding: '0.85rem 1.6rem',
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '0.7rem',
-                        boxShadow: '0 12px 40px rgba(206,17,38,0.35), 0 0 0 1px rgba(255,255,255,0.05)',
-                        backdropFilter: 'blur(16px)',
-                        WebkitBackdropFilter: 'blur(16px)',
-                        whiteSpace: 'nowrap',
-                        animation: toastExiting
-                            ? 'wc-toast-out 0.7s ease-in forwards'
-                            : 'wc-toast-in 0.5s cubic-bezier(0.34,1.56,0.64,1) forwards',
-                        pointerEvents: 'none',
-                        userSelect: 'none',
-                    }}
-                >
-                    {/* Egyptian flag stripe accent */}
-                    <div style={{
-                        position: 'absolute', left: 0, top: 0, bottom: 0, width: '5px',
-                        borderRadius: '20px 0 0 20px',
-                        background: 'linear-gradient(to bottom, #CE1126 33%, #ffffff 33%, #ffffff 66%, #000000 66%)'
-                    }} />
-
-                    {/* Trophy spin */}
-                    <span style={{ fontSize: '1.5rem', display: 'inline-block', animation: 'wc-spin-slow 3s linear infinite' }}>🏆</span>
-
-                    <div>
-                        <p style={{
-                            color: '#ffffff',
-                            fontWeight: '800',
-                            fontSize: 'clamp(0.9rem, 3.5vw, 1.05rem)',
-                            letterSpacing: '0.01em',
-                            direction: 'rtl',
-                            margin: 0,
-                            lineHeight: '1.3',
-                            textShadow: '0 1px 6px rgba(0,0,0,0.4)'
-                        }}>
-                            شجع الفراعنة في المونديال! 🇪🇬🏆
-                        </p>
-                        <p style={{
-                            color: 'rgba(192,147,0,0.9)',
-                            fontSize: '0.72rem',
-                            fontWeight: '600',
-                            marginTop: '2px',
-                            letterSpacing: '1.5px',
-                            textTransform: 'uppercase',
-                            margin: '2px 0 0',
-                        }}>
-                            FIFA World Cup 2026 • USA • Canada • Mexico
-                        </p>
-                    </div>
-
-                    <span style={{ fontSize: '1.5rem' }}>⚽</span>
-                </div>
-            )}
 
             {/* ── Floating Supporter Badge ── */}
             {showBadge && (

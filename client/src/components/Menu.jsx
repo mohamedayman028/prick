@@ -125,6 +125,7 @@ const Menu = () => {
 
         if (lowerName.includes('bakery')) return { Icon: Croissant, color: brandGreen };
         if (lowerName.includes('food')) return { Icon: Croissant, color: brandGreen };
+        if (lowerName.includes('sandwich')) return { Icon: UtensilsCrossed, color: brandGreen };
         if (lowerName.includes('mojito')) return { Icon: CupSoda, color: '#00BCD4' };
         if (lowerName.includes('sun shine')) return { Icon: Sparkles, color: '#FFD54F' };
         if (lowerName.includes('smoothie')) return { Icon: CupSoda, color: '#FF4081' };
@@ -176,7 +177,7 @@ const Menu = () => {
             {/* Category Navigation Wrapper */}
             <div style={{
                 position: 'sticky',
-                top: 0,
+                top: '68px',
                 zIndex: 10,
                 background: 'rgba(255, 255, 255, 0.92)',
                 backdropFilter: 'blur(12px)',
@@ -298,14 +299,6 @@ const Menu = () => {
                                             }}
                                         />
                                         {cat.category_name}
-                                        {isActive && (
-                                            <span 
-                                                className={cat.category_id % 2 === 0 ? "wc-soccer-bounce" : "wc-trophy-wiggle"} 
-                                                style={{ fontSize: '1.1rem', pointerEvents: 'none' }}
-                                            >
-                                                {cat.category_id % 2 === 0 ? '⚽' : '🏆'}
-                                            </span>
-                                        )}
                                     </button>
                                 );
                             })}

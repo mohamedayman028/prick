@@ -22,7 +22,7 @@ INSERT INTO categories (category_name, sort_order) VALUES
 ('Mojito and Soda', 80),
 ('Boba Milkshake', 61),
 ('Boba Smoothie', 62),
-('Sandwiches | الساندويتشات', 145);
+('Sandwiches', 145);
 
 
 

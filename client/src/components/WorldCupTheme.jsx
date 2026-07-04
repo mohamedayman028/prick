@@ -207,8 +207,8 @@ export default function WorldCupTheme() {
                     title="شجع الفراعنة 🇪🇬"
                     style={{
                         position: 'fixed',
-                        bottom: '5.5rem',
-                        right: '1.2rem',
+                        bottom: '1.5rem',
+                        left: '1.2rem',
                         zIndex: 9998,
                         width: '54px',
                         height: '54px',

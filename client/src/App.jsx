@@ -10,43 +10,66 @@ function App() {
 
   return (
     <div style={{ backgroundColor: 'var(--bg-primary)', minHeight: '100vh' }}>
+      {/* Persistent World Cup Top Ribbon */}
+      <div className="wc-top-ribbon" />
       <WorldCupTheme />
       <FloatingSocialBar />
-      {/* Absolute Nav to sit over Hero */}
+      
+      {/* Persistent Glassmorphic Sticky Header */}
       <nav style={{
-        padding: '1.2rem clamp(1rem, 5vw, 2rem)', // Responsive padding
+        padding: '0.6rem clamp(1rem, 5vw, 2rem)', // Sleeker padding when fixed
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        position: 'absolute',
-        top: 0,
+        position: 'fixed',
+        top: '4px', // Position below the ribbon
         left: 0,
         right: 0,
-        zIndex: 100,
-        maxWidth: '1200px',
+        zIndex: 1000,
+        maxWidth: '100%',
+        background: 'rgba(255, 255, 255, 0.85)',
+        backdropFilter: 'blur(16px)',
+        WebkitBackdropFilter: 'blur(16px)',
+        borderBottom: '1px solid rgba(0,0,0,0.06)',
+        boxShadow: '0 4px 30px rgba(0,0,0,0.02)',
         margin: '0 auto',
-        gap: '0.8rem' // Prevents items from touching if they wrap
+        gap: '0.8rem'
       }}>
-        {/* White Container for Logo */}
-        <div style={{
-          background: '#ffffff',
-          padding: '0.2rem 0.6rem',
-          borderRadius: '50px',
-          boxShadow: '0 4px 15px rgba(0,0,0,0.1)',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          flexShrink: 0 // Prevent logo from squashing
-        }}>
-          <img 
-            src="/logo-new.png" 
-            alt="Brisk Logo" 
-            style={{ 
-              height: window.innerWidth < 480 ? '42px' : '56px', 
-              width: 'auto', 
-              objectFit: 'contain' 
-            }} 
-          />
+        {/* Brand Area with Logo and Permanent World Cup Badge */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
+          {/* Logo container */}
+          <div style={{
+            background: '#ffffff',
+            padding: '0.2rem 0.6rem',
+            borderRadius: '50px',
+            boxShadow: '0 4px 15px rgba(0,0,0,0.08)',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            flexShrink: 0
+          }}>
+            <img 
+              src="/logo-new.png" 
+              alt="Brisk Logo" 
+              style={{ 
+                height: '42px', 
+                width: 'auto', 
+                objectFit: 'contain' 
+              }} 
+            />
+          </div>
+
+          {/* Persistent Egyptian flag brand badge */}
+          <div className="wc-header-badge" title="Egypt in World Cup 2026">
+            <div className="wc-flag-pulse-small">
+              <div style={{ flex: 1, backgroundColor: '#CE1126' }} />
+              <div style={{ flex: 1, backgroundColor: '#FFFFFF' }} />
+              <div style={{ flex: 1, backgroundColor: '#000000' }} />
+            </div>
+            <span className="wc-header-text">
+              Egypt in World Cup 2026 🇪🇬⚽
+            </span>
+          </div>
         </div>
 
         <div style={{ display: 'flex', gap: '0.6rem' }}>
@@ -58,10 +81,10 @@ function App() {
               color: view === 'menu' ? '#ffffff' : 'var(--accent)',
               border: 'none',
               fontWeight: '700',
-              padding: '0.7rem clamp(1rem, 3vw, 1.6rem)',
-              boxShadow: '0 4px 15px rgba(0,0,0,0.1)',
+              padding: '0.55rem clamp(0.8rem, 3vw, 1.4rem)',
+              boxShadow: '0 4px 15px rgba(0,0,0,0.08)',
               borderRadius: '50px',
-              fontSize: '0.9rem'
+              fontSize: '0.85rem'
             }}
           >
             Menu
@@ -74,10 +97,10 @@ function App() {
               color: view === 'qr' ? '#ffffff' : 'var(--accent)',
               border: 'none',
               fontWeight: '700',
-              padding: '0.7rem clamp(1rem, 3vw, 1.6rem)',
-              boxShadow: '0 4px 15px rgba(0,0,0,0.1)',
+              padding: '0.55rem clamp(0.8rem, 3vw, 1.4rem)',
+              boxShadow: '0 4px 15px rgba(0,0,0,0.08)',
               borderRadius: '50px',
-              fontSize: '0.9rem'
+              fontSize: '0.85rem'
             }}
           >
             QR

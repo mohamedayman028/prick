@@ -232,7 +232,7 @@ export const FALLBACK_CATEGORIES = [
     },
     {
         category_id: 19,
-        category_name: "Sandwiches | الساندويتشات",
+        category_name: "Sandwiches",
         sort_order: 145,
         products: [
             {

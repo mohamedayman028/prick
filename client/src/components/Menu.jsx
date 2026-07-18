@@ -177,7 +177,7 @@ const Menu = () => {
             {/* Category Navigation Wrapper */}
             <div style={{
                 position: 'sticky',
-                top: '64px',
+                top: '68px',
                 zIndex: 10,
                 background: 'rgba(255, 255, 255, 0.92)',
                 backdropFilter: 'blur(12px)',

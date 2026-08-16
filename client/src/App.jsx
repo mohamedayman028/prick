@@ -3,26 +3,22 @@ import Menu from './components/Menu';
 import QRCodePage from './pages/QRCodePage';
 import Hero from './components/Hero';
 import FloatingSocialBar from './components/FloatingSocialBar';
-import WorldCupTheme from './components/WorldCupTheme';
 
 function App() {
   const [view, setView] = useState('menu'); // 'menu' or 'qr'
 
   return (
     <div style={{ backgroundColor: 'var(--bg-primary)', minHeight: '100vh' }}>
-      {/* Persistent World Cup Top Ribbon */}
-      <div className="wc-top-ribbon" />
-      <WorldCupTheme />
       <FloatingSocialBar />
       
-      {/* Persistent Glassmorphic Sticky Header */}
+      {/* Sticky Header */}
       <nav style={{
-        padding: '0.6rem clamp(1rem, 5vw, 2rem)', // Sleeker padding when fixed
+        padding: '0.6rem clamp(1rem, 5vw, 2rem)',
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
         position: 'fixed',
-        top: '4px', // Position below the ribbon
+        top: 0,
         left: 0,
         right: 0,
         zIndex: 1000,
@@ -35,9 +31,8 @@ function App() {
         margin: '0 auto',
         gap: '0.8rem'
       }}>
-        {/* Brand Area with Logo and Permanent World Cup Badge */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
-          {/* Logo container */}
+        {/* Brand Area — Logo only */}
+        <div style={{ display: 'flex', alignItems: 'center' }}>
           <div style={{
             background: '#ffffff',
             padding: '0.2rem 0.6rem',
@@ -48,27 +43,15 @@ function App() {
             alignItems: 'center',
             flexShrink: 0
           }}>
-            <img 
-              src="/logo-new.png" 
-              alt="Brisk Logo" 
-              style={{ 
-                height: '42px', 
-                width: 'auto', 
-                objectFit: 'contain' 
-              }} 
+            <img
+              src="/logo-new.png"
+              alt="Brisk Logo"
+              style={{
+                height: '42px',
+                width: 'auto',
+                objectFit: 'contain'
+              }}
             />
-          </div>
-
-          {/* Persistent Egyptian flag brand badge */}
-          <div className="wc-header-badge" title="Egypt in World Cup 2026">
-            <div className="wc-flag-pulse-small">
-              <div style={{ flex: 1, backgroundColor: '#CE1126' }} />
-              <div style={{ flex: 1, backgroundColor: '#FFFFFF' }} />
-              <div style={{ flex: 1, backgroundColor: '#000000' }} />
-            </div>
-            <span className="wc-header-text">
-              Egypt in World Cup 2026 🇪🇬⚽
-            </span>
           </div>
         </div>
 

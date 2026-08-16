@@ -149,25 +149,44 @@ const ProductCard = ({ item, priority }) => {
                     </div>
 
                     <div style={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        gap: '0.5rem'
+                        display: 'grid',
+                        gridTemplateColumns: item.items.length === 1 ? '1fr' : '1fr 1fr',
+                        gap: '0.75rem',
+                        marginTop: '0.5rem'
                     }}>
                         {item.items.map((priceOption, idx) => (
                             <div key={idx} style={{
                                 display: 'flex',
-                                justifyContent: 'space-between',
+                                flexDirection: 'column',
                                 alignItems: 'center',
-                                fontSize: '0.9rem',
-                                color: 'var(--text-secondary)',
-                                borderBottom: idx !== item.items.length - 1 ? '1px solid #f0f0f0' : 'none',
-                                paddingBottom: idx !== item.items.length - 1 ? '0.4rem' : '0'
+                                justifyContent: 'center',
+                                padding: '0.6rem 0.4rem',
+                                background: 'rgba(27, 60, 53, 0.03)',
+                                borderRadius: '14px',
+                                border: '1px solid rgba(27, 60, 53, 0.08)',
+                                transition: 'all 0.3s ease'
                             }}>
-                                <span>{priceOption.size === 'S' ? 'Small' : priceOption.size === 'M' ? 'Medium' : priceOption.size === 'L' ? 'Large' : priceOption.size === 'Single' ? 'Single' : priceOption.size === 'Double' ? 'Double' : null}</span>
+                                <span style={{
+                                    fontSize: '0.75rem',
+                                    fontWeight: '600',
+                                    color: 'var(--text-secondary)',
+                                    marginBottom: '4px',
+                                    textTransform: 'uppercase',
+                                    letterSpacing: '0.5px'
+                                }}>
+                                    {priceOption.size === 'S' ? 'Small' : priceOption.size === 'M' ? 'Medium' : priceOption.size === 'L' ? 'Large' : priceOption.size}
+                                </span>
                                 <span style={{
                                     color: 'var(--accent)',
-                                    fontWeight: '700',
-                                }}>{priceOption.price} <small style={{ fontSize: '0.75em' }}>EGP</small></span>
+                                    fontWeight: '800',
+                                    fontSize: '1.05rem',
+                                    display: 'flex',
+                                    alignItems: 'baseline',
+                                    gap: '2px'
+                                }}>
+                                    {priceOption.price}
+                                    <span style={{ fontSize: '0.65rem', fontWeight: '600', color: 'var(--text-secondary)' }}>EGP</span>
+                                </span>
                             </div>
                         ))}
                     </div>

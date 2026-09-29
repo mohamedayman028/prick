@@ -19,8 +19,10 @@ const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
 
 const dbPath = path.resolve(__dirname, 'database.sqlite');
-const db = new sqlite3.Database(dbPath, (err) => {
+const db = new sqlite3.Database(dbPath, sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE, (err) => {
     if (err) { console.error('Error opening DB:', err.message); process.exit(1); }
+    // Graceful handling of file locking errors
+    db.configure('busyTimeout', 5000);
     console.log('Opened database:', dbPath);
 });
 
@@ -35,30 +37,41 @@ const all = (sql, params = []) => new Promise((resolve, reject) => {
     });
 });
 
+const beginTransaction = () => run('BEGIN EXCLUSIVE TRANSACTION;');
+const commitTransaction = () => run('COMMIT;');
+const rollbackTransaction = () => run('ROLLBACK;');
+
 /**
  * Upsert a price: delete existing entry for (product_id, size_id) then insert new one.
  */
 async function setPrice(productId, sizeId, price) {
-    await run(
-        `DELETE FROM product_prices WHERE product_id = ? AND size_id = ?`,
-        [productId, sizeId]
-    );
-    await run(
-        `INSERT INTO product_prices (product_id, size_id, price) VALUES (?, ?, ?)`,
-        [productId, sizeId, price]
-    );
+    try {
+        await beginTransaction();
+        await run(`DELETE FROM product_prices WHERE product_id = ? AND size_id = ?`, [productId, sizeId]);
+        await run(`INSERT INTO product_prices (product_id, size_id, price) VALUES (?, ?, ?)`, [productId, sizeId, price]);
+        await commitTransaction();
+    } catch (err) {
+        await rollbackTransaction().catch(e => console.error("Rollback failed:", e.message));
+        console.error(`Failed to setPrice for product ${productId}:`, err.message);
+        throw err;
+    }
 }
 
 /**
  * Remove ALL prices for a product then set the new ones.
  */
 async function resetPrices(productId, priceMap) {
-    await run(`DELETE FROM product_prices WHERE product_id = ?`, [productId]);
-    for (const [sizeId, price] of Object.entries(priceMap)) {
-        await run(
-            `INSERT INTO product_prices (product_id, size_id, price) VALUES (?, ?, ?)`,
-            [productId, parseInt(sizeId), price]
-        );
+    try {
+        await beginTransaction();
+        await run(`DELETE FROM product_prices WHERE product_id = ?`, [productId]);
+        for (const [sizeId, price] of Object.entries(priceMap)) {
+            await run(`INSERT INTO product_prices (product_id, size_id, price) VALUES (?, ?, ?)`, [productId, parseInt(sizeId), price]);
+        }
+        await commitTransaction();
+    } catch (err) {
+        await rollbackTransaction().catch(e => console.error("Rollback failed:", e.message));
+        console.error(`Failed to resetPrices for product ${productId}:`, err.message);
+        throw err;
     }
 }
 
@@ -66,17 +79,26 @@ async function resetPrices(productId, priceMap) {
  * Insert a new product if it doesn't already exist (by product_id), then set prices.
  */
 async function ensureProduct(productId, name, categoryId, descAr, imageUrl, priceMap) {
-    const existing = await all(`SELECT product_id FROM products WHERE product_id = ?`, [productId]);
-    if (existing.length === 0) {
-        await run(
-            `INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (?, ?, ?, ?, ?)`,
-            [productId, name, categoryId, descAr, imageUrl]
-        );
-        console.log(`  + Inserted new product: [${productId}] ${name}`);
-    } else {
-        console.log(`  ~ Product already exists: [${productId}] ${name}`);
+    try {
+        await beginTransaction();
+        const existing = await all(`SELECT product_id FROM products WHERE product_id = ?`, [productId]);
+        if (existing.length === 0) {
+            await run(
+                `INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (?, ?, ?, ?, ?)`,
+                [productId, name, categoryId, descAr, imageUrl]
+            );
+            console.log(`  + Inserted new product: [${productId}] ${name}`);
+        } else {
+            console.log(`  ~ Product already exists: [${productId}] ${name}`);
+        }
+        await commitTransaction();
+        
+        await resetPrices(productId, priceMap);
+    } catch (err) {
+        await rollbackTransaction().catch(e => console.error("Rollback failed:", e.message));
+        console.error(`Failed to ensureProduct ${productId}:`, err.message);
+        throw err;
     }
-    await resetPrices(productId, priceMap);
 }
 
 async function main() {

@@ -23,6 +23,7 @@ app.use('/images', express.static(path.join(__dirname, '../client/public/images'
 // Get all categories
 app.get('/api/categories', async (req, res) => {
     try {
+        res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
         const [rows] = await db.query('SELECT * FROM categories ORDER BY sort_order');
         res.json(rows);
     } catch (err) {
@@ -34,6 +35,7 @@ app.get('/api/categories', async (req, res) => {
 // Get menu data (hierarchical: Category -> Products -> Prices/Sizes)
 app.get('/api/menu', async (req, res) => {
     try {
+        res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
         // Fetch categories
         const [categories] = await db.query('SELECT * FROM categories ORDER BY sort_order');
 
@@ -89,7 +91,12 @@ app.get('/api/menu', async (req, res) => {
             };
         });
 
-        res.json(menu);
+        // Diagnostic wrapper to verify new server code and database connection
+        res.json({
+            timestamp: new Date().toISOString(),
+            db_version: 'v2-direct-sqlite',
+            data: menu
+        });
 
     } catch (err) {
         console.error("Exact error fetching menu data:", err);

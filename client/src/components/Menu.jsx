@@ -64,9 +64,18 @@ const Menu = () => {
     }, [categories, updateScrollIndicators]);
 
     useEffect(() => {
-        fetch(`${API_BASE_URL}/api/menu`)
+        fetch(`${API_BASE_URL}/api/menu`, { cache: 'no-store' })
             .then(res => res.json())
-            .then(data => {
+            .then(responseData => {
+                // Support diagnostic object format { data: [...] } or direct array
+                const data = responseData.data || responseData;
+                if (responseData.timestamp) {
+                    console.log('API Diagnostics:', {
+                        timestamp: responseData.timestamp,
+                        db_version: responseData.db_version
+                    });
+                }
+                
                 // Merge fallback categories to ensure new additions are visible 
                 // even if the live database hasn't been updated yet.
                 let mergedData = Array.isArray(data) ? [...data] : [];

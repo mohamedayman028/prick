@@ -1,5 +1,7 @@
 const sqlite3 = require('sqlite3').verbose();
-const db = new sqlite3.Database('server/database.sqlite');
+const path = require('path');
+
+const db = new sqlite3.Database(path.resolve(__dirname, 'database.sqlite'));
 
 db.all(
   `SELECT p.product_id, p.product_name, p.image_url, sz.size_name, pp.price

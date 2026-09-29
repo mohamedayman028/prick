@@ -1,33 +1,42 @@
-const initSqlJs = require('sql.js');
-const fs = require('fs');
-const path = require('path');
+const mysql = require('mysql2/promise');
+require('dotenv').config();
 
-const dbPath = path.join(__dirname, 'server', 'database.sqlite');
-const wasmPath = path.join(__dirname, 'server', 'sql-wasm.wasm');
-const imagesDir = path.join(__dirname, 'client', 'public', 'images', 'products');
+async function testConnection() {
+    const config = {
+        host: process.env.DB_HOST || 'localhost',
+        user: process.env.DB_USER || 'root',
+        password: process.env.DB_PASSWORD || '',
+        database: process.env.DB_NAME || 'abrisk_menu',
+    };
 
-async function run() {
-    const SQL = await initSqlJs({ locateFile: () => wasmPath });
-    const buffer = fs.readFileSync(dbPath);
-    const db = new SQL.Database(buffer);
-    
-    const res = db.exec("SELECT product_id, product_name, image_url FROM products");
-    if (res.length > 0) {
-        let missing = [];
-        res[0].values.forEach(row => {
-            const id = row[0];
-            const name = row[1];
-            const imgUrl = row[2];
-            
-            const imgPathPng = path.join(imagesDir, imgUrl);
-            const imgPathJpg = path.join(imagesDir, imgUrl.replace('.png', '.jpg'));
-            const imgPathJpeg = path.join(imagesDir, imgUrl.replace('.png', '.jpeg'));
-            
-            if (!fs.existsSync(imgPathPng) && !fs.existsSync(imgPathJpg) && !fs.existsSync(imgPathJpeg)) {
-                missing.push({ id, name, imgUrl });
+    console.log('Connecting with config:', { ...config, password: '***' });
+
+    try {
+        const connection = await mysql.createConnection(config);
+        console.log('Successfully connected to the database.');
+
+        const [tables] = await connection.query('SHOW TABLES');
+        console.log('Tables in database:', tables.map(row => Object.values(row)[0]));
+
+        await connection.end();
+    } catch (err) {
+        console.error('Error connecting to the database:', err.message);
+        if (err.code === 'ER_BAD_DB_ERROR') {
+            console.log('Database does not exist. Creating it...');
+            try {
+                const conn = await mysql.createConnection({
+                    host: config.host,
+                    user: config.user,
+                    password: config.password
+                });
+                await conn.query(`CREATE DATABASE IF NOT EXISTS ${config.database}`);
+                console.log(`Database ${config.database} created.`);
+                await conn.end();
+            } catch (createErr) {
+                console.error('Error creating database:', createErr.message);
             }
-        });
-        fs.writeFileSync('missing_images.json', JSON.stringify(missing, null, 2));
+        }
     }
 }
-run().catch(console.error);
+
+testConnection();

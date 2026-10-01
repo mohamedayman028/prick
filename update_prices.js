@@ -13,6 +13,8 @@
  * For Hot Coffee items: the legacy seed used size 1(S) and 2(M) to represent M and L.
  * We correct this: going forward all M/L items use size_id 2 and 3 respectively.
  * For Single/Double items we keep size_id 4 and 5.
+ *
+ * NOTE: All prices reduced by 10 EGP across all sections EXCEPT Desert & Sandwich.
  */
 
 const sqlite3 = require('sqlite3').verbose();
@@ -107,246 +109,246 @@ async function main() {
     console.log('\n=== 1. HOT COFFEE ===');
     // size_id 2=M, 3=L for M/L items; 4=Single, 5=Double for espresso-style items
 
-    // Espresso (1): Single:65 | Double:75
-    await resetPrices(1, { 4: 65, 5: 75 });
+    // Espresso (1): Single:55 | Double:65
+    await resetPrices(1, { 4: 55, 5: 65 });
     console.log('  Updated: Espresso');
 
-    // Macchiato (2): Double:89 only
-    await resetPrices(2, { 5: 89 });
+    // Macchiato (2): Double:79 only
+    await resetPrices(2, { 5: 79 });
     console.log('  Updated: Macchiato');
 
-    // Mocha (3): M:109 | L:119
-    await resetPrices(3, { 2: 109, 3: 119 });
+    // Mocha (3): M:99 | L:109
+    await resetPrices(3, { 2: 99, 3: 109 });
     console.log('  Updated: Mocha');
 
-    // White Mocha (4): M:109 | L:119
-    await resetPrices(4, { 2: 109, 3: 119 });
+    // White Mocha (4): M:99 | L:109
+    await resetPrices(4, { 2: 99, 3: 109 });
     console.log('  Updated: White Mocha');
 
-    // Cappuccino (7): M:79 | L:89
-    await resetPrices(7, { 2: 79, 3: 89 });
+    // Cappuccino (7): M:69 | L:79
+    await resetPrices(7, { 2: 69, 3: 79 });
     console.log('  Updated: Cappuccino');
 
-    // Hot Latte (8): M:79 | L:89
-    await resetPrices(8, { 2: 79, 3: 89 });
+    // Hot Latte (8): M:69 | L:79
+    await resetPrices(8, { 2: 69, 3: 79 });
     console.log('  Updated: Latte');
 
-    // Turkish Coffee (9): Double:75 only
-    await resetPrices(9, { 5: 75 });
+    // Turkish Coffee (9): Double:65 only
+    await resetPrices(9, { 5: 65 });
     console.log('  Updated: Turkish Coffee');
 
-    // Nutella Coffee (11): M:109 | L:119
-    await resetPrices(11, { 2: 109, 3: 119 });
+    // Nutella Coffee (11): M:99 | L:109
+    await resetPrices(11, { 2: 99, 3: 109 });
     console.log('  Updated: Nutella Coffee');
 
-    // Spanish Latte (12): M:119 | L:129
-    await resetPrices(12, { 2: 119, 3: 129 });
+    // Spanish Latte (12): M:109 | L:119
+    await resetPrices(12, { 2: 109, 3: 119 });
     console.log('  Updated: Hot Spanish Latte');
 
-    // Flat White (13): M:79 | L:89
-    await resetPrices(13, { 2: 79, 3: 89 });
+    // Flat White (13): M:69 | L:79
+    await resetPrices(13, { 2: 69, 3: 79 });
     console.log('  Updated: Flat White');
 
-    // Cortado (14): M:79 | L:89
-    await resetPrices(14, { 2: 79, 3: 89 });
+    // Cortado (14): M:69 | L:79
+    await resetPrices(14, { 2: 69, 3: 79 });
     console.log('  Updated: Cortado');
 
-    // Hot Americano (161): M:75 | L:85
-    await resetPrices(161, { 2: 75, 3: 85 });
+    // Hot Americano (161): M:65 | L:75
+    await resetPrices(161, { 2: 65, 3: 75 });
     console.log('  Updated: Hot Americano');
 
     // Latte Lotus — NEW product (product_id 167)
     // category_id 1 = Hot Coffee
     await ensureProduct(167, 'Latte Lotus | لاتيه لوتس', 1,
         'لاتيه ساخن مع صوص اللوتس الكريمي.', 'Latte Lotus.png',
-        { 2: 129, 3: 139 });
+        { 2: 119, 3: 129 });
     console.log('  Added/Updated: Latte Lotus');
 
     // Remove Nescafe (5) and Nescafe Black (6) and Turkish Coffee with Milk (10) — not in new menu
     // (We leave them but won't update prices unless specified — keeping old prices)
 
     console.log('\n=== 2. ICE COFFEE ===');
-    // Ice Mocha (68): M:129 | L:149
-    await resetPrices(68, { 2: 129, 3: 149 });
+    // Ice Mocha (68): M:119 | L:139
+    await resetPrices(68, { 2: 119, 3: 139 });
     console.log('  Updated: Ice Mocha');
 
-    // Ice Latte (67): M:119 | L:129
-    await resetPrices(67, { 2: 119, 3: 129 });
+    // Ice Latte (67): M:109 | L:119
+    await resetPrices(67, { 2: 109, 3: 119 });
     console.log('  Updated: Ice Latte');
 
     // Ice Coffee — NEW product (product_id 168), category_id 10 = Ice Coffee
     await ensureProduct(168, 'Ice Coffee | آيس كوفي', 10,
         'قهوة مثلجة منعشة بالحليب البارد.', 'Ice Coffee.png',
-        { 2: 119, 3: 129 });
+        { 2: 109, 3: 119 });
     console.log('  Added/Updated: Ice Coffee');
 
-    // Ice Caramel Macchiato (73): M:129 | L:139
-    await resetPrices(73, { 2: 129, 3: 139 });
+    // Ice Caramel Macchiato (73): M:119 | L:129
+    await resetPrices(73, { 2: 119, 3: 129 });
     console.log('  Updated: Ice Caramel Macchiato');
 
-    // Ice White Mocha (69): M:139 | L:149
-    await resetPrices(69, { 2: 139, 3: 149 });
+    // Ice White Mocha (69): M:129 | L:139
+    await resetPrices(69, { 2: 129, 3: 139 });
     console.log('  Updated: Ice White Mocha');
 
-    // Ice Shaken White Mocha (70) = Ice Chiken White Mocha: M:139 | L:149
-    await resetPrices(70, { 2: 139, 3: 149 });
+    // Ice Shaken White Mocha (70) = Ice Chiken White Mocha: M:129 | L:139
+    await resetPrices(70, { 2: 129, 3: 139 });
     console.log('  Updated: Ice Chiken White Mocha (Ice Shaken White Mocha)');
 
-    // Ice Spanish Latte (74): M:129 | L:139
-    await resetPrices(74, { 2: 129, 3: 139 });
+    // Ice Spanish Latte (74): M:119 | L:129
+    await resetPrices(74, { 2: 119, 3: 129 });
     console.log('  Updated: Ice Spanish Latte');
 
-    // Ice Americano (71): M:110 | L:120
-    await resetPrices(71, { 2: 110, 3: 120 });
+    // Ice Americano (71): M:100 | L:110
+    await resetPrices(71, { 2: 100, 3: 110 });
     console.log('  Updated: Ice Americano');
 
     console.log('\n=== 3. BOBA ===');
-    // Boba Smoothie (Boba Smoothie category 18): M:129 | L:139
+    // Boba Smoothie (Boba Smoothie category 18): M:119 | L:129
     // Products 155-160 are Boba Smoothie — update all
     for (const pid of [155, 156, 157, 158, 159, 160]) {
-        await resetPrices(pid, { 2: 129, 3: 139 });
+        await resetPrices(pid, { 2: 119, 3: 129 });
     }
-    console.log('  Updated: Boba Smoothie (155-160) M:129 | L:139');
+    console.log('  Updated: Boba Smoothie (155-160) M:119 | L:129');
 
-    // Boba Milkshake (category 17): M:139 | L:149
+    // Boba Milkshake (category 17): M:129 | L:139
     for (const pid of [150, 151, 152, 153, 154]) {
-        await resetPrices(pid, { 2: 139, 3: 149 });
-    }
-    console.log('  Updated: Boba Milkshake (150-154) M:139 | L:149');
-
-    // Boba Soft (category 6): M:129 | L:139
-    for (const pid of [145, 146, 147, 148, 149]) {
         await resetPrices(pid, { 2: 129, 3: 139 });
     }
-    console.log('  Updated: Boba Soft (145-149) M:129 | L:139');
+    console.log('  Updated: Boba Milkshake (150-154) M:129 | L:139');
+
+    // Boba Soft (category 6): M:119 | L:129
+    for (const pid of [145, 146, 147, 148, 149]) {
+        await resetPrices(pid, { 2: 119, 3: 129 });
+    }
+    console.log('  Updated: Boba Soft (145-149) M:119 | L:129');
 
     // Boba Tapioca Sized (NEW) — product_id 169
     await ensureProduct(169, 'Boba Tapioca | بوبا تابيوكا', 6,
         'بوبا تابيوكا مع نكهات متنوعة.', 'Boba Tapioca.png',
-        { 2: 149, 3: 159 });
-    console.log('  Added/Updated: Boba Tapioca (Sized) M:149 | L:159');
+        { 2: 139, 3: 149 });
+    console.log('  Added/Updated: Boba Tapioca (Sized) M:139 | L:149');
 
     // Boba Tapioca Fixed (NEW) — product_id 170, single fixed price use size_id 2 (M)
     await ensureProduct(170, 'Boba Tapioca Fixed | بوبا تابيوكا فيكسد', 6,
         'بوبا تابيوكا بسعر ثابت.', 'Boba Tapioca.png',
-        { 2: 139 });
-    console.log('  Added/Updated: Boba Tapioca (Fixed) 139');
+        { 2: 129 });
+    console.log('  Added/Updated: Boba Tapioca (Fixed) 129');
 
     console.log('\n=== 4. SMOOTHIES ===');
-    // Mango Smoothie (77): M:114 | L:124
-    await resetPrices(77, { 2: 114, 3: 124 });
+    // Mango Smoothie (77): M:104 | L:114
+    await resetPrices(77, { 2: 104, 3: 114 });
     console.log('  Updated: Mango Smoothie');
 
-    // Strawberry Smoothie (76): M:114 | L:124
-    await resetPrices(76, { 2: 114, 3: 124 });
+    // Strawberry Smoothie (76): M:104 | L:114
+    await resetPrices(76, { 2: 104, 3: 114 });
     console.log('  Updated: Strawberry Smoothie');
 
-    // Peach Smoothie (75): M:119 | L:129
-    await resetPrices(75, { 2: 119, 3: 129 });
+    // Peach Smoothie (75): M:109 | L:119
+    await resetPrices(75, { 2: 109, 3: 119 });
     console.log('  Updated: Peach Smoothie');
 
-    // Pineapple Smoothie (81): M:119 | L:129
-    await resetPrices(81, { 2: 119, 3: 129 });
+    // Pineapple Smoothie (81): M:109 | L:119
+    await resetPrices(81, { 2: 109, 3: 119 });
     console.log('  Updated: Pineapple Smoothie');
 
-    // Apple Smoothie (80): M:114 | L:124
-    await resetPrices(80, { 2: 114, 3: 124 });
+    // Apple Smoothie (80): M:104 | L:114
+    await resetPrices(80, { 2: 104, 3: 114 });
     console.log('  Updated: Apple Smoothie');
 
-    // Kiwi Smoothie (79): M:124 | L:134
-    await resetPrices(79, { 2: 124, 3: 134 });
+    // Kiwi Smoothie (79): M:114 | L:124
+    await resetPrices(79, { 2: 114, 3: 124 });
     console.log('  Updated: Kiwi Smoothie');
 
-    // Watermelon Smoothie (78): M:114 | L:124
-    await resetPrices(78, { 2: 114, 3: 124 });
+    // Watermelon Smoothie (78): M:104 | L:114
+    await resetPrices(78, { 2: 104, 3: 114 });
     console.log('  Updated: Watermelon Smoothie');
 
-    // Mixed Berry Smoothie (85): M:124 | L:134
-    await resetPrices(85, { 2: 124, 3: 134 });
+    // Mixed Berry Smoothie (85): M:114 | L:124
+    await resetPrices(85, { 2: 114, 3: 124 });
     console.log('  Updated: Mix Berries Smoothie');
 
-    // Lemon Mint Smoothie (84): M:114 | L:124
-    await resetPrices(84, { 2: 114, 3: 124 });
+    // Lemon Mint Smoothie (84): M:104 | L:114
+    await resetPrices(84, { 2: 104, 3: 114 });
     console.log('  Updated: Lemon Mint Smoothie');
 
-    // Lemon Smoothie (83): M:114 | L:124
-    await resetPrices(83, { 2: 114, 3: 124 });
+    // Lemon Smoothie (83): M:104 | L:114
+    await resetPrices(83, { 2: 104, 3: 114 });
     console.log('  Updated: Lemon Smoothie');
 
-    // Passion Fruit Smoothie (82): M:124 | L:134
-    await resetPrices(82, { 2: 124, 3: 134 });
+    // Passion Fruit Smoothie (82): M:114 | L:124
+    await resetPrices(82, { 2: 114, 3: 124 });
     console.log('  Updated: Passion Fruit Smoothie');
 
     // Blueberry Smoothie — NEW product (product_id 171), category_id 11 = Smoothies
     await ensureProduct(171, 'Blueberry Smoothie | سموزي توت أزرق', 11,
         'سموزي التوت الأزرق المنعش والصحي.', 'Blueberry Smoothie.png',
-        { 2: 114, 3: 124 });
+        { 2: 104, 3: 114 });
     console.log('  Added/Updated: Blueberry Smoothie');
 
     console.log('\n=== 5. MOJITO ===');
-    // Apple Mojito (139): M:109 | L:120
-    await resetPrices(139, { 2: 109, 3: 120 });
+    // Apple Mojito (139): M:99 | L:110
+    await resetPrices(139, { 2: 99, 3: 110 });
 
-    // Raspberry Mojito (140): M:109 | L:120
-    await resetPrices(140, { 2: 109, 3: 120 });
+    // Raspberry Mojito (140): M:99 | L:110
+    await resetPrices(140, { 2: 99, 3: 110 });
 
-    // Pink Lemon Mojito (141): M:119 | L:140
-    await resetPrices(141, { 2: 119, 3: 140 });
+    // Pink Lemon Mojito (141): M:109 | L:130
+    await resetPrices(141, { 2: 109, 3: 130 });
 
-    // Blue Passion Mojito (142): M:119 | L:140
-    await resetPrices(142, { 2: 119, 3: 140 });
+    // Blue Passion Mojito (142): M:109 | L:130
+    await resetPrices(142, { 2: 109, 3: 130 });
 
-    // Pineapple Mojito (133): M:109 | L:120
-    await resetPrices(133, { 2: 109, 3: 120 });
+    // Pineapple Mojito (133): M:99 | L:110
+    await resetPrices(133, { 2: 99, 3: 110 });
 
-    // Mix Berry Mojito (136): M:119 | L:140
-    await resetPrices(136, { 2: 119, 3: 140 });
+    // Mix Berry Mojito (136): M:109 | L:130
+    await resetPrices(136, { 2: 109, 3: 130 });
 
-    // Kiwi Mojito (137): M:109 | L:120
-    await resetPrices(137, { 2: 109, 3: 120 });
+    // Kiwi Mojito (137): M:99 | L:110
+    await resetPrices(137, { 2: 99, 3: 110 });
 
-    // Passion Fruit Mojito (138): M:114 | L:135
-    await resetPrices(138, { 2: 114, 3: 135 });
+    // Passion Fruit Mojito (138): M:104 | L:125
+    await resetPrices(138, { 2: 104, 3: 125 });
 
-    // Strawberry Mojito (131): M:109 | L:120
-    await resetPrices(131, { 2: 109, 3: 120 });
+    // Strawberry Mojito (131): M:99 | L:110
+    await resetPrices(131, { 2: 99, 3: 110 });
 
-    // Blueberry Mojito (132): M:109 | L:120
-    await resetPrices(132, { 2: 109, 3: 120 });
+    // Blueberry Mojito (132): M:99 | L:110
+    await resetPrices(132, { 2: 99, 3: 110 });
 
-    // Mango Mojito (134): M:109 | L:120
-    await resetPrices(134, { 2: 109, 3: 120 });
+    // Mango Mojito (134): M:99 | L:110
+    await resetPrices(134, { 2: 99, 3: 110 });
 
-    // Peach Mojito (135): M:109 | L:120
-    await resetPrices(135, { 2: 109, 3: 120 });
+    // Peach Mojito (135): M:99 | L:110
+    await resetPrices(135, { 2: 99, 3: 110 });
 
-    // Pineapple Lemon Mint (143): M:124 | L:145
-    await resetPrices(143, { 2: 124, 3: 145 });
+    // Pineapple Lemon Mint (143): M:114 | L:135
+    await resetPrices(143, { 2: 114, 3: 135 });
 
     console.log('  Updated: All Mojito items');
 
     // Dark Soda — NEW product (172)
     await ensureProduct(172, 'Dark Soda | دارك سودا', 16,
         'سودا داكنة غازية منعشة.', 'Dark Soda.png',
-        { 2: 119, 3: 129 });
+        { 2: 109, 3: 119 });
     console.log('  Added/Updated: Dark Soda');
 
     // Blue Pina Colada — NEW product (173)
     await ensureProduct(173, 'Blue Pina Colada | بلو بينا كولادا', 16,
         'بينا كولادا زرقاء منعشة.', 'Blue Pina Colada.png',
-        { 2: 119, 3: 129 });
+        { 2: 109, 3: 119 });
     console.log('  Added/Updated: Blue Pina Colada');
 
     // Strawberry Cloud — NEW product (174)
     await ensureProduct(174, 'Strawberry Cloud | سحابة الفراولة', 16,
         'مشروب فراولة سحابي غازي منعش.', 'Strawberry Cloud.png',
-        { 2: 119, 3: 129 });
+        { 2: 109, 3: 119 });
     console.log('  Added/Updated: Strawberry Cloud');
 
     // Blue Mars — NEW product (175)
     await ensureProduct(175, 'Blue Mars | بلو مارس', 16,
         'مشروب بلو مارس الغازي الفريد.', 'Blue Mars.png',
-        { 2: 124, 3: 145 });
+        { 2: 114, 3: 135 });
     console.log('  Added/Updated: Blue Mars');
 
     console.log('\n=== 6. MATCHA CLOUD ===');
@@ -356,131 +358,131 @@ async function main() {
     // Matcha Cloud Mango — NEW (176)
     await ensureProduct(176, 'Matcha Cloud Mango | ماتشا كلاود مانجو', 5,
         'ماتشا كلاود بنكهة المانجو.', 'Matcha Cloud Mango.png',
-        { 2: 139, 3: 149 });
+        { 2: 129, 3: 139 });
 
     // Matcha Cloud Strawberry — NEW (177)
     await ensureProduct(177, 'Matcha Cloud Strawberry | ماتشا كلاود فراولة', 5,
         'ماتشا كلاود بنكهة الفراولة.', 'Matcha Cloud Strawberry.png',
-        { 2: 139, 3: 149 });
+        { 2: 129, 3: 139 });
 
     // Matcha Cloud Coconut — NEW (178)
     await ensureProduct(178, 'Matcha Cloud Coconut | ماتشا كلاود جوز هند', 5,
         'ماتشا كلاود بنكهة جوز الهند.', 'Matcha Cloud Coconut.png',
-        { 2: 139, 3: 149 });
+        { 2: 129, 3: 139 });
 
     // Matcha Cloud White Chocolate — NEW (179)
     await ensureProduct(179, 'Matcha Cloud White Chocolate | ماتشا كلاود وايت شوكولاتة', 5,
         'ماتشا كلاود بنكهة الشوكولاتة البيضاء.', 'Matcha Cloud White Chocolate.png',
-        { 2: 139, 3: 149 });
+        { 2: 129, 3: 139 });
 
     console.log('  Added/Updated: All Matcha Cloud items');
 
     console.log('\n=== 7. MATCHA ===');
-    // Ice Matcha Coconut (39): 139 — fixed price, use M
-    await resetPrices(39, { 2: 139 });
+    // Ice Matcha Coconut (39): 129 — fixed price, use M
+    await resetPrices(39, { 2: 129 });
 
-    // Ice Matcha Strawberry (38): 139
-    await resetPrices(38, { 2: 139 });
+    // Ice Matcha Strawberry (38): 129
+    await resetPrices(38, { 2: 129 });
 
-    // Ice Matcha (37): 119
-    await resetPrices(37, { 2: 119 });
+    // Ice Matcha (37): 109
+    await resetPrices(37, { 2: 109 });
 
-    // Hot Honey Matcha (42): 119
-    await resetPrices(42, { 2: 119 });
+    // Hot Honey Matcha (42): 109
+    await resetPrices(42, { 2: 109 });
 
-    // Hot Matcha (41): 109
-    await resetPrices(41, { 2: 109 });
+    // Hot Matcha (41): 99
+    await resetPrices(41, { 2: 99 });
 
-    // Ice Matcha Caramel (40): 139
-    await resetPrices(40, { 2: 139 });
+    // Ice Matcha Caramel (40): 129
+    await resetPrices(40, { 2: 129 });
 
-    // Ice Matcha Mango (144): 139
-    await resetPrices(144, { 2: 139 });
+    // Ice Matcha Mango (144): 129
+    await resetPrices(144, { 2: 129 });
 
-    // Blue Matcha — NEW (180): M:139 | L:149
+    // Blue Matcha — NEW (180): M:129 | L:139
     await ensureProduct(180, 'Blue Matcha | بلو ماتشا', 5,
         'ماتشا أزرق منعش فريد.', 'Blue Matcha.png',
-        { 2: 139, 3: 149 });
+        { 2: 129, 3: 139 });
 
     console.log('  Updated: All Matcha items');
 
     console.log('\n=== 8. FRAPPE ===');
-    // Caramel Frappe (34): fixed 129
-    await resetPrices(34, { 2: 129 });
+    // Caramel Frappe (34): fixed 119
+    await resetPrices(34, { 2: 119 });
 
-    // Lotus Frappe (35): fixed 139
-    await resetPrices(35, { 2: 139 });
+    // Lotus Frappe (35): fixed 129
+    await resetPrices(35, { 2: 129 });
 
-    // White Mocha Frappe (36): fixed 139
-    await resetPrices(36, { 2: 139 });
+    // White Mocha Frappe (36): fixed 129
+    await resetPrices(36, { 2: 129 });
 
-    // Frappe Mix Berry (126): fixed 139
-    await resetPrices(126, { 2: 139 });
+    // Frappe Mix Berry (126): fixed 129
+    await resetPrices(126, { 2: 129 });
 
     // Salted Caramel Frappe — NEW (181)
     await ensureProduct(181, 'Salted Caramel Frappe | فرابيه كراميل مملح', 4,
         'فرابيه كراميل مملح غني ومميز.', 'Salted Caramel Frappe.png',
-        { 2: 139 });
+        { 2: 129 });
 
     console.log('  Updated: All Frappe items');
 
     console.log('\n=== 9. SHAKES ===');
-    // Nutella Shake (21): M:139 | L:149
-    await resetPrices(21, { 2: 139, 3: 149 });
+    // Nutella Shake (21): M:129 | L:139
+    await resetPrices(21, { 2: 129, 3: 139 });
 
-    // Oreo Shake (20): M:129 | L:139
-    await resetPrices(20, { 2: 129, 3: 139 });
+    // Oreo Shake (20): M:119 | L:129
+    await resetPrices(20, { 2: 119, 3: 129 });
 
-    // Milkshake (Strawberry/Vanilla/Chocolate): M:120 | L:130
+    // Milkshake (Strawberry/Vanilla/Chocolate): M:110 | L:120
     // Vanilla (127), Strawberry (128), Chocolate (130)
-    await resetPrices(127, { 2: 120, 3: 130 });
-    await resetPrices(128, { 2: 120, 3: 130 });
-    await resetPrices(130, { 2: 120, 3: 130 });
+    await resetPrices(127, { 2: 110, 3: 120 });
+    await resetPrices(128, { 2: 110, 3: 120 });
+    await resetPrices(130, { 2: 110, 3: 120 });
 
-    // Beach Shake — NEW (182): M:129 | L:139
+    // Beach Shake — NEW (182): M:119 | L:129
     await ensureProduct(182, 'Beach Shake | بيتش شيك', 3,
         'ميلك شيك منعش بنكهات الشاطئ الاستوائية.', 'Beach Shake.png',
-        { 2: 129, 3: 139 });
+        { 2: 119, 3: 129 });
 
-    // Caramel Shake (24): M:129 | L:139
-    await resetPrices(24, { 2: 129, 3: 139 });
+    // Caramel Shake (24): M:119 | L:129
+    await resetPrices(24, { 2: 119, 3: 129 });
 
-    // Lotus Shake (23): M:139 | L:149
-    await resetPrices(23, { 2: 139, 3: 149 });
+    // Lotus Shake (23): M:129 | L:139
+    await resetPrices(23, { 2: 129, 3: 139 });
 
-    // Pistachio Shake (22): M:149 | L:159
-    await resetPrices(22, { 2: 149, 3: 159 });
+    // Pistachio Shake (22): M:139 | L:149
+    await resetPrices(22, { 2: 139, 3: 149 });
 
-    // Twix Shake (29): M:149 | L:159
-    await resetPrices(29, { 2: 149, 3: 159 });
+    // Twix Shake (29): M:139 | L:149
+    await resetPrices(29, { 2: 139, 3: 149 });
 
-    // Kit Kat Shake (28): M:149 | L:159
-    await resetPrices(28, { 2: 149, 3: 159 });
+    // Kit Kat Shake (28): M:139 | L:149
+    await resetPrices(28, { 2: 139, 3: 149 });
 
-    // Kinder Shake (27): M:149 | L:159
-    await resetPrices(27, { 2: 149, 3: 159 });
+    // Kinder Shake (27): M:139 | L:149
+    await resetPrices(27, { 2: 139, 3: 149 });
 
-    // Blueberry Shake (26): M:129 | L:139
-    await resetPrices(26, { 2: 129, 3: 139 });
+    // Blueberry Shake (26): M:119 | L:129
+    await resetPrices(26, { 2: 119, 3: 129 });
 
-    // M&M Shake (32): M:149 | L:159
-    await resetPrices(32, { 2: 149, 3: 159 });
+    // M&M Shake (32): M:139 | L:149
+    await resetPrices(32, { 2: 139, 3: 149 });
 
-    // Galaxy Shake (31): M:149 | L:159
-    await resetPrices(31, { 2: 149, 3: 159 });
+    // Galaxy Shake (31): M:139 | L:149
+    await resetPrices(31, { 2: 139, 3: 149 });
 
-    // Snickers Shake (30): M:149 | L:159
-    await resetPrices(30, { 2: 149, 3: 159 });
+    // Snickers Shake (30): M:139 | L:149
+    await resetPrices(30, { 2: 139, 3: 149 });
 
-    // neurs Shake — NEW (183): M:149 | L:159
+    // neurs Shake — NEW (183): M:139 | L:149
     await ensureProduct(183, 'Neurs Shake | نيرز شيك', 3,
         'ميلك شيك نيرز الكريمي.', 'Neurs Shake.png',
-        { 2: 149, 3: 159 });
+        { 2: 139, 3: 149 });
 
-    // Salted Caramel Shake — NEW (184): M:149 | L:159
+    // Salted Caramel Shake — NEW (184): M:139 | L:149
     await ensureProduct(184, 'Salted Caramel Shake | شيك كراميل مملح', 3,
         'ميلك شيك كراميل مملح فاخر.', 'Salted Caramel Shake.png',
-        { 2: 149, 3: 159 });
+        { 2: 139, 3: 149 });
 
     // Mango Shake (129): keep existing but add to Milkshake group? User didn't list it separately.
     // User's milkshake entry says "Strawberry/Vanilla/Chocolate" so Mango shake stays separate.
@@ -491,73 +493,73 @@ async function main() {
     console.log('  Updated: All Shake items');
 
     console.log('\n=== 10. JUICES ===');
-    // Mango Juice (59): M:95 | L:110
-    await resetPrices(59, { 2: 95, 3: 110 });
+    // Mango Juice (59): M:85 | L:100
+    await resetPrices(59, { 2: 85, 3: 100 });
 
-    // Strawberry Juice (58): M:95 | L:110
-    await resetPrices(58, { 2: 95, 3: 110 });
+    // Strawberry Juice (58): M:85 | L:100
+    await resetPrices(58, { 2: 85, 3: 100 });
 
-    // Cantaloupe Juice (57): M:95 | L:110
-    await resetPrices(57, { 2: 95, 3: 110 });
+    // Cantaloupe Juice (57): M:85 | L:100
+    await resetPrices(57, { 2: 85, 3: 100 });
 
-    // Peach Juice (63): M:109 | L:119
-    await resetPrices(63, { 2: 109, 3: 119 });
+    // Peach Juice (63): M:99 | L:109
+    await resetPrices(63, { 2: 99, 3: 109 });
 
-    // Watermelon Juice (62): M:95 | L:110
-    await resetPrices(62, { 2: 95, 3: 110 });
+    // Watermelon Juice (62): M:85 | L:100
+    await resetPrices(62, { 2: 85, 3: 100 });
 
-    // Banana Juice (61): M:110 | L:120
-    await resetPrices(61, { 2: 110, 3: 120 });
+    // Banana Juice (61): M:100 | L:110
+    await resetPrices(61, { 2: 100, 3: 110 });
 
-    // Kiwi Juice (60): M:120 | L:130
-    await resetPrices(60, { 2: 120, 3: 130 });
+    // Kiwi Juice (60): M:110 | L:120
+    await resetPrices(60, { 2: 110, 3: 120 });
 
-    // Orange Juice — NEW (185): M:110 | L:120
+    // Orange Juice — NEW (185): M:100 | L:110
     await ensureProduct(185, 'Orange Juice | عصير برتقال', 9,
         'عصير برتقال طازج ومنعش.', 'Orange Juice.png',
-        { 2: 110, 3: 120 });
+        { 2: 100, 3: 110 });
 
-    // Mint Lemon Juice (66): M:110 | L:120
-    await resetPrices(66, { 2: 110, 3: 120 });
+    // Mint Lemon Juice (66): M:100 | L:110
+    await resetPrices(66, { 2: 100, 3: 110 });
 
-    // Lemon Juice (65): M:104 | L:114
-    await resetPrices(65, { 2: 104, 3: 114 });
+    // Lemon Juice (65): M:94 | L:104
+    await resetPrices(65, { 2: 94, 3: 104 });
 
-    // Blueberry Juice (64 = Berry Juice): M:124 | L:134
-    await resetPrices(64, { 2: 124, 3: 134 });
+    // Blueberry Juice (64 = Berry Juice): M:114 | L:124
+    await resetPrices(64, { 2: 114, 3: 124 });
 
     console.log('  Updated: All Juice items');
 
     console.log('\n=== 11. WARM DRINKS ===');
-    // Hot Chocolate (17): M:140 | L:170
-    await resetPrices(17, { 2: 140, 3: 170 });
-    console.log('  Updated: Hot Chocolate M:140 | L:170');
+    // Hot Chocolate (17): M:130 | L:160
+    await resetPrices(17, { 2: 130, 3: 160 });
+    console.log('  Updated: Hot Chocolate M:130 | L:160');
 
-    // Hot Cider (18): M:99 | L:114
-    await resetPrices(18, { 2: 99, 3: 114 });
-    console.log('  Updated: Hot Cider M:99 | L:114');
+    // Hot Cider (18): M:89 | L:104
+    await resetPrices(18, { 2: 89, 3: 104 });
+    console.log('  Updated: Hot Cider M:89 | L:104');
 
     console.log('\n=== 12. COLD DRINKS ===');
-    // Water (89): 15
+    // Water (89): 15 — keep as-is (fixed small price, no reduction)
     await resetPrices(89, { 2: 15 });
     console.log('  Updated: Water 15');
 
-    // Red Bull (91): 99
-    await resetPrices(91, { 2: 99 });
-    console.log('  Updated: Red Bull 99');
+    // Red Bull (91): 89
+    await resetPrices(91, { 2: 89 });
+    console.log('  Updated: Red Bull 89');
 
-    // Red Bull Flavor (92): 120
-    await resetPrices(92, { 2: 120 });
-    console.log('  Updated: Red Bull Flavor 120');
+    // Red Bull Flavor (92): 110
+    await resetPrices(92, { 2: 110 });
+    console.log('  Updated: Red Bull Flavor 110');
 
     console.log('\n=== 13. SPECIALTY ===');
-    // V60 — products 43 (Ice) and 44 (Hot): M:190 | L:220
-    await resetPrices(43, { 2: 190, 3: 220 });
-    await resetPrices(44, { 2: 190, 3: 220 });
-    console.log('  Updated: V60 M:190 | L:220');
+    // V60 — products 43 (Ice) and 44 (Hot): M:180 | L:210
+    await resetPrices(43, { 2: 180, 3: 210 });
+    await resetPrices(44, { 2: 180, 3: 210 });
+    console.log('  Updated: V60 M:180 | L:210');
 
     await run('PRAGMA foreign_keys = ON');
-    console.log('\n✅ All prices updated successfully!');
+    console.log('\n✅ All prices updated successfully! (All reduced by 10 EGP — except Desert & Sandwich)');
 
     db.close((err) => {
         if (err) console.error('Error closing DB:', err.message);

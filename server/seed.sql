@@ -1,534 +1,531 @@
-/* =========================
-BASIC DATA
-========================= */
-INSERT INTO sizes (size_name) VALUES ('S'),('M'),('L'),('Single'),('Double');
+-- Seed script for SQLite Database
+PRAGMA foreign_keys = OFF;
+BEGIN TRANSACTION;
 
-INSERT INTO categories (category_name, sort_order) VALUES
-('Hot Coffee', 10),
-('Warm Drinks', 20),
-('Shakes', 30),
-('Frappe', 40),
-('Matcha', 50),
-('Boba Soft', 60),
-('Specialty Coffee', 70),
-('Extras', 160),
-('Fresh Juices', 90),
-('Ice Coffee', 100),
-('Smoothies', 110),
-('Cold Drinks', 120),
-('Dessert', 130),
-('Bakery', 140),
-('Coffee Packages', 150),
-('Mojito and Soda', 80),
-('Boba Milkshake', 61),
-('Boba Smoothie', 62),
-('Sandwiches', 145);
+DROP TABLE IF EXISTS product_prices;
+DROP TABLE IF EXISTS products;
+DROP TABLE IF EXISTS sizes;
+DROP TABLE IF EXISTS categories;
 
+CREATE TABLE categories (
+    category_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    category_name TEXT NOT NULL,
+    sort_order INTEGER DEFAULT 0
+);
 
+CREATE TABLE sizes (
+    size_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    size_name TEXT NOT NULL UNIQUE
+);
 
-/* =========================
-HOT COFFEE
-========================= */
-INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES
-(1, 'Espresso | إسبريسو', 1, 'إسبريسو مركز بنكهة غنية وكريمة ذهبية.', 'Espresso.png'),
-(2, 'Macchiato | ماكياتو', 1, 'إسبريسو مع لمسة من رغوة الحليب المكثف.', 'Macchiato.png'),
-(3, 'Hot Mocha | موكا ساخن', 1, 'مزيج رائع من الإسبريسو والشوكولاتة مع الحليب.', 'Hot Mocha.png'),
-(4, 'Hot White Mocha | وايت موكا ساخن', 1, 'إسبريسو مع الشوكولاتة البيضاء والحليب المخملي.', 'Hot White Mocha.png'),
-(5, 'Nescafe | نسكافيه', 1, 'قهوة نسكافيه كلاسيكية محضرة بالحليب الساخن.', 'Nescafe.png'),
-(6, 'Nescafe Black | نسكافيه بلاك', 1, 'قهوة نسكافيه سوداء نقية لمحبي المذاق القوي.', 'Nescafe Black.png'),
-(7, 'Cappuccino | كابتشينو', 1, 'إسبريسو مع حليب مبخر ورغوة كثيفة متوازنة.', 'Cappuccino.png'),
-(8, 'Hot Latte | لاتيه ساخن', 1, 'إسبريسو ناعم مع كمية وافرة من الحليب المبخر.', 'Hot Latte.png'),
-(9, 'Turkish Coffee | قهوة تركية', 1, 'قهوة تركية كلاسيكية محضرة بعناية ومذاق أصيل.', 'Turkish Coffee.png'),
-(10, 'Turkish Coffee with Milk | قهوة فرنساوي', 1, 'قهوة تركية تقليدية مع الحليب لمذاق أكثر نعومة.', 'Turkish Coffee with Milk.png'),
-(11, 'Nutella Coffee | قهوة نوتيلا', 1, 'إسبريسو غني ممزوج بلمسة من شوكولاتة نوتيلا.', 'Nutella Coffee.png'),
-(12, 'Spanish Latte | سبانيش لاتيه', 1, 'لاتيه حلو مع الحليب المكثف المحلى لقوام كريمي.', 'Spanish Latte.png'),
-(13, 'Flat White | فلات وايت', 1, 'إسبريسو مزدوج مع طبقة ناعمة من رغوة الحليب.', 'Flat White.png'),
-(14, 'Cortado | كورتادو', 1, 'مزيج مثالي من الإسبريسو وكمية متساوية من الحليب.', 'Cortado.png');
+CREATE TABLE products (
+    product_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    product_name TEXT NOT NULL,
+    category_id INTEGER NOT NULL,
+    description_ar TEXT,
+    image_url TEXT,
+    FOREIGN KEY (category_id) REFERENCES categories (category_id) ON DELETE CASCADE
+);
 
-INSERT INTO product_prices (product_id, size_id, price) VALUES
-(1, 4, 55), (1, 5, 65),
-(2, 4, 65), (2, 5, 70),
-(3, 1, 89), (3, 2, 94),
-(4, 1, 89), (4, 2, 94),
-(5, 1, 64), (5, 2, 69),
-(6, 1, 60), (6, 2, 65),
-(7, 1, 69), (7, 2, 74),
-(8, 1, 69), (8, 2, 74),
-(9, 1, 50), (9, 2, 60),
-(10, 1, 55), (10, 2, 65),
-(11, 1, 69), (11, 2, 74),
-(12, 1, 94), (12, 2, 99),
-(13, 1, 69), (13, 2, 74),
-(14, 1, 69), (14, 2, 74);
+CREATE TABLE product_prices (
+    price_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    product_id INTEGER NOT NULL,
+    size_id INTEGER NOT NULL,
+    price REAL NOT NULL,
+    FOREIGN KEY (product_id) REFERENCES products (product_id) ON DELETE CASCADE,
+    FOREIGN KEY (size_id) REFERENCES sizes (size_id) ON DELETE CASCADE
+);
 
-/* =========================
-WARM DRINKS
-========================= */
-INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES
-(15, 'Tea | شاي', 2, 'شاي أسود فاخر محضر طازجاً.', 'Tea.png'),
-(16, 'Tea with Milk | شاي بالحليب', 2, 'شاي كلاسيكي ممزوج بالحليب الناعم.', 'Tea with Milk.png'),
-(17, 'Hot Chocolate | هوت شوكلت', 2, 'شوكولاتة غنية وحليب مبخر دافئ.', 'Hot Chocolate.png'),
-(18, 'Hot Cider | هوت سيدر', 2, 'سيدر تفاح دافئ مع لمسة قرفة.', 'Hot Cider.png'),
-(19, 'Sahlab | سحلب', 2, 'مشروب السحلب التقليدي بالمكسرات.', 'Sahlab.png');
+-- Categories
+INSERT INTO categories (category_id, category_name, sort_order) VALUES (1, 'Hot Coffee', 10);
+INSERT INTO categories (category_id, category_name, sort_order) VALUES (2, 'Warm Drinks', 20);
+INSERT INTO categories (category_id, category_name, sort_order) VALUES (3, 'Shakes', 30);
+INSERT INTO categories (category_id, category_name, sort_order) VALUES (4, 'Frappe', 40);
+INSERT INTO categories (category_id, category_name, sort_order) VALUES (5, 'Matcha', 50);
+INSERT INTO categories (category_id, category_name, sort_order) VALUES (6, 'Boba Soft', 60);
+INSERT INTO categories (category_id, category_name, sort_order) VALUES (7, 'Specialty Coffee', 70);
+INSERT INTO categories (category_id, category_name, sort_order) VALUES (8, 'Extras', 160);
+INSERT INTO categories (category_id, category_name, sort_order) VALUES (9, 'Fresh Juices', 90);
+INSERT INTO categories (category_id, category_name, sort_order) VALUES (10, 'Ice Coffee', 100);
+INSERT INTO categories (category_id, category_name, sort_order) VALUES (11, 'Smoothies', 110);
+INSERT INTO categories (category_id, category_name, sort_order) VALUES (12, 'Cold Drinks', 120);
+INSERT INTO categories (category_id, category_name, sort_order) VALUES (13, 'Dessert', 130);
+INSERT INTO categories (category_id, category_name, sort_order) VALUES (14, 'Bakery', 140);
+INSERT INTO categories (category_id, category_name, sort_order) VALUES (15, 'Coffee Packages', 150);
+INSERT INTO categories (category_id, category_name, sort_order) VALUES (16, 'Mojito and Soda', 80);
+INSERT INTO categories (category_id, category_name, sort_order) VALUES (17, 'Boba Milkshake', 61);
+INSERT INTO categories (category_id, category_name, sort_order) VALUES (18, 'Boba Smoothie', 62);
+INSERT INTO categories (category_id, category_name, sort_order) VALUES (19, 'Sandwiches', 145);
 
+-- Sizes
+INSERT INTO sizes (size_id, size_name) VALUES (1, 'S');
+INSERT INTO sizes (size_id, size_name) VALUES (2, 'M');
+INSERT INTO sizes (size_id, size_name) VALUES (3, 'L');
+INSERT INTO sizes (size_id, size_name) VALUES (4, 'Single');
+INSERT INTO sizes (size_id, size_name) VALUES (5, 'Double');
 
-INSERT INTO product_prices (product_id, size_id, price) VALUES
-(15, 2, 50),
-(16, 2, 60),
-(17, 1, 85), (17, 2, 94),
-(18, 2, 65), (18, 3, 70),
-(19, 2, 60), (19, 3, 65);
+-- Products
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (1, 'Espresso | إسبريسو', 1, 'إسبريسو مركز بنكهة غنية وكريمة ذهبية.', 'Espresso.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (2, 'Macchiato | ماكياتو', 1, 'إسبريسو مع لمسة من رغوة الحليب المكثف.', 'Macchiato.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (3, 'Hot Mocha | موكا ساخن', 1, 'مزيج رائع من الإسبريسو والشوكولاتة مع الحليب.', 'Hot Mocha.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (4, 'Hot White Mocha | وايت موكا ساخن', 1, 'إسبريسو مع الشوكولاتة البيضاء والحليب المخملي.', 'Hot White Mocha.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (5, 'Nescafe | نسكافيه', 1, 'قهوة نسكافيه كلاسيكية محضرة بالحليب الساخن.', 'Nescafe.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (6, 'Nescafe Black | نسكافيه بلاك', 1, 'قهوة نسكافيه سوداء نقية لمحبي المذاق القوي.', 'Nescafe Black.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (7, 'Cappuccino | كابتشينو', 1, 'إسبريسو مع حليب مبخر ورغوة كثيفة متوازنة.', 'Cappuccino.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (8, 'Hot Latte | لاتيه ساخن', 1, 'إسبريسو ناعم مع كمية وافرة من الحليب المبخر.', 'Hot Latte.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (9, 'Turkish Coffee | قهوة تركية', 1, 'قهوة تركية كلاسيكية محضرة بعناية ومذاق أصيل.', 'Turkish Coffee.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (10, 'Turkish Coffee with Milk | قهوة فرنساوي', 1, 'قهوة تركية تقليدية مع الحليب لمذاق أكثر نعومة.', 'Turkish Coffee with Milk.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (11, 'Nutella Coffee | قهوة نوتيلا', 1, 'إسبريسو غني ممزوج بلمسة من شوكولاتة نوتيلا.', 'Nutella Coffee.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (12, 'Spanish Latte | سبانيش لاتيه', 1, 'لاتيه حلو مع الحليب المكثف المحلى لقوام كريمي.', 'Spanish Latte.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (13, 'Flat White | فلات وايت', 1, 'إسبريسو مزدوج مع طبقة ناعمة من رغوة الحليب.', 'Flat White.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (14, 'Cortado | كورتادو', 1, 'مزيج مثالي من الإسبريسو وكمية متساوية من الحليب.', 'Cortado.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (15, 'Tea | شاي', 2, 'شاي أسود فاخر محضر طازجاً.', 'Tea.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (16, 'Tea with Milk | شاي بالحليب', 2, 'شاي كلاسيكي ممزوج بالحليب الناعم.', 'Tea with Milk.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (17, 'Hot Chocolate | هوت شوكلت', 2, 'شوكولاتة غنية وحليب مبخر دافئ.', 'Hot Chocolate.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (18, 'Hot Cider | هوت سيدر', 2, 'سيدر تفاح دافئ مع لمسة قرفة.', 'Hot Cider.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (19, 'Sahlab | سحلب', 2, 'مشروب السحلب التقليدي بالمكسرات.', 'Sahlab.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (20, 'Oreo Shake | أوريو شيك', 3, 'ميلك شيك كريمي مع قطع بسكويت أوريو.', 'Oreo Shake.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (21, 'Nutella Shake | نوتيلا شيك', 3, 'ميلك شيك غني بشوكولاتة نوتيلا.', 'Nutella Shake.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (22, 'Pistachio Shake | بستاشيو شيك', 3, 'ميلك شيك ناعم بنكهة الفستق الفاخرة.', 'Pistachio Shake.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (23, 'Lotus Shake | لوتس شيك', 3, 'ميلك شيك بنكهة كريمة اللوتس المميزة.', 'Lotus Shake.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (24, 'Caramel Shake | كراميل شيك', 3, 'ميلك شيك كريمي مع صوص الكراميل.', 'Caramel Shake.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (25, 'Peach Shake | خوخ شيك', 3, 'ميلك شيك منعش بنكهة الخوخ الطبيعية.', 'Peach Shake.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (26, 'Blueberry Shake | بلو بيري شيك', 3, 'ميلك شيك بنكهة التوت الأزرق المنعشة.', 'Blueberry Shake.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (27, 'Kinder Shake | كيندر شيك', 3, 'ميلك شيك كريمي بطعم شوكولاتة كيندر.', 'Kinder Shake.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (28, 'KitKat Shake | كيت كات شيك', 3, 'ميلك شيك مع قطع كيت كات المقرمشة.', 'KitKat Shake.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (29, 'Twix Shake | تويكس شيك', 3, 'ميلك شيك بكراميل وبسكويت تويكس.', 'Twix Shake.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (30, 'Snickers Shake | سنيكرز شيك', 3, 'ميلك شيك بكراميل وفول سوداني سنيكرز.', 'Snickers Shake.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (31, 'Galaxy Shake | جلاكسي شيك', 3, 'ميلك شيك بشوكولاتة جالاكسي الناعمة.', 'Galaxy Shake.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (32, 'M&M Shake | إم أند إم شيك', 3, 'ميلك شيك ممتع مع حبات إم آند إمز.', 'M&M Shake.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (33, 'Classic Frappe | فرابيه كلاسيك', 4, 'قهوة باردة ممزوجة بالثلج والحليب.', 'Classic Frappe.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (34, 'Caramel Frappe | فرابيه كراميل', 4, 'فرابيه قهوة بصوص الكراميل الغني.', 'Caramel Frappe.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (35, 'Lotus Frappe | فرابيه لوتس', 4, 'فرابيه قهوة بنكهة بسكويت اللوتس.', 'Lotus Frappe.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (36, 'White Mocha Frappe | فرابيه وايت موكا', 4, 'فرابيه كريمي بنكهة الشوكولاتة البيضاء.', 'White Mocha Frappe.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (37, 'Ice Matcha | آيس ماتشا', 5, 'ماتشا ياباني أصيل مع الثلج المنعش.', 'Ice Matcha.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (38, 'Ice Matcha Strawberry | آيس ماتشا فراولة', 5, 'ماتشا مثلج بنكهة الفراولة المنعشة.', 'Ice Matcha Strawberry.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (39, 'Ice Matcha Coconut | آيس ماتشا جوز هند', 5, 'ماتشا مثلج مع حليب جوز الهند الكريمي.', 'Ice Matcha Coconut.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (40, 'Ice Matcha Caramel | آيس ماتشا كراميل', 5, 'ماتشا مثلج مع لمسة من الكراميل الحلو.', 'Ice Matcha Caramel.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (41, 'Hot Matcha | هوت ماتشا', 5, 'ماتشا ياباني دافئ وصحي.', 'Hot Matcha.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (42, 'Hot Honey Matcha | هوت هوني ماتشا', 5, 'ماتشا ساخن محلى بالعسل الطبيعي.', 'Hot Honey Matcha.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (43, 'V60 Ice | في 60 مثلج', 7, 'قهوة مختصة مثلجة محضرة بالتقطير.', 'default.jpg');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (44, 'V60 Hot | في 60 ساخن', 7, 'قهوة مختصة ساخنة محضرة بالتقطير.', NULL);
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (45, 'Chemex | كيمكس', 7, 'قهوة نقية ومصفاة بمذاق متوازن.', 'default.jpg');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (46, 'Aeropress | إيروبرس', 7, 'قهوة غنية وسلسة محضرة بضغط الهواء.', 'default.jpg');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (47, 'Syphon | سايفون', 7, 'قهوة عطرية محضرة بتقنية السايفون.', 'Syphon.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (48, 'Cold Brew | كولد برو', 7, 'قهوة مقطرة باردة لمدة 24 ساعة.', 'default.jpg');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (49, 'Nuts | مكسرات', 8, 'مكسرات مشكلة محمصة وطازجة.', 'default.jpg');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (50, 'Flavor | نكهة', 8, 'إضافة نكهات متنوعة حسب اختيارك.', 'default.jpg');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (51, 'Whipped Cream | كريمة مخفوقة', 8, 'كريمة مخفوقة طازجة وناعمة.', 'default.jpg');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (52, 'Flavor + Whipped Cream | نكهة + كريمة', 8, 'مزيج من النكهة والكريمة المخفوقة.', 'default.jpg');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (53, 'Boba | بوبا', 8, 'إضافة حبيبات التابيوكا (بوبا).', 'default.jpg');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (54, 'Honey | عسل', 8, 'عسل نحل طبيعي ونقي.', 'default.jpg');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (55, 'Ice Cream | آيس كريم', 8, 'آيس كريم فانيليا كريمي غني.', 'default.jpg');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (56, 'Extra Shot | شوت إضافي', 8, 'إضافة جرعة إضافية من الإسبريسو.', 'default.jpg');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (57, 'Cantaloupe Juice |عصير كنتالوب', 9, 'عصير كنتالوب طازج ومنعش.', 'Cantaloupe Juice.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (58, 'Strawberry Juice | عصير فراولة', 9, 'عصير فراولة طبيعي مبرد.', 'Strawberry Juice.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (59, 'Mango Juice | عصير مانجو', 9, 'عصير مانجو استوائي غني الكثافة.', 'Mango Juice.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (60, 'Kiwi Juice | عصير كيوي', 9, 'عصير كيوي طازج ومليء بالفيتامينات.', 'Kiwi Juice.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (61, 'Banana Juice | عصير موز', 9, 'عصير موز طبيعي بقوام كريمي.', 'Banana Juice.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (62, 'Watermelon Juice | عصير بطيخ', 9, 'عصير بطيخ منعش ومبرد.', 'Watermelon Juice.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (63, 'Peach Juice | عصير خوخ', 9, 'عصير خوخ طبيعي بمذاق حلو.', 'Peach Juice.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (64, 'Berry Juice | عصير توت', 9, 'عصير توت مشكل طازج ومنعش.', 'Berry Juice.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (65, 'Lemon Juice | عصير ليمون', 9, 'عصير ليمون حامض ومنعش.', 'Lemon Juice.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (66, 'Lemon Mint Juice | عصير ليمون نعناع', 9, 'مزيج الليمون المنعش مع النعناع الطازج.', 'Lemon Mint Juice.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (67, 'Ice Latte | آيس لاتيه', 10, 'إسبريسو مثلج مع الحليب البارد.', 'Ice Latte.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (68, 'Ice Mocha | آيس موكا', 10, 'موكا مثلجة بالشوكولاتة والحليب البارد.', 'Ice Mocha.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (69, 'Ice White Mocha | آيس وايت موكا', 10, 'وايت موكا مثلجة بنكهة الفانيليا الحلوة.', 'Ice White Mocha.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (70, 'Ice Shaken White Mocha | آيس وايت موكا شيكن', 10, 'وايت موكا شيكن كريمية ومنعشة.', 'Ice Shaken White Mocha.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (71, 'Ice Americano | آيس أمريكانو', 10, 'قهوة سوداء مثلجة قوية ومنعشة.', 'Ice Americano.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (72, 'Ice Biscoff Latte | آيس بسكوف لاتيه', 10, 'لاتيه مثلج مع كريمة بسكوف اللذيذة.', 'Ice Biscoff Latte.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (73, 'Ice Caramel Macchiato | آيس كراميل ماكياتو', 10, 'قهوة باردة بطبقات الحليب وصوص الكراميل.', 'Ice Caramel Macchiato.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (74, 'Ice Spanish Latte | آيس سبانيش لاتيه', 10, 'لاتيه إسباني مثلج مع الحليب المكثف.', 'Ice Spanish Latte.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (75, 'Peach Smoothie | سموزي خوخ', 11, 'سموزي خوخ طبيعي منعش ومبرد.', 'Peach Smoothie.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (76, 'Strawberry Smoothie | سموزي فراولة', 11, 'سموزي فراولة طازجة وحلوة.', 'Strawberry Smoothie.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (77, 'Mango Smoothie | سموزي مانجو', 11, 'سموزي مانجو استوائي غني المذاق.', 'Mango Smoothie.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (78, 'Watermelon Smoothie | سموزي بطيخ', 11, 'سموزي بطيخ منعش ومرطب.', 'Watermelon Smoothie.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (79, 'Kiwi Smoothie | سموزي كيوي', 11, 'سموزي كيوي أخضر وصحي.', 'Kiwi Smoothie.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (80, 'Apple Smoothie | سموزي تفاح', 11, 'سموزي تفاح حلو مع لمسة قرفة.', 'Apple Smoothie.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (81, 'Pineapple Smoothie | سموزي أناناس', 11, 'سموزي أناناس منعش بنكهة استوائية.', 'Pineapple Smoothie.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (82, 'Passion Fruit Smoothie | سموزي باشن فروت', 11, 'سموزي باشن فروت بنكهة فريدة.', 'Passion Fruit Smoothie.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (83, 'Lemon Smoothie | سموزي ليمون', 11, 'سموزي ليمون حامض ومنعش.', 'Lemon Smoothie.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (84, 'Lemon Mint Smoothie | سموزي ليمون نعناع', 11, 'سموزي ليمون ونعناع بارد ومنعش.', 'Lemon Mint Smoothie.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (85, 'Mixed Berry Smoothie |سموزي توت مشكل', 11, 'سموزي توت مشكل غني بمضادات الأكسدة.', 'Mixed Berry Smoothie.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (86, 'V Cola | في كولا', 12, 'مشروب كولا غازي بارد ومنعش.', 'V Cola.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (87, 'V7 | في 7', 12, 'مشروب غازي بنكهات الليمون المنعشة.', 'V7.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (88, 'Double Dare | دبل دير', 12, 'مشروب طاقة منعش بنكهة الفواكه.', 'Double Dare.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (89, 'Water | مياه', 12, 'مياه معدنية طبيعية نقية مبردة.', 'Water.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (90, 'C4 | سي 4', 12, 'مشروب طاقة قوي لمحبي النشاط.', 'C4.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (91, 'Red Bull | ريد بول', 12, 'مشروب الطاقة ريد بول الأصلي.', 'Red Bull.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (92, 'Red Bull Flavor | ريد بول نكهات', 12, 'ريد بول بنكهات فواكه متنوعة ومنعشة.', 'Red Bull Flavor.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (93, 'Classic Cheesecake | تشيز كيك كلاسيك', 13, 'تشيز كيك كلاسيك ناعمة وغنية.', 'Classic Cheesecake.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (97, 'Pistachio Cheesecake | تشيز كيك بستاشيو', 13, 'تشيز كيك غني بزبدة وشوكولاتة الفستق.', 'Pistachio Cheesecake.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (98, 'Nutella Cheesecake | تشيز كيك نوتيلا', 13, 'تشيز كيك بحشوة وطبقة شوكولاتة النوتيلا.', 'Nutella Cheesecake.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (99, 'Molten Cake | مولتن كيك', 13, 'مولتن كيك دافئة بحشوة الشوكولاتة الذائبة.', 'Molten Cake.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (101, 'San Sebastian Cheesecake | سان سباستيان كلاسيك', 13, 'كيكة سان سباستيان الإسبانية الكلاسيكية.', 'San Sebastian Cheesecake.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (102, 'Lotus San Sebastian Cheesecake | سان سباستيان لوتس', 13, 'سان سباستيان مع صوص وتوبينج اللوتس.', 'Lotus San Sebastian Cheesecake.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (103, 'Nutella San Sebastian Cheesecake | سان سباستيان نوتيلا', 13, 'سان سباستيان مغطاة بصوص النوتيلا الغني.', 'Nutella San Sebastian Cheesecake.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (104, 'Blueberry San Sebastian Cheesecake | سان سباستيان توت', 13, 'سان سباستيان مع صوص التوت الأزرق المنعش.', 'Blueberry San Sebastian Cheesecake.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (105, 'Caramel San Sebastian Cheesecake | سان سباستيان كراميل', 13, 'سان سباستيان مغطاة بصوص الكراميل.', 'Caramel San Sebastian Cheesecake.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (106, 'Pistachio San Sebastian Cheesecake | سان سباستيان بستاشيو', 13, 'سان سباستيان بصوص وشوكولاتة الفستق.', 'Pistachio San Sebastian Cheesecake.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (107, 'Tiramisu | تيراميسو', 13, 'حلوى التيراميسو الإيطالية بطعم القهوة.', 'Tiramisu.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (108, 'Plain Croissant | كرواسون سادة', 14, 'كرواسون فرنسي طازج وهش بالزبدة.', 'Plain Croissant.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (109, 'Chocolate Croissant | كرواسون شوكولاتة', 14, 'كرواسون محشو بالشوكولاتة الغنية.', 'Chocolate Croissant.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (110, 'Lotus Croissant | كرواسون لوتس', 14, 'كرواسون محشو بكريمة بسكويت اللوتس.', 'Lotus Croissant.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (111, 'Pistachio Croissant | كرواسون بستاشيو', 14, 'كرواسون محشو بكريمة الفستق الفاخرة.', 'Pistachio Croissant.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (112, 'Cheese Croissant | كرواسون جبنة', 14, 'كرواسون محشو بجبنة الشيدر الذائبة.', 'Cheese Croissant.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (113, 'Smoked Turkey Croissant | كرواسون تركي مدخن', 14, 'كرواسون مع صدر رومي مدخن وجبنة.', 'Smoked Turkey Croissant.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (114, 'Mixed Cheese Croissant | كرواسون جبن مشكل', 14, 'كرواسون محشو بتشكيلة من الأجبان الثلاثة.', 'Mixed Cheese Croissant.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (115, 'Plain Patisserie | باتيه سادة', 14, 'باتيه فرنسي طازج وخفيف.', 'Plain Patisserie.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (116, 'Cheese Patisserie | باتيه جبنة', 14, 'باتيه محشو بجبنة ذائبة.', 'Cheese Patisserie.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (117, 'White Cheese Patisserie | باتيه جبنة بيضاء', 14, 'باتيه محشو بجبنة بيضاء كريمية.', 'White Cheese Patisserie.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (118, 'Luncheon Patisserie | باتيه لانشون', 14, 'باتيه محشو باللانشون والجبنة.', 'Luncheon Patisserie.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (119, 'Smoked Turkey Patisserie | باتيه تركي مدخن', 14, 'باتيه مع صدر رومي مدخن وجبنة.', 'Smoked Turkey Patisserie.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (120, 'Mixed Cheese Patisserie | باتيه جبن مشكل', 14, 'باتيه محشو بتشكيلة من الأجبان.', 'Mixed Cheese Patisserie.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (121, 'Cookies | كوكيز', 13, 'كوكيز مقرمشة ومحشوة.', 'Cookies.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (122, 'Cookies Nuts | كوكيز مكسرات', 14, 'كوكيز مقرمش مع حبات المكسرات.', 'Cookies Nuts.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (123, 'Turkish Special Blend (250g) | قهوة تركي اسبيشيال بلند', 15, 'قهوة تركي اسبيشيال بلند - ربع كيلو.', 'default-coffee.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (124, 'Espresso Colombia Cali (250g) | اسبريسو كلومبي كالي', 15, 'اسبريسو كلومبي كالي - ربع كيلو.', 'default-coffee.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (125, 'Ethiopian Hambela (250g) | اثيوبي هامبيلا', 15, 'اثيوبي هامبيلا - ربع كيلو.', 'default-coffee.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (126, 'Frappe Mixed Berry | فرابيه ميكس بيري', 4, 'مزيج منعش من التوت المشكل والثلج.', 'Frappe Mixed Berry.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (127, 'Vanilla Shake | فانيليا شيك', 3, 'ميلك شيك فانيليا ناعم وكريمي بنكهة كلاسيكية.', 'Vanilla Shake.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (128, 'Strawberry Shake | فراولة شيك', 3, 'ميلك شيك فراولة طازجة بنكهة حلوة ومنعشة.', 'Strawberry Shake.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (129, 'Mango Shake | مانجو شيك', 3, 'ميلك شيك مانجو استوائي غني وكريمي.', 'Mango Shake .png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (130, 'Chocolate Shake | شوكولاتة شيك', 3, 'ميلك شيك شوكولاتة غني وقوام كثيف لا يقاوم.', 'Chocolate Shake.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (131, 'Strawberry Mojito | موهيتو فراولة', 16, 'موهيتو منعش بنكهة الفراولة.', 'Strawberry Mojito.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (132, 'Blueberry Mojito | موهيتو توت', 16, 'موهيتو منعش بنكهة التوت.', 'Blueberry Mojito.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (133, 'Pineapple Mojito | موهيتو أناناس', 16, 'موهيتو منعش بنكهة الأناناس.', 'Pineapple Mojito.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (134, 'Mango Mojito | موهيتو مانجا', 16, 'موهيتو منعش بنكهة المانجو.', 'Mango Mojito.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (135, 'Peach Mojito | موهيتو خوخ', 16, 'موهيتو منعش بنكهة الخوخ.', 'Peach Mojito.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (136, 'Mix Berry Mojito | موهيتو ميكس بيري', 16, 'موهيتو منعش بنكهة ميكس بيري.', 'Mix Berry Mojito.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (137, 'Kiwi Mojito | موهيتو كيوي', 16, 'موهيتو منعش بنكهة الكيوي.', 'Kiwi Mojito.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (138, 'Passion Fruit Mojito | موهيتو باشون', 16, 'موهيتو منعش بنكهة الباشون فروت.', 'Passion Fruit Mojito.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (139, 'Apple Mojito | موهيتو تفاح', 16, 'موهيتو منعش بنكهة التفاح.', 'Apple Mojito.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (140, 'Raspberry Mojito | موهيتو راس بيري', 16, 'موهيتو منعش بنكهة الراس بيري.', 'Raspberry Mojito.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (141, 'Pink Lemon | بينك ليمون', 16, 'مشروب بينك ليمون منعش.', 'Pink Lemon.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (142, 'Blue Passion | بلو باشون', 16, 'مشروب بلو باشون منعش.', 'Blue Passion.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (143, 'Pineapple Lemon Mint | بينابول ليمون مينت', 16, 'مشروب بينابول ليمون مينت منعش.', 'Pineapple Lemon Mint.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (144, 'Ice Matcha Mango | آيس ماتشا مانجو', 5, 'ماتشا مثلج بنكهة المانجو المنعشة.', 'Ice Matcha Mango.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (145, 'Boba Soft Passion | بوبا سوفت باشون', 6, 'بوبا سوفت بنكهة الباشون فروت المنعشة.', 'Boba Soft Passion.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (146, 'Boba Soft Strawberry | بوبا سوفت فراولة', 6, 'بوبا سوفت بنكهة الفراولة الحلوة.', 'Boba Soft Strawberry.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (147, 'Boba Soft Blueberry | بوبا سوفت بلوبيري', 6, 'بوبا سوفت بنكهة التوت الأزرق.', 'Boba Soft Blueberry.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (148, 'Boba Soft Mango | بوبا سوفت مانجا', 6, 'بوبا سوفت بنكهة المانجو الاستوائية.', 'Boba Soft Mango.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (149, 'Boba Soft Green Apple | بوبا سوفت تفاح أخضر', 6, 'بوبا سوفت بنكهة التفاح الأخضر المنعشة.', 'Boba Soft Green Apple.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (150, 'Milk Strawberry Boba Strawberry | ميلك فراولة بوبا فراولة', 17, 'ميلك شيك فراولة مع بوبا فراولة.', 'Milk Strawberry Boba Strawberry.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (151, 'Milk Mango Boba Mango | ميلك مانجا بوبا مانجا', 17, 'ميلك شيك مانجو مع بوبا مانجو.', 'Milk Mango Boba Mango.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (152, 'Milk Peach Boba Peach | ميلك خوخ بوبا خوخ', 17, 'ميلك شيك خوخ مع بوبا خوخ.', 'Milk Peach Boba Peach.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (153, 'Milk Passion Boba Passion | ميلك باشون بوبا باشون', 17, 'ميلك شيك باشون فروت مع بوبا باشون.', 'Milk Passion Boba Passion.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (154, 'Milk Blueberry Boba Blueberry | ميلك بلوبيري بوبا بلوبيري', 17, 'ميلك شيك بلوبيري مع بوبا بلوبيري.', 'Milk Blueberry Boba Blueberry.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (155, 'Blueberry Smoothie Boba Blueberry | سموزي توت بوبا توت', 18, 'سموزي التوت الأزرق مع بوبا توت.', 'Blueberry Smoothie Boba Blueberry.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (156, 'Strawberry Smoothie Boba Strawberry | سموزي فراولة بوبا فراولة', 18, 'سموزي الفراولة الطازجة مع بوبا فراولة.', 'Strawberry Smoothie Boba Strawberry.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (157, 'Apple Smoothie Boba Apple | سموزي تفاح بوبا تفاح', 18, 'سموزي التفاح المنعش مع بوبا تفاح.', 'Apple Smoothie Boba Apple.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (158, 'Passion Smoothie Boba Passion | سموزي باشون بوبا باشون', 18, 'سموزي الباشون فروت مع بوبا باشون.', 'Passion Smoothie Boba Passion.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (159, 'Peach Smoothie Boba Peach | سموزي خوخ بوبا خوخ', 18, 'سموزي الخوخ الناعم مع بوبا خوخ.', 'Peach Smoothie Boba Peach.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (160, 'Mango Smoothie Boba Mango | سموزي مانجا بوبا مانجا', 18, 'سموزي المانجو الاستوائي مع بوبا مانجو.', 'Mango Smoothie Boba Mango.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (161, 'Hot Americano | هوت أمريكانو', 1, 'قهوة أمريكانو ساخنة كلاسيكية.', 'Hot Americano.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (162, 'Sandwich 1 | ساندويتش 1', 19, 'ساندويتش لذيذ سيتم تحديث تفاصيله لاحقاً.', 'default.jpg');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (163, 'Sandwich 2 | ساندويتش 2', 19, 'ساندويتش لذيذ سيتم تحديث تفاصيله لاحقاً.', 'default.jpg');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (164, 'Sandwich 3 | ساندويتش 3', 19, 'ساندويتش لذيذ سيتم تحديث تفاصيله لاحقاً.', 'default.jpg');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (165, 'Sandwich 4 | ساندويتش 4', 19, 'ساندويتش لذيذ سيتم تحديث تفاصيله لاحقاً.', 'default.jpg');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (186, 'Nutella Donut | دونات نوتيلا', 13, 'دونات بحشوة النوتيلا الكريمية.', 'Nutella Donut.png');
+INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (187, 'Oreo Cake | أوريو كيك', 13, 'كيكة الأوريو الكريمية اللذيذة.', 'Oreo Cake.png');
 
-/* =========================
-SHAKES
-========================= */
-INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES
-(20, 'Oreo Shake | أوريو شيك', 3, 'ميلك شيك كريمي مع قطع بسكويت أوريو.', 'Oreo Shake.png'),
-(21, 'Nutella Shake | نوتيلا شيك', 3, 'ميلك شيك غني بشوكولاتة نوتيلا.', 'Nutella Shake.png'),
-(22, 'Pistachio Shake | بستاشيو شيك', 3, 'ميلك شيك ناعم بنكهة الفستق الفاخرة.', 'Pistachio Shake.png'),
-(23, 'Lotus Shake | لوتس شيك', 3, 'ميلك شيك بنكهة كريمة اللوتس المميزة.', 'Lotus Shake.png'),
-(24, 'Caramel Shake | كراميل شيك', 3, 'ميلك شيك كريمي مع صوص الكراميل.', 'Caramel Shake.png'),
-(25, 'Peach Shake | خوخ شيك', 3, 'ميلك شيك منعش بنكهة الخوخ الطبيعية.', 'Peach Shake.png'),
-(26, 'Blueberry Shake | بلو بيري شيك', 3, 'ميلك شيك بنكهة التوت الأزرق المنعشة.', 'Blueberry Shake.png'),
-(27, 'Kinder Shake | كيندر شيك', 3, 'ميلك شيك كريمي بطعم شوكولاتة كيندر.', 'Kinder Shake.png'),
-(28, 'KitKat Shake | كيت كات شيك', 3, 'ميلك شيك مع قطع كيت كات المقرمشة.', 'KitKat Shake.png'),
-(29, 'Twix Shake | تويكس شيك', 3, 'ميلك شيك بكراميل وبسكويت تويكس.', 'Twix Shake.png'),
-(30, 'Snickers Shake | سنيكرز شيك', 3, 'ميلك شيك بكراميل وفول سوداني سنيكرز.', 'Snickers Shake.png'),
-(31, 'Galaxy Shake | جلاكسي شيك', 3, 'ميلك شيك بشوكولاتة جالاكسي الناعمة.', 'Galaxy Shake.png'),
-(32, 'M&M Shake | إم أند إم شيك', 3, 'ميلك شيك ممتع مع حبات إم آند إمز.', 'M&M Shake.png');
+-- Product Prices
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (1, 1, 4, 55);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (2, 1, 5, 65);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (4, 2, 5, 79);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (6, 3, 2, 99);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (8, 4, 2, 99);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (9, 5, 1, 64);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (10, 5, 2, 69);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (11, 6, 1, 60);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (12, 6, 2, 65);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (14, 7, 2, 69);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (16, 8, 2, 69);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (19, 10, 1, 55);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (20, 10, 2, 65);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (22, 11, 2, 99);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (24, 12, 2, 109);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (26, 13, 2, 69);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (28, 14, 2, 69);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (29, 15, 2, 50);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (30, 16, 2, 60);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (32, 17, 2, 130);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (33, 18, 2, 89);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (34, 18, 3, 104);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (35, 19, 2, 60);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (36, 19, 3, 65);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (37, 20, 2, 119);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (38, 20, 3, 129);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (39, 21, 2, 129);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (40, 21, 3, 139);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (41, 22, 2, 139);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (42, 22, 3, 149);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (43, 23, 2, 129);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (44, 23, 3, 139);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (45, 24, 2, 119);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (46, 24, 3, 129);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (47, 25, 2, 99);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (48, 25, 3, 104);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (49, 26, 2, 119);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (50, 27, 2, 139);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (51, 28, 2, 139);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (52, 29, 2, 139);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (53, 30, 2, 139);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (54, 31, 2, 139);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (55, 32, 2, 139);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (56, 33, 2, 94);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (57, 33, 3, 99);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (58, 34, 2, 119);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (60, 35, 2, 129);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (62, 36, 2, 129);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (64, 37, 2, 109);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (66, 38, 2, 129);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (68, 39, 2, 129);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (70, 40, 2, 129);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (72, 41, 2, 99);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (74, 42, 2, 109);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (76, 43, 2, 180);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (77, 44, 2, 180);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (78, 45, 2, 150);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (79, 46, 2, 160);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (80, 47, 2, 170);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (81, 48, 2, 180);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (82, 49, 1, 35);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (83, 49, 2, 40);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (84, 50, 1, 35);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (85, 50, 2, 40);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (86, 51, 1, 35);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (87, 51, 2, 40);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (88, 52, 2, 45);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (89, 53, 2, 45);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (90, 54, 2, 35);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (91, 55, 2, 45);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (92, 56, 2, 45);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (93, 57, 2, 85);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (94, 57, 3, 100);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (95, 58, 2, 85);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (96, 58, 3, 100);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (97, 59, 2, 85);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (98, 59, 3, 100);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (99, 60, 2, 110);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (100, 60, 3, 120);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (101, 61, 2, 100);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (102, 61, 3, 110);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (103, 62, 2, 85);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (104, 62, 3, 100);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (105, 63, 2, 99);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (106, 63, 3, 109);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (107, 64, 2, 114);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (108, 64, 3, 124);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (109, 65, 2, 94);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (110, 65, 3, 104);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (111, 66, 2, 100);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (112, 66, 3, 110);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (113, 67, 2, 109);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (114, 67, 3, 119);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (115, 68, 2, 119);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (116, 68, 3, 139);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (117, 69, 2, 129);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (118, 69, 3, 139);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (119, 70, 2, 129);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (120, 70, 3, 139);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (121, 71, 2, 100);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (122, 71, 3, 110);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (123, 72, 2, 99);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (124, 72, 3, 104);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (125, 73, 2, 119);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (126, 73, 3, 129);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (127, 74, 2, 119);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (128, 74, 3, 129);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (129, 75, 2, 109);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (130, 75, 3, 119);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (131, 76, 2, 104);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (132, 76, 3, 114);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (133, 77, 2, 104);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (134, 77, 3, 114);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (135, 78, 2, 104);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (136, 78, 3, 114);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (137, 79, 2, 114);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (138, 79, 3, 124);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (139, 80, 2, 104);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (140, 80, 3, 114);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (141, 81, 2, 109);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (142, 81, 3, 119);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (143, 82, 2, 114);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (144, 82, 3, 124);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (145, 83, 2, 104);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (146, 83, 3, 114);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (147, 84, 2, 104);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (148, 84, 3, 114);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (149, 85, 2, 114);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (150, 85, 3, 124);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (151, 86, 2, 40);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (152, 87, 2, 50);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (153, 88, 2, 40);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (154, 89, 2, 15);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (155, 90, 2, 180);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (156, 91, 2, 89);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (157, 92, 2, 110);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (174, 108, 2, 35);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (175, 109, 2, 50);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (176, 110, 2, 60);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (177, 111, 2, 70);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (178, 112, 2, 55);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (179, 113, 2, 65);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (180, 114, 2, 60);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (181, 115, 2, 35);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (182, 116, 2, 55);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (183, 117, 2, 45);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (184, 118, 2, 65);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (185, 119, 2, 65);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (186, 120, 2, 60);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (189, 122, 2, 50);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (190, 123, 2, 300);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (191, 124, 2, 400);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (192, 125, 2, 400);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (193, 126, 2, 129);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (195, 127, 2, 110);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (196, 127, 3, 120);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (197, 128, 2, 110);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (198, 128, 3, 120);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (201, 130, 2, 110);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (202, 130, 3, 120);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (203, 139, 2, 99);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (204, 139, 3, 110);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (205, 140, 2, 99);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (206, 140, 3, 110);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (207, 141, 2, 109);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (208, 141, 3, 130);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (209, 142, 2, 109);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (210, 142, 3, 130);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (211, 143, 2, 114);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (212, 143, 3, 135);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (213, 136, 2, 109);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (214, 136, 3, 130);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (215, 137, 2, 99);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (216, 137, 3, 110);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (217, 138, 2, 104);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (218, 138, 3, 125);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (219, 131, 2, 99);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (220, 131, 3, 110);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (221, 132, 2, 99);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (222, 132, 3, 110);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (223, 133, 2, 99);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (224, 133, 3, 110);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (225, 134, 2, 99);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (226, 134, 3, 110);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (227, 135, 2, 99);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (228, 135, 3, 110);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (229, 144, 2, 129);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (231, 145, 2, 119);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (232, 145, 3, 129);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (233, 146, 2, 119);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (234, 146, 3, 129);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (235, 147, 2, 119);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (236, 147, 3, 129);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (237, 148, 2, 119);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (238, 148, 3, 129);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (239, 149, 2, 119);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (240, 149, 3, 129);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (241, 150, 2, 129);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (242, 150, 3, 139);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (243, 151, 2, 129);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (244, 151, 3, 139);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (245, 152, 2, 129);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (246, 152, 3, 139);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (247, 153, 2, 129);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (248, 153, 3, 139);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (249, 154, 2, 129);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (250, 154, 3, 139);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (251, 155, 2, 119);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (252, 155, 3, 129);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (253, 156, 2, 119);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (254, 156, 3, 129);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (255, 157, 2, 119);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (256, 157, 3, 129);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (257, 158, 2, 119);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (258, 158, 3, 129);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (259, 159, 2, 119);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (260, 159, 3, 129);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (261, 160, 2, 119);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (262, 160, 3, 129);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (264, 161, 2, 65);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (265, 162, 2, 80);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (266, 163, 2, 80);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (267, 164, 2, 80);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (268, 165, 2, 80);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (270, 3, 3, 109);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (271, 4, 3, 109);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (272, 7, 3, 79);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (273, 8, 3, 79);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (274, 9, 5, 65);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (275, 11, 3, 109);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (276, 12, 3, 119);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (277, 13, 3, 79);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (278, 14, 3, 79);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (279, 161, 3, 75);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (280, 167, 2, 119);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (281, 167, 3, 129);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (282, 168, 2, 109);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (283, 168, 3, 119);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (284, 169, 2, 139);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (285, 169, 3, 149);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (286, 170, 2, 129);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (287, 171, 2, 104);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (288, 171, 3, 114);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (289, 172, 2, 109);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (290, 172, 3, 119);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (291, 173, 2, 109);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (292, 173, 3, 119);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (293, 174, 2, 109);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (294, 174, 3, 119);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (295, 175, 2, 114);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (296, 175, 3, 135);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (297, 176, 2, 129);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (298, 176, 3, 139);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (299, 177, 2, 129);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (300, 177, 3, 139);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (301, 178, 2, 129);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (302, 178, 3, 139);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (303, 179, 2, 129);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (304, 179, 3, 139);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (305, 180, 2, 129);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (306, 180, 3, 139);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (307, 181, 2, 129);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (308, 26, 3, 129);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (309, 27, 3, 149);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (310, 28, 3, 149);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (311, 29, 3, 149);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (312, 30, 3, 149);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (313, 31, 3, 149);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (314, 32, 3, 149);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (315, 182, 2, 119);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (316, 182, 3, 129);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (317, 183, 2, 139);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (318, 183, 3, 149);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (319, 184, 2, 139);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (320, 184, 3, 149);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (321, 185, 2, 100);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (322, 185, 3, 110);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (323, 17, 3, 160);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (324, 43, 3, 210);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (325, 44, 3, 210);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (358, 129, 2, 119);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (359, 129, 3, 129);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (374, 97, 2, 130);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (375, 93, 2, 95);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (376, 98, 2, 104);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (377, 186, 2, 70);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (378, 121, 2, 75);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (379, 101, 2, 95);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (380, 102, 2, 130);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (381, 103, 2, 120);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (382, 104, 2, 120);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (383, 105, 2, 120);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (384, 106, 2, 130);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (385, 107, 2, 120);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (386, 187, 2, 120);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (387, 99, 2, 120);
 
-INSERT INTO product_prices (product_id, size_id, price) VALUES
-(20, 2, 104), (20, 3, 114),
-(21, 2, 104), (21, 3, 109),
-(22, 2, 109), (22, 3, 114),
-(23, 2, 104), (23, 3, 109),
-(24, 2, 104), (24, 3, 109),
-(25, 2, 99), (25, 3, 104),
-(26, 2, 104),
-(27, 2, 120),
-(28, 2, 120),
-(29, 2, 120),
-(30, 2, 120),
-(31, 2, 120),
-(32, 2, 125);
-
-/* =========================
-FRAPPE
-========================= */
-INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES
-(33, 'Classic Frappe | فرابيه كلاسيك', 4, 'قهوة باردة ممزوجة بالثلج والحليب.', 'Classic Frappe.png'),
-(34, 'Caramel Frappe | فرابيه كراميل', 4, 'فرابيه قهوة بصوص الكراميل الغني.', 'Caramel Frappe.png'),
-(35, 'Lotus Frappe | فرابيه لوتس', 4, 'فرابيه قهوة بنكهة بسكويت اللوتس.', 'Lotus Frappe.png'),
-(36, 'White Mocha Frappe | فرابيه وايت موكا', 4, 'فرابيه كريمي بنكهة الشوكولاتة البيضاء.', 'White Mocha Frappe.png');
-
-INSERT INTO product_prices (product_id, size_id, price) VALUES
-(33, 2, 94),   (33, 3, 99),
-(34, 2, 104),  (34, 3, 109),
-(35, 2, 109),  (35, 3, 114),
-(36, 2, 109),  (36, 3, 114);
-
-
-
-
-/* =========================
-MATCHA
-========================= */
-INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES
-(37, 'Ice Matcha | آيس ماتشا', 5, 'ماتشا ياباني أصيل مع الثلج المنعش.', 'Ice Matcha.png'),
-(38, 'Ice Matcha Strawberry | آيس ماتشا فراولة', 5, 'ماتشا مثلج بنكهة الفراولة المنعشة.', 'Ice Matcha Strawberry.png'),
-(39, 'Ice Matcha Coconut | آيس ماتشا جوز هند', 5, 'ماتشا مثلج مع حليب جوز الهند الكريمي.', 'Ice Matcha Coconut.png'),
-(40, 'Ice Matcha Caramel | آيس ماتشا كراميل', 5, 'ماتشا مثلج مع لمسة من الكراميل الحلو.', 'Ice Matcha Caramel.png'),
-(41, 'Hot Matcha | هوت ماتشا', 5, 'ماتشا ياباني دافئ وصحي.', 'Hot Matcha.png'),
-(42, 'Hot Honey Matcha | هوت هوني ماتشا', 5, 'ماتشا ساخن محلى بالعسل الطبيعي.', 'Hot Honey Matcha.png');
-
-INSERT INTO product_prices (product_id, size_id, price) VALUES
-(37, 2, 104), (37, 3, 109),
-(38, 2, 109), (38, 3, 114),
-(39, 2, 109), (39, 3, 114),
-(40, 2, 109), (40, 3, 114),
-(41, 2, 104), (41, 3, 109),
-(42, 2, 109), (42, 3, 114);
-
-/* BOBA CATEGORY REMOVED */
-
-/* =========================
-SPECIALTY COFFEE
-========================= */
-INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES
-(43, 'V60 Ice | في 60 مثلج', 7, 'قهوة مختصة مثلجة محضرة بالتقطير.', 'default.jpg'),
-(44, 'V60 Hot | في 60 ساخن', 7,'قهوة مختصة ساخنة محضرة بالتقطير.', NULL),
-(45, 'Chemex | كيمكس', 7, 'قهوة نقية ومصفاة بمذاق متوازن.', 'default.jpg'),
-(46, 'Aeropress | إيروبرس', 7, 'قهوة غنية وسلسة محضرة بضغط الهواء.', 'default.jpg'),
-(47, 'Syphon | سايفون', 7, 'قهوة عطرية محضرة بتقنية السايفون.', 'Syphon.png'),
-(48, 'Cold Brew | كولد برو', 7, 'قهوة مقطرة باردة لمدة 24 ساعة.', 'default.jpg');
-
-INSERT INTO product_prices (product_id, size_id, price) VALUES
-(43, 2, 160),
-(44, 2, 150),
-(45, 2, 150),
-(46, 2, 160),
-(47, 2, 170),
-(48, 2, 180);
-
-/* =========================
-EXTRAS
-========================= */
-INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES
-(49, 'Nuts | مكسرات', 8, 'مكسرات مشكلة محمصة وطازجة.', 'default.jpg'),
-(50, 'Flavor | نكهة', 8, 'إضافة نكهات متنوعة حسب اختيارك.', 'default.jpg'),
-(51, 'Whipped Cream | كريمة مخفوقة', 8, 'كريمة مخفوقة طازجة وناعمة.', 'default.jpg'),
-(52, 'Flavor + Whipped Cream | نكهة + كريمة', 8, 'مزيج من النكهة والكريمة المخفوقة.', 'default.jpg'),
-(53, 'Boba | بوبا', 8, 'إضافة حبيبات التابيوكا (بوبا).', 'default.jpg'),
-(54, 'Honey | عسل', 8, 'عسل نحل طبيعي ونقي.', 'default.jpg'),
-(55, 'Ice Cream | آيس كريم', 8, 'آيس كريم فانيليا كريمي غني.', 'default.jpg'),
-(56, 'Extra Shot | شوت إضافي', 8, 'إضافة جرعة إضافية من الإسبريسو.', 'default.jpg');
-
-INSERT INTO product_prices (product_id, size_id, price) VALUES
-(49, 1, 35), (49, 2, 40),
-(50, 1, 35), (50, 2, 40),
-(51, 1, 35), (51, 2, 40),
-(52, 2, 45),
-(53, 2, 45),
-(54, 2, 35),
-(55, 2, 45),
-(56, 2, 45);
-
-/* =========================
-FRESH JUICES
-========================= */
-INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES
-(57, 'Cantaloupe Juice |عصير كنتالوب', 9, 'عصير كنتالوب طازج ومنعش.', 'Cantaloupe Juice.png'),
-(58, 'Strawberry Juice | عصير فراولة', 9, 'عصير فراولة طبيعي مبرد.', 'Strawberry Juice.png'),
-(59, 'Mango Juice | عصير مانجو', 9, 'عصير مانجو استوائي غني الكثافة.', 'Mango Juice.png'),
-(60, 'Kiwi Juice | عصير كيوي', 9, 'عصير كيوي طازج ومليء بالفيتامينات.', 'Kiwi Juice.png'),
-(61, 'Banana Juice | عصير موز', 9, 'عصير موز طبيعي بقوام كريمي.', 'Banana Juice.png'),
-(62, 'Watermelon Juice | عصير بطيخ', 9, 'عصير بطيخ منعش ومبرد.', 'Watermelon Juice.png'),
-(63, 'Peach Juice | عصير خوخ', 9, 'عصير خوخ طبيعي بمذاق حلو.', 'Peach Juice.png'),
-(64, 'Berry Juice | عصير توت', 9, 'عصير توت مشكل طازج ومنعش.', 'Berry Juice.png'),
-(65, 'Lemon Juice | عصير ليمون', 9, 'عصير ليمون حامض ومنعش.', 'Lemon Juice.png'),
-(66, 'Lemon Mint Juice | عصير ليمون نعناع', 9, 'مزيج الليمون المنعش مع النعناع الطازج.', 'Lemon Mint Juice.png');
-
-INSERT INTO product_prices (product_id, size_id, price) VALUES
-(57, 2, 74), (57, 3, 79),
-(58, 2, 70), (58, 3, 74),
-(59, 2, 74), (59, 3, 79),
-(60, 2, 94), (60, 3, 99),
-(61, 2, 70), (61, 3, 74),
-(62, 2, 74), (62, 3, 79),
-(63, 2, 84), (63, 3, 89),
-(64, 2, 84), (64, 3, 89),
-(65, 2, 70), (65, 3, 74),
-(66, 2, 74), (66, 3, 79);
-
-/* =========================
-ICE COFFEE
-========================= */
-INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES
-(67, 'Ice Latte | آيس لاتيه', 10, 'إسبريسو مثلج مع الحليب البارد.', 'Ice Latte.png'),
-(68, 'Ice Mocha | آيس موكا', 10, 'موكا مثلجة بالشوكولاتة والحليب البارد.', 'Ice Mocha.png'),
-(69, 'Ice White Mocha | آيس وايت موكا', 10, 'وايت موكا مثلجة بنكهة الفانيليا الحلوة.', 'Ice White Mocha.png'),
-(70, 'Ice Shaken White Mocha | آيس وايت موكا شيكن', 10, 'وايت موكا شيكن كريمية ومنعشة.', 'Ice Shaken White Mocha.png'),
-(71, 'Ice Americano | آيس أمريكانو', 10, 'قهوة سوداء مثلجة قوية ومنعشة.', 'Ice Americano.png'),
-(72, 'Ice Biscoff Latte | آيس بسكوف لاتيه', 10, 'لاتيه مثلج مع كريمة بسكوف اللذيذة.', 'Ice Biscoff Latte.png'),
-(73, 'Ice Caramel Macchiato | آيس كراميل ماكياتو', 10, 'قهوة باردة بطبقات الحليب وصوص الكراميل.', 'Ice Caramel Macchiato.png'),
-(74, 'Ice Spanish Latte | آيس سبانيش لاتيه', 10, 'لاتيه إسباني مثلج مع الحليب المكثف.', 'Ice Spanish Latte.png');
-
-INSERT INTO product_prices (product_id, size_id, price) VALUES
-(67, 2, 89), (67, 3, 94),
-(68, 2, 94), (68, 3, 99),
-(69, 2, 94), (69, 3, 99),
-(70, 2, 94), (70, 3, 99),
-(71, 2, 79), (71, 3, 84),
-(72, 2, 99), (72, 3, 104),
-(73, 2, 94), (73, 3, 99),
-(74, 2, 99), (74, 3, 104);
-
-/* =========================
-SMOOTHIES
-========================= */
-INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES
-(75, 'Peach Smoothie | سموزي خوخ', 11, 'سموزي خوخ طبيعي منعش ومبرد.', 'Peach Smoothie.png'),
-(76, 'Strawberry Smoothie | سموزي فراولة', 11, 'سموزي فراولة طازجة وحلوة.', 'Strawberry Smoothie.png'),
-(77, 'Mango Smoothie | سموزي مانجو', 11, 'سموزي مانجو استوائي غني المذاق.', 'Mango Smoothie.png'),
-(78, 'Watermelon Smoothie | سموزي بطيخ', 11, 'سموزي بطيخ منعش ومرطب.', 'Watermelon Smoothie.png'),
-(79, 'Kiwi Smoothie | سموزي كيوي', 11, 'سموزي كيوي أخضر وصحي.', 'Kiwi Smoothie.png'),
-(80, 'Apple Smoothie | سموزي تفاح', 11, 'سموزي تفاح حلو مع لمسة قرفة.', 'Apple Smoothie.png'),
-(81, 'Pineapple Smoothie | سموزي أناناس', 11, 'سموزي أناناس منعش بنكهة استوائية.', 'Pineapple Smoothie.png'),
-(82, 'Passion Fruit Smoothie | سموزي باشن فروت', 11, 'سموزي باشن فروت بنكهة فريدة.', 'Passion Fruit Smoothie.png'),
-(83, 'Lemon Smoothie | سموزي ليمون', 11, 'سموزي ليمون حامض ومنعش.', 'Lemon Smoothie.png'),
-(84, 'Lemon Mint Smoothie | سموزي ليمون نعناع', 11, 'سموزي ليمون ونعناع بارد ومنعش.', 'Lemon Mint Smoothie.png'),
-(85, 'Mixed Berry Smoothie |سموزي توت مشكل', 11, 'سموزي توت مشكل غني بمضادات الأكسدة.', 'Mixed Berry Smoothie.png');
-
-INSERT INTO product_prices (product_id, size_id, price) VALUES
-(75, 2, 84), (75, 3, 89),
-(76, 2, 84), (76, 3, 89),
-(77, 2, 84), (77, 3, 89),
-(78, 2, 84), (78, 3, 89),
-(79, 2, 99), (79, 3, 109),
-(80, 2, 84), (80, 3, 89),
-(81, 2, 89), (81, 3, 94),
-(82, 2, 89), (82, 3, 94),
-(83, 2, 84), (83, 3, 89),
-(84, 2, 89), (84, 3, 94),
-(85, 2, 99), (85, 3, 109);
-
-/* =========================
-COLD DRINKS
-========================= */
-INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES
-(86, 'V Cola | في كولا', 12, 'مشروب كولا غازي بارد ومنعش.', 'V Cola.png'),
-(87, 'V7 | في 7', 12, 'مشروب غازي بنكهات الليمون المنعشة.', 'V7.png'),
-(88, 'Double Dare | دبل دير', 12, 'مشروب طاقة منعش بنكهة الفواكه.', 'Double Dare.png'),
-(89, 'Water | مياه', 12, 'مياه معدنية طبيعية نقية مبردة.', 'Water.png'),
-(90, 'C4 | سي 4', 12, 'مشروب طاقة قوي لمحبي النشاط.', 'C4.png'),
-(91, 'Red Bull | ريد بول', 12, 'مشروب الطاقة ريد بول الأصلي.', 'Red Bull.png'),
-(92, 'Red Bull Flavor | ريد بول نكهات', 12, 'ريد بول بنكهات فواكه متنوعة ومنعشة.', 'Red Bull Flavor.png');
-
-INSERT INTO product_prices (product_id, size_id, price) VALUES
-(86, 2, 40),
-(87, 2, 50),
-(88, 2, 40),
-(89, 2, 15),
-(90, 2, 180),
-(91, 2, 90),
-(92, 2, 110);
-
-/* =========================
-DESSERT
-========================= */
-INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES
-(93, 'Cheese cake | تشيز كيك', 13, 'تشيز كيك كلاسيكي ناعم وكريمي.', 'Cheesecake.png'),
-(94, 'Cheese cake Caramel | تشيز كيك كراميل', 13, 'تشيز كيك غني مع صوص الكراميل السائل.', 'Cheese cake Caramel.png'),
-(95, 'Cheese cake Blueberry | تشيز كيك توت', 13, 'تشيز كيك مع طبقة التوت الأزرق الطازج.', 'Cheese cake Blueberry.png'),
-(96, 'Cheese cake Lotus | تشيز كيك لوتس', 13, 'تشيز كيك مع كريمة وبسكويت اللوتس.', 'Cheese cake Lotus.png'),
-(97, 'Cheese cake Pistachio | تشيز كيك بستاشيو', 13, 'تشيز كيك مع كريمة الفستق الفاخرة.', 'Cheese cake Pistachio.png'),
-(98, 'Cheese cake Nutella | تشيز كيك نوتيلا', 13, 'تشيز كيك مع طبقة غنية من نوتيلا.', 'Cheese cake Nutella.png'),
-(99, 'Molten Cake | مولتن كيك', 13, 'كيك شوكولاتة دافئ بقلب سائل ذائب.', 'Molten Cake.png'),
-(100, 'Molten Cake Nutella | مولتن كيك نوتيلا', 13, 'مولتن كيك مع حشوة نوتيلا الذائبة.', 'Molten Cake Nutella.png'),
-(101, 'San Sebastian | سان سباستيان', 13, 'تشيز كيك سان سباستيان الكريمي الشهير.', 'default-coffee.png'),
-(102, 'San Sebastian Lotus | سان سباستيان لوتس', 13, 'كيك سان سباستيان مع كريمة اللوتس.', 'San Sebastian Lotus.png'),
-(103, 'San Sebastian Nutella | سان سباستيان نوتيلا', 13, 'كيك سان سباستيان مع نوتيلا غنية.', 'San Sebastian Nutella.png'),
-(104, 'San Sebastian Blueberry | سان سباستيان توت', 13, 'كيك سان سباستيان مع صوص التوت الأزرق.', 'San Sebastian Blueberry.png'),
-(105, 'San Sebastian Caramel | سان سباستيان كراميل', 13, 'كيك سان سباستيان مع صوص الكراميل.', 'San Sebastian Caramel.png'),
-(106, 'San Sebastian Pistachio | سان سباستيان بستاشيو', 13, 'كيك سان سباستيان مع كريمة الفستق.', 'San Sebastian Pistachio.png'),
-(107, 'Tiramisu | تيراميسو', 13, 'تيراميسو إيطالي تقليدي بنكهة القهوة.', 'Tiramisu.png');
-
-INSERT INTO product_prices (product_id, size_id, price) VALUES
-(93, 2, 75),
-(94, 2, 85),
-(95, 2, 85),
-(96, 2, 90),
-(97, 2, 95),
-(98, 2, 85),
-(99, 2, 80),
-(100, 2, 90),
-(101, 2, 75),
-(102, 2, 90),
-(103, 2, 85),
-(104, 2, 85),
-(105, 2, 85),
-(106, 2, 95),
-(107, 2, 75),(107, 3, 90);
-
-/* =========================
-BAKERY
-========================= */
-INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES
-(108, 'Plain Croissant | كرواسون سادة', 14, 'كرواسون فرنسي طازج وهش بالزبدة.', 'Plain Croissant.png'),
-(109, 'Chocolate Croissant | كرواسون شوكولاتة', 14, 'كرواسون محشو بالشوكولاتة الغنية.', 'Chocolate Croissant.png'),
-(110, 'Lotus Croissant | كرواسون لوتس', 14, 'كرواسون محشو بكريمة بسكويت اللوتس.', 'Lotus Croissant.png'),
-(111, 'Pistachio Croissant | كرواسون بستاشيو', 14, 'كرواسون محشو بكريمة الفستق الفاخرة.', 'Pistachio Croissant.png'),
-(112, 'Cheese Croissant | كرواسون جبنة', 14, 'كرواسون محشو بجبنة الشيدر الذائبة.', 'Cheese Croissant.png'),
-(113, 'Smoked Turkey Croissant | كرواسون تركي مدخن', 14, 'كرواسون مع صدر رومي مدخن وجبنة.', 'Smoked Turkey Croissant.png'),
-(114, 'Mixed Cheese Croissant | كرواسون جبن مشكل', 14, 'كرواسون محشو بتشكيلة من الأجبان الثلاثة.', 'Mixed Cheese Croissant.png'),
-(115, 'Plain Patisserie | باتيه سادة', 14, 'باتيه فرنسي طازج وخفيف.', 'Plain Patisserie.png'),
-(116, 'Cheese Patisserie | باتيه جبنة', 14, 'باتيه محشو بجبنة ذائبة.', 'Cheese Patisserie.png'),
-(117, 'White Cheese Patisserie | باتيه جبنة بيضاء', 14, 'باتيه محشو بجبنة بيضاء كريمية.', 'White Cheese Patisserie.png'),
-(118, 'Luncheon Patisserie | باتيه لانشون', 14, 'باتيه محشو باللانشون والجبنة.', 'Luncheon Patisserie.png'),
-(119, 'Smoked Turkey Patisserie | باتيه تركي مدخن', 14, 'باتيه مع صدر رومي مدخن وجبنة.', 'Smoked Turkey Patisserie.png'),
-(120, 'Mixed Cheese Patisserie | باتيه جبن مشكل', 14, 'باتيه محشو بتشكيلة من الأجبان.', 'Mixed Cheese Patisserie.png'),
-(121, 'Cookies | كوكيز', 14, 'كوكيز متنوع ومحلى طازجاً.', 'Cookies.png'),
-(122, 'Cookies Nuts | كوكيز مكسرات', 14, 'كوكيز مقرمش مع حبات المكسرات.', 'Cookies Nuts.png');
-INSERT INTO product_prices (product_id, size_id, price) VALUES
-(108, 2, 35),
-(109, 2, 50),
-(110, 2, 60),
-(111, 2, 70),
-(112, 2, 55),
-(113, 2, 65),
-(114, 2, 60),
-(115, 2, 35),
-(116, 2, 55),
-(117, 2, 45),
-(118, 2, 65),
-(119, 2, 65),
-(120, 2, 60),
-(121, 2, 40),(121, 3, 45),
-(122, 2, 50);
-
-/* =========================
-COFFEE PACKAGES
-========================= */
-INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES
-(123, 'Turkish Special Blend (250g) | قهوة تركي اسبيشيال بلند', 15, 'قهوة تركي اسبيشيال بلند - ربع كيلو.', 'default-coffee.png'),
-(124, 'Espresso Colombia Cali (250g) | اسبريسو كلومبي كالي', 15, 'اسبريسو كلومبي كالي - ربع كيلو.', 'default-coffee.png'),
-(125, 'Ethiopian Hambela (250g) | اثيوبي هامبيلا', 15, 'اثيوبي هامبيلا - ربع كيلو.', 'default-coffee.png');
-
-INSERT INTO product_prices (product_id, size_id, price) VALUES
-(123, 2, 300),
-(124, 2, 400),
-(125, 2, 400);
-
-/* =========================
-NEW FRAPPE ADDITIONS
-========================= */
-INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES
-(126, 'Frappe Mixed Berry | فرابيه ميكس بيري', 4, 'مزيج منعش من التوت المشكل والثلج.', 'Frappe Mixed Berry.png');
-
-INSERT INTO product_prices (product_id, size_id, price) VALUES
-(126, 2, 94),
-(126, 3, 99);
-
-/* =========================
-   NEW SHAKE ADDITIONS
-   ========================= */
-INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES
-(127, 'Vanilla Shake | فانيليا شيك', 3, 'ميلك شيك فانيليا ناعم وكريمي بنكهة كلاسيكية.', 'Vanilla Shake.png'),
-(128, 'Strawberry Shake | فراولة شيك', 3, 'ميلك شيك فراولة طازجة بنكهة حلوة ومنعشة.', 'Strawberry Shake.png'),
-(129, 'Mango Shake | مانجو شيك', 3, 'ميلك شيك مانجو استوائي غني وكريمي.', 'Mango Shake .png'),
-(130, 'Chocolate Shake | شوكولاتة شيك', 3, 'ميلك شيك شوكولاتة غني وقوام كثيف لا يقاوم.', 'Chocolate Shake.png');
-
-INSERT INTO product_prices (product_id, size_id, price) VALUES
-(127, 2, 89), (127, 3, 94),
-(128, 2, 89), (128, 3, 94),
-(129, 2, 89), (129, 3, 94),
-(130, 2, 89), (130, 3, 94);
-
-/* =========================
-   MOJITO AND SODA ADDITIONS
-   ========================= */
-INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES
-(131, 'Strawberry Mojito | موهيتو فراولة', 16, 'موهيتو منعش بنكهة الفراولة.', 'Strawberry Mojito.png'),
-(132, 'Blueberry Mojito | موهيتو توت', 16, 'موهيتو منعش بنكهة التوت.', 'Blueberry Mojito.png'),
-(133, 'Pineapple Mojito | موهيتو أناناس', 16, 'موهيتو منعش بنكهة الأناناس.', 'Pineapple Mojito.png'),
-(134, 'Mango Mojito | موهيتو مانجا', 16, 'موهيتو منعش بنكهة المانجو.', 'Mango Mojito.png'),
-(135, 'Peach Mojito | موهيتو خوخ', 16, 'موهيتو منعش بنكهة الخوخ.', 'Peach Mojito.png'),
-(136, 'Mix Berry Mojito | موهيتو ميكس بيري', 16, 'موهيتو منعش بنكهة ميكس بيري.', 'Mix Berry Mojito.png'),
-(137, 'Kiwi Mojito | موهيتو كيوي', 16, 'موهيتو منعش بنكهة الكيوي.', 'Kiwi Mojito.png'),
-(138, 'Passion Fruit Mojito | موهيتو باشون', 16, 'موهيتو منعش بنكهة الباشون فروت.', 'Passion Fruit Mojito.png'),
-(139, 'Apple Mojito | موهيتو تفاح', 16, 'موهيتو منعش بنكهة التفاح.', 'Apple Mojito.png'),
-(140, 'Raspberry Mojito | موهيتو راس بيري', 16, 'موهيتو منعش بنكهة الراس بيري.', 'Raspberry Mojito.png'),
-(141, 'Pink Lemon | بينك ليمون', 16, 'مشروب بينك ليمون منعش.', 'Pink Lemon.png'),
-(142, 'Blue Passion | بلو باشون', 16, 'مشروب بلو باشون منعش.', 'Blue Passion.png'),
-(143, 'Pineapple Lemon Mint | بينابول ليمون مينت', 16, 'مشروب بينابول ليمون مينت منعش.', 'Pineapple Lemon Mint.png');
-
-INSERT INTO product_prices (product_id, size_id, price) VALUES
-(139, 2, 84), (139, 3, 89),
-(140, 2, 84), (140, 3, 89),
-(141, 2, 84), (141, 3, 89),
-(142, 2, 84), (142, 3, 89),
-(143, 2, 84), (143, 3, 89),
-(136, 2, 84), (136, 3, 89),
-(137, 2, 84), (137, 3, 89),
-(138, 2, 84), (138, 3, 89),
-(131, 2, 84), (131, 3, 89),
-(132, 2, 84), (132, 3, 89),
-(133, 2, 84), (133, 3, 89),
-(134, 2, 84), (134, 3, 89),
-(135, 2, 84), (135, 3, 89);
-
-/* =========================
-   MATCHA ADDITIONS (SPLIT)
-   ========================= */
-INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES
-(144, 'Ice Matcha Mango | آيس ماتشا مانجو', 5, 'ماتشا مثلج بنكهة المانجو المنعشة.', 'Ice Matcha Mango.png');
-
-INSERT INTO product_prices (product_id, size_id, price) VALUES
-(144, 2, 109), (144, 3, 114);
-
-/* =========================
-   BOBA SOFT
-   ========================= */
-INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES
-(145, 'Boba Soft Passion | بوبا سوفت باشون', 6, 'بوبا سوفت بنكهة الباشون فروت المنعشة.', 'Boba Soft Passion.png'),
-(146, 'Boba Soft Strawberry | بوبا سوفت فراولة', 6, 'بوبا سوفت بنكهة الفراولة الحلوة.', 'Boba Soft Strawberry.png'),
-(147, 'Boba Soft Blueberry | بوبا سوفت بلوبيري', 6, 'بوبا سوفت بنكهة التوت الأزرق.', 'Boba Soft Blueberry.png'),
-(148, 'Boba Soft Mango | بوبا سوفت مانجا', 6, 'بوبا سوفت بنكهة المانجو الاستوائية.', 'Boba Soft Mango.png'),
-(149, 'Boba Soft Green Apple | بوبا سوفت تفاح أخضر', 6, 'بوبا سوفت بنكهة التفاح الأخضر المنعشة.', 'Boba Soft Green Apple.png');
-
-INSERT INTO product_prices (product_id, size_id, price) VALUES
-(145, 2, 110), (145, 3, 115),
-(146, 2, 110), (146, 3, 115),
-(147, 2, 110), (147, 3, 115),
-(148, 2, 110), (148, 3, 115),
-(149, 2, 110), (149, 3, 115);
-
-/* =========================
-   BOBA MILKSHAKE
-   ========================= */
-INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES
-(150, 'Milk Strawberry Boba Strawberry | ميلك فراولة بوبا فراولة', 17, 'ميلك شيك فراولة مع بوبا فراولة.', 'Milk Strawberry Boba Strawberry.png'),
-(151, 'Milk Mango Boba Mango | ميلك مانجا بوبا مانجا', 17, 'ميلك شيك مانجو مع بوبا مانجو.', 'Milk Mango Boba Mango.png'),
-(152, 'Milk Peach Boba Peach | ميلك خوخ بوبا خوخ', 17, 'ميلك شيك خوخ مع بوبا خوخ.', 'Milk Peach Boba Peach.png'),
-(153, 'Milk Passion Boba Passion | ميلك باشون بوبا باشون', 17, 'ميلك شيك باشون فروت مع بوبا باشون.', 'Milk Passion Boba Passion.png'),
-(154, 'Milk Blueberry Boba Blueberry | ميلك بلوبيري بوبا بلوبيري', 17, 'ميلك شيك بلوبيري مع بوبا بلوبيري.', 'Milk Blueberry Boba Blueberry.png');
-
-INSERT INTO product_prices (product_id, size_id, price) VALUES
-(150, 2, 120), (150, 3, 125),
-(151, 2, 120), (151, 3, 125),
-(152, 2, 120), (152, 3, 125),
-(153, 2, 120), (153, 3, 125),
-(154, 2, 120), (154, 3, 125);
-
-/* =========================
-   BOBA SMOOTHIE
-   ========================= */
-INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES
-(155, 'Blueberry Smoothie Boba Blueberry | سموزي توت بوبا توت', 18, 'سموزي التوت الأزرق مع بوبا توت.', 'Blueberry Smoothie Boba Blueberry.png'),
-(156, 'Strawberry Smoothie Boba Strawberry | سموزي فراولة بوبا فراولة', 18, 'سموزي الفراولة الطازجة مع بوبا فراولة.', 'Strawberry Smoothie Boba Strawberry.png'),
-(157, 'Apple Smoothie Boba Apple | سموزي تفاح بوبا تفاح', 18, 'سموزي التفاح المنعش مع بوبا تفاح.', 'Apple Smoothie Boba Apple.png'),
-(158, 'Passion Smoothie Boba Passion | سموزي باشون بوبا باشون', 18, 'سموزي الباشون فروت مع بوبا باشون.', 'Passion Smoothie Boba Passion.png'),
-(159, 'Peach Smoothie Boba Peach | سموزي خوخ بوبا خوخ', 18, 'سموزي الخوخ الناعم مع بوبا خوخ.', 'Peach Smoothie Boba Peach.png'),
-(160, 'Mango Smoothie Boba Mango | سموزي مانجا بوبا مانجا', 18, 'سموزي المانجو الاستوائي مع بوبا مانجو.', 'Mango Smoothie Boba Mango.png');
-
-INSERT INTO product_prices (product_id, size_id, price) VALUES
-(155, 2, 115), (155, 3, 120),
-(156, 2, 115), (156, 3, 120),
-(157, 2, 115), (157, 3, 120),
-(158, 2, 115), (158, 3, 120),
-(159, 2, 115), (159, 3, 120),
-(160, 2, 115), (160, 3, 120);
-
-/* =========================
-   HOT AMERICANO ADDITION
-   ========================= */
-INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES
-(161, 'Hot Americano | هوت أمريكانو', 1, 'قهوة أمريكانو ساخنة كلاسيكية.', 'Hot Americano.png');
-
-INSERT INTO product_prices (product_id, size_id, price) VALUES
-(161, 1, 69), (161, 2, 74);
-
-/* =========================
-   SANDWICHES CATEGORY
-   ========================= */
-/* Note: Sandwiches category is inserted at sort_order 145 in the categories table above */
-INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES
-(162, 'Sandwich 1 | ساندويتش 1', 19, 'ساندويتش لذيذ سيتم تحديث تفاصيله لاحقاً.', 'default.jpg'),
-(163, 'Sandwich 2 | ساندويتش 2', 19, 'ساندويتش لذيذ سيتم تحديث تفاصيله لاحقاً.', 'default.jpg'),
-(164, 'Sandwich 3 | ساندويتش 3', 19, 'ساندويتش لذيذ سيتم تحديث تفاصيله لاحقاً.', 'default.jpg'),
-(165, 'Sandwich 4 | ساندويتش 4', 19, 'ساندويتش لذيذ سيتم تحديث تفاصيله لاحقاً.', 'default.jpg');
-
-INSERT INTO product_prices (product_id, size_id, price) VALUES
-(162, 2, 80),
-(163, 2, 80),
-(164, 2, 80),
-(165, 2, 80);
-
-/* =========================
-   CINNAMON ROLL (DESSERT)
-   ========================= */
-INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES
-(166, 'Cinnamon Roll | سينامون', 13, 'رول قرفة طازج بعجينة ناعمة وصوص كريمي.', 'default.jpg');
-
-INSERT INTO product_prices (product_id, size_id, price) VALUES
-(166, 2, 90);
+COMMIT;
+PRAGMA foreign_keys = ON;

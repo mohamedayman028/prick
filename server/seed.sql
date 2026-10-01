@@ -226,8 +226,6 @@ INSERT INTO products (product_id, product_name, category_id, description_ar, ima
 INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (163, 'Sandwich 2 | ساندويتش 2', 19, 'ساندويتش لذيذ سيتم تحديث تفاصيله لاحقاً.', 'default.jpg');
 INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (164, 'Sandwich 3 | ساندويتش 3', 19, 'ساندويتش لذيذ سيتم تحديث تفاصيله لاحقاً.', 'default.jpg');
 INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (165, 'Sandwich 4 | ساندويتش 4', 19, 'ساندويتش لذيذ سيتم تحديث تفاصيله لاحقاً.', 'default.jpg');
-INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (186, 'Nutella Donut | دونات نوتيلا', 13, 'دونات بحشوة النوتيلا الكريمية.', 'Cheese cake Nutella.png');
-INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (187, 'Oreo Cake | أوريو كيك', 13, 'كيكة الأوريو الكريمية اللذيذة.', 'Oreo Shake.png');
 
 -- Product Prices
 INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (1, 1, 4, 55);
@@ -515,7 +513,6 @@ INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (359, 1
 INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (388, 93, 2, 95);
 INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (389, 97, 2, 130);
 INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (390, 98, 2, 104);
-INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (391, 186, 2, 70);
 INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (392, 121, 2, 75);
 INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (393, 101, 2, 95);
 INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (394, 102, 2, 130);
@@ -524,7 +521,6 @@ INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (396, 1
 INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (397, 105, 2, 120);
 INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (398, 106, 2, 130);
 INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (399, 107, 2, 120);
-INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (400, 187, 2, 120);
 INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (401, 99, 2, 120);
 
 COMMIT;

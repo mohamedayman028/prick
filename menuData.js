@@ -5,6 +5,38 @@ export const FALLBACK_CATEGORIES = [
         "sort_order": 10,
         "products": [
             {
+                "id": 9,
+                "name": "Turkish Coffee | قهوة تركية",
+                "description_ar": "قهوة تركية كلاسيكية محضرة بعناية ومذاق أصيل.",
+                "imageUrl": "Turkish Coffee.png",
+                "items": [
+                    {
+                        "size": "Single",
+                        "price": 50
+                    },
+                    {
+                        "size": "Double",
+                        "price": 55
+                    }
+                ]
+            },
+            {
+                "id": 10,
+                "name": "Turkish Coffee with Milk | قهوة فرنساوي",
+                "description_ar": "قهوة تركية تقليدية مع الحليب لمذاق أكثر نعومة.",
+                "imageUrl": "Turkish Coffee with Milk.png",
+                "items": [
+                    {
+                        "size": "S",
+                        "price": 55
+                    },
+                    {
+                        "size": "M",
+                        "price": 65
+                    }
+                ]
+            },
+            {
                 "id": 1,
                 "name": "Espresso | إسبريسو",
                 "description_ar": "إسبريسو مركز بنكهة غنية وكريمة ذهبية.",
@@ -28,6 +60,86 @@ export const FALLBACK_CATEGORIES = [
                 "items": [
                     {
                         "size": "Double",
+                        "price": 79
+                    }
+                ]
+            },
+            {
+                "id": 161,
+                "name": "Hot Americano | هوت أمريكانو",
+                "description_ar": "قهوة أمريكانو ساخنة كلاسيكية.",
+                "imageUrl": "Hot Americano.png",
+                "items": [
+                    {
+                        "size": "M",
+                        "price": 65
+                    },
+                    {
+                        "size": "L",
+                        "price": 75
+                    }
+                ]
+            },
+            {
+                "id": 7,
+                "name": "Cappuccino | كابتشينو",
+                "description_ar": "إسبريسو مع حليب مبخر ورغوة كثيفة متوازنة.",
+                "imageUrl": "Cappuccino.png",
+                "items": [
+                    {
+                        "size": "M",
+                        "price": 69
+                    },
+                    {
+                        "size": "L",
+                        "price": 79
+                    }
+                ]
+            },
+            {
+                "id": 8,
+                "name": "Hot Latte | لاتيه ساخن",
+                "description_ar": "إسبريسو ناعم مع كمية وافرة من الحليب المبخر.",
+                "imageUrl": "Hot Latte.png",
+                "items": [
+                    {
+                        "size": "M",
+                        "price": 69
+                    },
+                    {
+                        "size": "L",
+                        "price": 79
+                    }
+                ]
+            },
+            {
+                "id": 13,
+                "name": "Flat White | فلات وايت",
+                "description_ar": "إسبريسو مزدوج مع طبقة ناعمة من رغوة الحليب.",
+                "imageUrl": "Flat White.png",
+                "items": [
+                    {
+                        "size": "M",
+                        "price": 69
+                    },
+                    {
+                        "size": "L",
+                        "price": 79
+                    }
+                ]
+            },
+            {
+                "id": 14,
+                "name": "Cortado | كورتادو",
+                "description_ar": "مزيج مثالي من الإسبريسو وكمية متساوية من الحليب.",
+                "imageUrl": "Cortado.png",
+                "items": [
+                    {
+                        "size": "M",
+                        "price": 69
+                    },
+                    {
+                        "size": "L",
                         "price": 79
                     }
                 ]
@@ -65,70 +177,6 @@ export const FALLBACK_CATEGORIES = [
                 ]
             },
             {
-                "id": 7,
-                "name": "Cappuccino | كابتشينو",
-                "description_ar": "إسبريسو مع حليب مبخر ورغوة كثيفة متوازنة.",
-                "imageUrl": "Cappuccino.png",
-                "items": [
-                    {
-                        "size": "M",
-                        "price": 69
-                    },
-                    {
-                        "size": "L",
-                        "price": 79
-                    }
-                ]
-            },
-            {
-                "id": 8,
-                "name": "Hot Latte | لاتيه ساخن",
-                "description_ar": "إسبريسو ناعم مع كمية وافرة من الحليب المبخر.",
-                "imageUrl": "Hot Latte.png",
-                "items": [
-                    {
-                        "size": "M",
-                        "price": 69
-                    },
-                    {
-                        "size": "L",
-                        "price": 79
-                    }
-                ]
-            },
-            {
-                "id": 9,
-                "name": "Turkish Coffee | قهوة تركية",
-                "description_ar": "قهوة تركية كلاسيكية محضرة بعناية ومذاق أصيل.",
-                "imageUrl": "Turkish Coffee.png",
-                "items": [
-                    {
-                        "size": "Single",
-                        "price": 50
-                    },
-                    {
-                        "size": "Double",
-                        "price": 55
-                    }
-                ]
-            },
-            {
-                "id": 10,
-                "name": "Turkish Coffee with Milk | قهوة فرنساوي",
-                "description_ar": "قهوة تركية تقليدية مع الحليب لمذاق أكثر نعومة.",
-                "imageUrl": "Turkish Coffee with Milk.png",
-                "items": [
-                    {
-                        "size": "S",
-                        "price": 55
-                    },
-                    {
-                        "size": "M",
-                        "price": 65
-                    }
-                ]
-            },
-            {
                 "id": 11,
                 "name": "Nutella Coffee | قهوة نوتيلا",
                 "description_ar": "إسبريسو غني ممزوج بلمسة من شوكولاتة نوتيلا.",
@@ -157,54 +205,6 @@ export const FALLBACK_CATEGORIES = [
                     {
                         "size": "L",
                         "price": 119
-                    }
-                ]
-            },
-            {
-                "id": 13,
-                "name": "Flat White | فلات وايت",
-                "description_ar": "إسبريسو مزدوج مع طبقة ناعمة من رغوة الحليب.",
-                "imageUrl": "Flat White.png",
-                "items": [
-                    {
-                        "size": "M",
-                        "price": 69
-                    },
-                    {
-                        "size": "L",
-                        "price": 79
-                    }
-                ]
-            },
-            {
-                "id": 14,
-                "name": "Cortado | كورتادو",
-                "description_ar": "مزيج مثالي من الإسبريسو وكمية متساوية من الحليب.",
-                "imageUrl": "Cortado.png",
-                "items": [
-                    {
-                        "size": "M",
-                        "price": 69
-                    },
-                    {
-                        "size": "L",
-                        "price": 79
-                    }
-                ]
-            },
-            {
-                "id": 161,
-                "name": "Hot Americano | هوت أمريكانو",
-                "description_ar": "قهوة أمريكانو ساخنة كلاسيكية.",
-                "imageUrl": "Hot Americano.png",
-                "items": [
-                    {
-                        "size": "M",
-                        "price": 65
-                    },
-                    {
-                        "size": "L",
-                        "price": 75
                     }
                 ]
             }
@@ -292,7 +292,7 @@ export const FALLBACK_CATEGORIES = [
     {
         "category_id": 3,
         "category_name": "Shakes",
-        "sort_order": 30,
+        "sort_order": 21,
         "products": [
             {
                 "id": 20,
@@ -503,7 +503,7 @@ export const FALLBACK_CATEGORIES = [
     {
         "category_id": 4,
         "category_name": "Frappe",
-        "sort_order": 40,
+        "sort_order": 45,
         "products": [
             {
                 "id": 33,
@@ -673,7 +673,7 @@ export const FALLBACK_CATEGORIES = [
     {
         "category_id": 6,
         "category_name": "Boba Soft",
-        "sort_order": 60,
+        "sort_order": 35,
         "products": [
             {
                 "id": 145,
@@ -740,7 +740,7 @@ export const FALLBACK_CATEGORIES = [
     {
         "category_id": 17,
         "category_name": "Boba Milkshake",
-        "sort_order": 61,
+        "sort_order": 40,
         "products": [
             {
                 "id": 150,
@@ -807,7 +807,7 @@ export const FALLBACK_CATEGORIES = [
     {
         "category_id": 18,
         "category_name": "Boba Smoothie",
-        "sort_order": 62,
+        "sort_order": 30,
         "products": [
             {
                 "id": 155,
@@ -1128,7 +1128,7 @@ export const FALLBACK_CATEGORIES = [
     {
         "category_id": 9,
         "category_name": "Fresh Juices",
-        "sort_order": 90,
+        "sort_order": 55,
         "products": [
             {
                 "id": 57,
@@ -1255,7 +1255,7 @@ export const FALLBACK_CATEGORIES = [
     {
         "category_id": 10,
         "category_name": "Ice Coffee",
-        "sort_order": 100,
+        "sort_order": 15,
         "products": [
             {
                 "id": 67,
@@ -1277,7 +1277,7 @@ export const FALLBACK_CATEGORIES = [
                 "items": [
                     {
                         "size": "M",
-                        "price": 119
+                        "price": 109
                     }
                 ]
             },
@@ -1289,7 +1289,7 @@ export const FALLBACK_CATEGORIES = [
                 "items": [
                     {
                         "size": "M",
-                        "price": 129
+                        "price": 109
                     }
                 ]
             },
@@ -1301,7 +1301,7 @@ export const FALLBACK_CATEGORIES = [
                 "items": [
                     {
                         "size": "M",
-                        "price": 129
+                        "price": 109
                     }
                 ]
             },
@@ -1313,19 +1313,7 @@ export const FALLBACK_CATEGORIES = [
                 "items": [
                     {
                         "size": "M",
-                        "price": 100
-                    }
-                ]
-            },
-            {
-                "id": 72,
-                "name": "Ice Biscoff Latte | آيس بسكوف لاتيه",
-                "description_ar": "لاتيه مثلج مع كريمة بسكوف اللذيذة.",
-                "imageUrl": "Ice Biscoff Latte.png",
-                "items": [
-                    {
-                        "size": "M",
-                        "price": 99
+                        "price": 109
                     }
                 ]
             },
@@ -1337,7 +1325,7 @@ export const FALLBACK_CATEGORIES = [
                 "items": [
                     {
                         "size": "M",
-                        "price": 119
+                        "price": 109
                     }
                 ]
             },
@@ -1349,7 +1337,7 @@ export const FALLBACK_CATEGORIES = [
                 "items": [
                     {
                         "size": "M",
-                        "price": 119
+                        "price": 109
                     }
                 ]
             }
@@ -1358,7 +1346,7 @@ export const FALLBACK_CATEGORIES = [
     {
         "category_id": 11,
         "category_name": "Smoothies",
-        "sort_order": 110,
+        "sort_order": 25,
         "products": [
             {
                 "id": 75,
@@ -1540,7 +1528,7 @@ export const FALLBACK_CATEGORIES = [
     {
         "category_id": 13,
         "category_name": "Dessert and Bakery",
-        "sort_order": 130,
+        "sort_order": 60,
         "products": [
             {
                 "id": 93,
@@ -1687,30 +1675,6 @@ export const FALLBACK_CATEGORIES = [
                 ]
             },
             {
-                "id": 109,
-                "name": "Chocolate Croissant | كرواسون شوكولاتة",
-                "description_ar": "كرواسون محشو بالشوكولاتة الغنية.",
-                "imageUrl": "Chocolate Croissant.png",
-                "items": [
-                    {
-                        "size": "M",
-                        "price": 50
-                    }
-                ]
-            },
-            {
-                "id": 110,
-                "name": "Lotus Croissant | كرواسون لوتس",
-                "description_ar": "كرواسون محشو بكريمة بسكويت اللوتس.",
-                "imageUrl": "Lotus Croissant.png",
-                "items": [
-                    {
-                        "size": "M",
-                        "price": 60
-                    }
-                ]
-            },
-            {
                 "id": 111,
                 "name": "Pistachio Croissant | كرواسون بستاشيو",
                 "description_ar": "كرواسون محشو بكريمة الفستق الفاخرة.",
@@ -1719,18 +1683,6 @@ export const FALLBACK_CATEGORIES = [
                     {
                         "size": "M",
                         "price": 85
-                    }
-                ]
-            },
-            {
-                "id": 112,
-                "name": "Cheese Croissant | كرواسون جبنة",
-                "description_ar": "كرواسون محشو بجبنة الشيدر الذائبة.",
-                "imageUrl": "Cheese Croissant.png",
-                "items": [
-                    {
-                        "size": "M",
-                        "price": 55
                     }
                 ]
             },
@@ -1747,90 +1699,6 @@ export const FALLBACK_CATEGORIES = [
                 ]
             },
             {
-                "id": 114,
-                "name": "Mixed Cheese Croissant | كرواسون جبن مشكل",
-                "description_ar": "كرواسون محشو بتشكيلة من الأجبان الثلاثة.",
-                "imageUrl": "Mixed Cheese Croissant.png",
-                "items": [
-                    {
-                        "size": "M",
-                        "price": 60
-                    }
-                ]
-            },
-            {
-                "id": 115,
-                "name": "Plain Patisserie | باتيه سادة",
-                "description_ar": "باتيه فرنسي طازج وخفيف.",
-                "imageUrl": "Plain Patisserie.png",
-                "items": [
-                    {
-                        "size": "M",
-                        "price": 35
-                    }
-                ]
-            },
-            {
-                "id": 116,
-                "name": "Cheese Patisserie | باتيه جبنة",
-                "description_ar": "باتيه محشو بجبنة ذائبة.",
-                "imageUrl": "Cheese Patisserie.png",
-                "items": [
-                    {
-                        "size": "M",
-                        "price": 55
-                    }
-                ]
-            },
-            {
-                "id": 117,
-                "name": "White Cheese Patisserie | باتيه جبنة بيضاء",
-                "description_ar": "باتيه محشو بجبنة بيضاء كريمية.",
-                "imageUrl": "White Cheese Patisserie.png",
-                "items": [
-                    {
-                        "size": "M",
-                        "price": 45
-                    }
-                ]
-            },
-            {
-                "id": 118,
-                "name": "Luncheon Patisserie | باتيه لانشون",
-                "description_ar": "باتيه محشو باللانشون والجبنة.",
-                "imageUrl": "Luncheon Patisserie.png",
-                "items": [
-                    {
-                        "size": "M",
-                        "price": 65
-                    }
-                ]
-            },
-            {
-                "id": 119,
-                "name": "Smoked Turkey Patisserie | باتيه تركي مدخن",
-                "description_ar": "باتيه مع صدر رومي مدخن وجبنة.",
-                "imageUrl": "Smoked Turkey Patisserie.png",
-                "items": [
-                    {
-                        "size": "M",
-                        "price": 65
-                    }
-                ]
-            },
-            {
-                "id": 120,
-                "name": "Mixed Cheese Patisserie | باتيه جبن مشكل",
-                "description_ar": "باتيه محشو بتشكيلة من الأجبان.",
-                "imageUrl": "Mixed Cheese Patisserie.png",
-                "items": [
-                    {
-                        "size": "M",
-                        "price": 60
-                    }
-                ]
-            },
-            {
                 "id": 121,
                 "name": "Cookies | كوكيز",
                 "description_ar": "كوكيز مقرمشة ومحشوة.",
@@ -1839,18 +1707,6 @@ export const FALLBACK_CATEGORIES = [
                     {
                         "size": "M",
                         "price": 75
-                    }
-                ]
-            },
-            {
-                "id": 122,
-                "name": "Cookies Nuts | كوكيز مكسرات",
-                "description_ar": "كوكيز مقرمش مع حبات المكسرات.",
-                "imageUrl": "Cookies Nuts.png",
-                "items": [
-                    {
-                        "size": "M",
-                        "price": 50
                     }
                 ]
             },

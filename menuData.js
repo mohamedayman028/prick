@@ -573,7 +573,7 @@ export const FALLBACK_CATEGORIES = [
                 "items": [
                     {
                         "size": "M",
-                        "price": 155
+                        "price": 115
                     }
                 ]
             }
@@ -640,7 +640,7 @@ export const FALLBACK_CATEGORIES = [
                 "items": [
                     {
                         "size": "M",
-                        "price": 99
+                        "price": 115
                     }
                 ]
             },
@@ -1500,42 +1500,6 @@ export const FALLBACK_CATEGORIES = [
         "sort_order": 120,
         "products": [
             {
-                "id": 86,
-                "name": "V Cola | في كولا",
-                "description_ar": "مشروب كولا غازي بارد ومنعش.",
-                "imageUrl": "V Cola.png",
-                "items": [
-                    {
-                        "size": "M",
-                        "price": 40
-                    }
-                ]
-            },
-            {
-                "id": 87,
-                "name": "V7 | في 7",
-                "description_ar": "مشروب غازي بنكهات الليمون المنعشة.",
-                "imageUrl": "V7.png",
-                "items": [
-                    {
-                        "size": "M",
-                        "price": 50
-                    }
-                ]
-            },
-            {
-                "id": 88,
-                "name": "Double Dare | دبل دير",
-                "description_ar": "مشروب طاقة منعش بنكهة الفواكه.",
-                "imageUrl": "Double Dare.png",
-                "items": [
-                    {
-                        "size": "M",
-                        "price": 40
-                    }
-                ]
-            },
-            {
                 "id": 89,
                 "name": "Water | مياه",
                 "description_ar": "مياه معدنية طبيعية نقية مبردة.",
@@ -1544,18 +1508,6 @@ export const FALLBACK_CATEGORIES = [
                     {
                         "size": "M",
                         "price": 15
-                    }
-                ]
-            },
-            {
-                "id": 90,
-                "name": "C4 | سي 4",
-                "description_ar": "مشروب طاقة قوي لمحبي النشاط.",
-                "imageUrl": "C4.png",
-                "items": [
-                    {
-                        "size": "M",
-                        "price": 180
                     }
                 ]
             },

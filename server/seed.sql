@@ -149,11 +149,7 @@ INSERT INTO products (product_id, product_name, category_id, description_ar, ima
 INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (83, 'Lemon Smoothie | سموزي ليمون', 11, 'سموزي ليمون حامض ومنعش.', 'Lemon Smoothie.png');
 INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (84, 'Lemon Mint Smoothie | سموزي ليمون نعناع', 11, 'سموزي ليمون ونعناع بارد ومنعش.', 'Lemon Mint Smoothie.png');
 INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (85, 'Mixed Berry Smoothie |سموزي توت مشكل', 11, 'سموزي توت مشكل غني بمضادات الأكسدة.', 'Mixed Berry Smoothie.png');
-INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (86, 'V Cola | في كولا', 12, 'مشروب كولا غازي بارد ومنعش.', 'V Cola.png');
-INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (87, 'V7 | في 7', 12, 'مشروب غازي بنكهات الليمون المنعشة.', 'V7.png');
-INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (88, 'Double Dare | دبل دير', 12, 'مشروب طاقة منعش بنكهة الفواكه.', 'Double Dare.png');
 INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (89, 'Water | مياه', 12, 'مياه معدنية طبيعية نقية مبردة.', 'Water.png');
-INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (90, 'C4 | سي 4', 12, 'مشروب طاقة قوي لمحبي النشاط.', 'C4.png');
 INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (91, 'Red Bull | ريد بول', 12, 'مشروب الطاقة ريد بول الأصلي.', 'Red Bull.png');
 INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (92, 'Red Bull Flavor | ريد بول نكهات', 12, 'ريد بول بنكهات فواكه متنوعة ومنعشة.', 'Red Bull Flavor.png');
 INSERT INTO products (product_id, product_name, category_id, description_ar, image_url) VALUES (93, 'Classic Cheesecake | تشيز كيك كلاسيك', 13, 'تشيز كيك كلاسيك ناعمة وغنية.', 'Cheesecake.png');
@@ -255,7 +251,7 @@ INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (37, 20
 INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (47, 25, 2, 99);
 INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (56, 33, 2, 94);
 INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (64, 37, 2, 109);
-INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (72, 41, 2, 99);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (72, 41, 2, 115);
 INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (76, 43, 2, 180);
 INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (77, 44, 2, 180);
 INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (78, 45, 2, 150);
@@ -290,11 +286,7 @@ INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (121, 7
 INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (123, 72, 2, 99);
 INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (125, 73, 2, 119);
 INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (127, 74, 2, 119);
-INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (151, 86, 2, 40);
-INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (152, 87, 2, 50);
-INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (153, 88, 2, 40);
 INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (154, 89, 2, 15);
-INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (155, 90, 2, 180);
 INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (156, 91, 2, 89);
 INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (157, 92, 2, 110);
 INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (175, 109, 2, 50);
@@ -375,7 +367,7 @@ INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (418, 1
 INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (419, 128, 2, 99);
 INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (420, 129, 2, 99);
 INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (421, 130, 2, 99);
-INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (422, 166, 2, 155);
+INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (422, 166, 2, 115);
 INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (423, 36, 2, 115);
 INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (424, 126, 2, 115);
 INSERT INTO product_prices (price_id, product_id, size_id, price) VALUES (425, 34, 2, 109);
